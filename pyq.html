@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PYQ Solutions - Computer Architecture</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Link to Shared Notes Stylesheet -->
+    <link rel="stylesheet" href="notes.css">
+
+    <!-- Page Specific Variable Colors -->
+    <style>
+        :root {
+            --primary-color: #eab308; /* Gold Accent for PYQs */
+            --primary-light: rgba(234, 179, 8, 0.05);
+            --border-color: rgba(234, 179, 8, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="index.html">← Home</a>
+    <span class="nav-title">PYQ Solutions</span>
+    <div style="display:flex;gap:0.5rem;">
+        <a href="multiprocessor.html">← Prev</a>
+        <span style="opacity: 0.3; cursor: not-allowed; padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">Next →</span>
+    </div>
+</nav>
+
+<div class="container">
+    <header>
+        <h1>Previous Year Questions</h1>
+        <p class="subtitle">Complete Detailed Solutions · 2023 &amp; 2024 Papers</p>
+        <div class="book-divider">
+            <span class="line"></span>
+            <span class="ornament">❖</span>
+            <span class="line"></span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">2023 — PCC-CS402</h2>
+        
+        <!-- ============================================================ -->
+        <!-- 2023 GROUP A -->
+        <!-- ============================================================ -->
+        <h3 style="font-size: 1.2rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Group A — Very Short Answer Type [1 × 10 = 10]</h3>
+        
+        <details><summary>1. Fill in the blanks &amp; Very Short Questions [1 × 10 = 10]</summary>
+        <div class="answer">
+            <p><b>(i) Define Superscalar.</b></p>
+            <p><span class="highlight">Superscalar</span> is a processor architecture that uses multiple parallel execution units (integer ALUs, FP units, load/store units) to issue and execute <b>more than one instruction per clock cycle</b>. Unlike a simple pipelined processor that completes at most one instruction per cycle, a 4-issue superscalar can theoretically retire up to 4 instructions every cycle.</p>
+
+            <p><b>(ii) Define Cluster Computer.</b></p>
+            <p>A <span class="highlight">Cluster</span> is a collection of commodity computers (called nodes) interconnected through a high-speed network (like Ethernet or InfiniBand) that work together as a unified computing resource. Each node has its own private memory and OS instance. They communicate via <b>message passing</b> (e.g., MPI). Clusters are the foundation of modern supercomputers and cloud data centres.</p>
+
+            <p><b>(iii) Define Dataflow Architecture.</b></p>
+            <p><span class="highlight">Dataflow</span> architecture is a non-von Neumann computing paradigm where an instruction is executed as soon as all of its required input operands (data tokens) are available — there is no centralized Program Counter. Execution order is entirely determined by data dependencies, which naturally exposes maximum parallelism. Data tokens flow along edges of a dataflow graph from producer instructions to consumer instructions.</p>
+
+            <p><b>(iv) Define Instruction Pipelining.</b></p>
+            <p><span class="highlight">Instruction Pipelining</span> is a processor implementation technique where the execution of each instruction is broken into distinct stages (IF → ID → EX → MEM → WB) and multiple instructions are overlapped in execution — each stage processes a different instruction simultaneously, much like an assembly line.</p>
+
+            <p><b>(v) What is the primary goal of exception handling?</b></p>
+            <p>To <b>ensure graceful recovery and prevent system failure</b> when unexpected events occur during instruction execution (e.g., arithmetic overflow, page fault, illegal opcode). The processor must save the precise architectural state, invoke the OS exception handler, and resume execution correctly after the event has been handled.</p>
+
+            <p><b>(vi) What policy in virtual memory decides which page to remove?</b></p>
+            <p>The <span class="highlight">Page Replacement</span> policy (algorithms like LRU, FIFO, Optimal, Clock) decides which existing page to evict from physical memory when a new page needs to be loaded and all frames are occupied.</p>
+
+            <p><b>(vii) What is a superpipelined processor?</b></p>
+            <p>A <span class="highlight">superpipelined processor</span> divides the execution pipeline into a much larger number of finer-grained stages than a conventional pipeline. This allows the clock frequency to increase proportionally (since each stage has less combinational logic delay). For example, while a standard pipeline might have 5 stages, a superpipelined design might have 12–20+ stages, enabling a much higher clock rate but increasing branch misprediction penalties.</p>
+
+            <p><b>(viii) What is synchronization in a centralized shared-memory architecture?</b></p>
+            <p><span class="highlight">Synchronization</span> is the coordination mechanism that ensures <b>mutual exclusion</b> when multiple processors access shared data. It prevents race conditions and ensures data consistency. Common synchronization primitives include:</p>
+            <ul>
+                <li><b>Locks/Mutexes</b> — Only one processor holds the lock at a time.</li>
+                <li><b>Barriers</b> — All processors must reach the barrier before any can proceed.</li>
+                <li><b>Atomic operations</b> — Hardware instructions like <code>Test-and-Set</code>, <code>Compare-and-Swap</code> that execute indivisibly.</li>
+            </ul>
+
+            <p><b>(ix) What is exception handling in computer architecture?</b></p>
+            <p>The hardware/software mechanism for responding to <span class="highlight">exceptions</span> — anomalous or exceptional conditions (like arithmetic overflow, undefined opcode, page fault, or external interrupts) that arise during program execution. The processor interrupts the current instruction stream, saves the program counter and machine state, and transfers control to a predefined OS exception handler routine.</p>
+
+            <p><b>(x) What are memory replacement policies?</b></p>
+            <p>Algorithms used to decide <b>which page in physical memory to evict</b> when a page fault occurs and all frames are occupied. Key policies:</p>
+            <ul>
+                <li><b>LRU (Least Recently Used):</b> Evicts the page that hasn't been accessed for the longest time.</li>
+                <li><b>FIFO (First-In, First-Out):</b> Evicts the oldest page (first to arrive). Suffers from Belady's anomaly.</li>
+                <li><b>Optimal (Belady's):</b> Evicts the page that won't be used for the longest time in the future (theoretical, not implementable).</li>
+            </ul>
+
+            <p><b>(xi) What is a memory replacement policy?</b></p>
+            <p>An algorithm (like LRU, FIFO, or Clock) used to choose a specific page to be removed from main memory when a page fault occurs and no free frames exist. The goal is to minimize the total number of future page faults.</p>
+
+            <p><b>(xii) What is a VLIW processor?</b></p>
+            <p><span class="highlight">Very Long Instruction Word (VLIW)</span> is a processor architecture where each instruction word is very wide (e.g., 128–1024 bits) and contains <b>multiple independent operations</b> (e.g., an integer add, an FP multiply, a load, a branch) packed together by the <b>compiler</b>. The hardware does not need dynamic scheduling logic — it simply dispatches each operation to its designated functional unit. Examples: Intel Itanium (IA-64), TI C6000 DSPs.</p>
+        </div>
+        </details>
+
+        <!-- ============================================================ -->
+        <!-- 2023 GROUP B -->
+        <!-- ============================================================ -->
+        <h3 style="font-size: 1.2rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2rem; margin-bottom: 1rem;">Group B — Short Answer Type [5 × 3 = 15]</h3>
+        
+        <details><summary>2. What is a cache memory, and how is it different from main memory? [5]</summary>
+        <div class="answer">
+            <p><span class="highlight">Cache Memory</span> is a small, very fast memory placed between the CPU and Main Memory. It stores copies of the most frequently accessed data and instructions from main memory, so that the CPU can access them in just 1–3 clock cycles instead of waiting 50–100+ cycles for main memory.</p>
+
+            <p><span class="highlight">Key Differences from Main Memory:</span></p>
+            <ul>
+                <li><b>Technology:</b> Cache uses SRAM (Static RAM — 6-transistor cells, no refresh needed). Main memory uses DRAM (Dynamic RAM — 1-transistor + 1-capacitor cells, requires periodic refresh).</li>
+                <li><b>Speed:</b> L1 cache access: ~1–4 ns. DRAM access: ~50–100 ns. Cache is roughly 10–50× faster.</li>
+                <li><b>Size:</b> L1: 32–64 KB; L2: 256 KB–1 MB; L3: 4–64 MB. Main Memory: 4–128 GB. Cache is orders of magnitude smaller.</li>
+                <li><b>Cost:</b> SRAM costs significantly more per bit (~$500/GB vs ~$5/GB for DRAM), which is why cache sizes remain small.</li>
+                <li><b>Management:</b> Cache is managed entirely by <b>hardware</b> (the cache controller), transparent to the programmer. Main memory is managed by the <b>OS</b> (virtual memory, page tables).</li>
+                <li><b>Locality:</b> Cache exploits <b>temporal locality</b> (recently used data is likely needed again) and <b>spatial locality</b> (nearby addresses are likely needed next) to achieve hit rates of 90–99%.</li>
+            </ul>
+        </div>
+        </details>
+
+        <details><summary>3. What are some of the design trade-offs involved in implementing a superscalar processor architecture? [5]</summary>
+        <div class="answer">
+            <p>A superscalar processor aims to achieve IPC (Instructions Per Cycle) > 1 by issuing multiple instructions simultaneously. However, this introduces several critical design trade-offs:</p>
+            <ul>
+                <li><span class="highlight">Hardware Complexity vs. Performance Gain:</span> Superscalar processors need complex hardware for: (a) fetching multiple instructions per cycle, (b) decoding multiple instructions in parallel, (c) detecting dependencies between instructions, (d) dynamic instruction scheduling (reservation stations), and (e) register renaming (RAT — Register Alias Table). Each additional issue slot exponentially increases the hardware cost (area, power, verification complexity).</li>
+                <li><span class="highlight">ILP Availability vs. Issue Width:</span> The actual speedup is limited by the Instruction-Level Parallelism (ILP) inherent in the program. If the code has many sequential dependencies, the extra execution units sit idle. Typical programs exhibit ILP of only 2–4, meaning a 6-wide superscalar often wastes half its resources.</li>
+                <li><span class="highlight">Instruction Window Size:</span> A larger instruction window allows the hardware to look further ahead to find independent instructions. However, the associative comparison logic (for wakeup and select) scales as O(n²), making very large windows impractical. Modern designs use 200–300 entry reorder buffers.</li>
+                <li><span class="highlight">Branch Prediction Accuracy:</span> With multiple instructions in flight, a branch misprediction wastes even more work. A 4-wide superscalar with a 15-stage pipeline can waste 60 instructions on a single misprediction. This demands highly accurate (>95%) dynamic branch predictors, adding further hardware complexity.</li>
+                <li><span class="highlight">Power Consumption:</span> The speculation logic, multiple execution units, and large register files consume significant dynamic and static power, creating thermal challenges.</li>
+            </ul>
+        </div>
+        </details>
+
+        <details><summary>4. What are data hazards in computer architecture? How can they be resolved? [5]</summary>
+        <div class="answer">
+            <p><span class="highlight">Data Hazards</span> occur in pipelined processors when instructions that are close together in the instruction stream have data dependencies — one instruction needs a value that hasn't been produced yet by a preceding instruction.</p>
+
+            <p><span class="highlight">Types of Data Hazards:</span></p>
+            <ul>
+                <li><b>RAW (Read After Write) — True Dependency:</b> Instruction B reads a register that Instruction A writes. B must wait for A's result. Example: <code>ADD R1, R2, R3</code> followed by <code>SUB R4, R1, R5</code>. The SUB needs R1's new value before ADD has written it back.</li>
+                <li><b>WAW (Write After Write) — Output Dependency:</b> Two instructions write to the same register. The second write must happen after the first. Only occurs in out-of-order or multi-cycle pipelines.</li>
+                <li><b>WAR (Write After Read) — Anti-Dependency:</b> Instruction B writes a register that Instruction A reads. B must not overwrite the value before A has read it. Only occurs in out-of-order execution or with register renaming issues.</li>
+            </ul>
+
+            <p><span class="highlight">Resolution Techniques:</span></p>
+            <ul>
+                <li><b>Data Forwarding (Bypassing):</b> Special hardware datapaths route the ALU result from the EX/MEM or MEM/WB pipeline register directly to the ALU input of the dependent instruction, bypassing the register file. This eliminates stalls for most arithmetic RAW hazards.</li>
+                <li><b>Pipeline Stalling (Interlocking):</b> The hazard detection unit inserts "bubbles" (NOPs) into the pipeline to delay the dependent instruction until the data is available. Used when forwarding alone is insufficient (e.g., Load-Use hazard requires 1 mandatory stall cycle).</li>
+                <li><b>Compiler Instruction Scheduling:</b> The compiler reorders independent instructions to fill the "gap" between a data-producing instruction and its consumer, avoiding the stall entirely without any additional hardware.</li>
+                <li><b>Register Renaming:</b> Eliminates WAW and WAR hazards by dynamically assigning physical registers to architectural registers, ensuring each write targets a unique physical location.</li>
+            </ul>
+        </div>
+        </details>
+
+        <details><summary>5. What is a cache miss, and what are the causes of cache misses in a computer system? [5]</summary>
+        <div class="answer">
+            <p>A <span class="highlight">Cache Miss</span> occurs when the CPU requests data (or an instruction) that is <b>not currently present</b> in the cache memory. The processor must then fetch the data from the slower main memory (or a lower-level cache like L2/L3), incurring a significant latency penalty called the <b>miss penalty</b> (typically 50–200 clock cycles).</p>
+
+            <p><span class="highlight">The 3 C's Classification of Cache Misses:</span></p>
+            <ul>
+                <li><b>Compulsory Misses (Cold-Start Misses):</b> The very first access to any block of data will always be a miss because the block has never been loaded into the cache. These are unavoidable — even an infinitely large cache would suffer compulsory misses. <i>Mitigation:</i> Prefetching (hardware or software) to load blocks before they are needed.</li>
+                <li><b>Capacity Misses:</b> Occur when the entire working set of the program is larger than the cache. Even with a fully-associative cache, blocks get evicted and later needed again. <i>Mitigation:</i> Increase cache size; optimize code for better data locality (e.g., loop tiling/blocking).</li>
+                <li><b>Conflict Misses (Collision Misses):</b> Occur in direct-mapped or set-associative caches when multiple blocks map to the same cache set, causing useful blocks to be evicted even when the cache has unused space in other sets. <i>Mitigation:</i> Increase associativity (e.g., move from 2-way to 8-way set-associative); use victim caches.</li>
+            </ul>
+            <p><i>A fourth "C" is sometimes added: <b>Coherence Misses</b> — misses caused by cache invalidation due to writes from other processors in a multiprocessor system.</i></p>
+        </div>
+        </details>
+
+        <details><summary>6. What is the role of the memory management unit (MMU) in virtual memory management? [5]</summary>
+        <div class="answer">
+            <p>The <span class="highlight">Memory Management Unit (MMU)</span> is a critical hardware component (usually integrated into the CPU) that acts as the bridge between the CPU's virtual address space and the physical memory hardware. Its roles include:</p>
+            <ul>
+                <li><span class="highlight">Address Translation:</span> The MMU translates every virtual (logical) address generated by the CPU into a physical address in main memory. It does this by looking up the virtual page number in the <b>Page Table</b> to find the corresponding physical frame number, then appending the page offset.</li>
+                <li><span class="highlight">TLB Management:</span> The MMU maintains a <b>Translation Lookaside Buffer (TLB)</b> — a small, fast, fully-associative cache that stores recent virtual-to-physical address translations. A TLB hit avoids the slow page table lookup entirely. Typical TLB hit rate: 99%+.</li>
+                <li><span class="highlight">Page Fault Generation:</span> If the page table entry indicates the requested page is <b>not in physical memory</b> (valid bit = 0), the MMU generates a <b>page fault exception</b>. The OS then handles loading the page from disk into a free frame.</li>
+                <li><span class="highlight">Memory Protection:</span> The MMU checks access permission bits (read/write/execute) stored in each page table entry. If a process tries to write to a read-only page or execute a non-executable page, the MMU raises a <b>protection fault</b>.</li>
+                <li><span class="highlight">Support for Multi-level Page Tables:</span> Modern MMUs support hierarchical page tables (2-level, 4-level as in x86-64) to reduce the memory overhead of storing page tables for large address spaces.</li>
+            </ul>
+        </div>
+        </details>
+
+        <!-- ============================================================ -->
+        <!-- 2023 GROUP C -->
+        <!-- ============================================================ -->
+        <h3 style="font-size: 1.2rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2rem; margin-bottom: 1rem;">Group C — Long Answer Type [15 × 3 = 45]</h3>
+        
+        <details><summary>7. Explain the concept of pipeline hazards in computer architecture. How can they be avoided or minimized? [15]</summary>
+        <div class="answer">
+            <p>In a pipelined processor, a <span class="highlight">Hazard</span> is a situation that prevents the next instruction in the instruction stream from executing during its designated clock cycle, forcing a <b>pipeline stall</b> (bubble). Hazards are the primary reason real pipelines never achieve the theoretical speedup of <i>k</i> (number of stages).</p>
+
+            <p><span class="highlight">1. Structural Hazards (Resource Conflicts):</span></p>
+            <ul>
+                <li><b>Cause:</b> The hardware cannot support all possible combinations of instructions executing simultaneously. Two instructions need the same physical hardware resource in the same clock cycle.</li>
+                <li><b>Classic Example:</b> A <b>unified memory</b> (single-port) for both instructions and data. When a Load instruction is in the MEM stage reading data, the IF stage cannot simultaneously fetch the next instruction because they share the same memory port.</li>
+                <li><b>Another Example:</b> A single ALU shared between the EX stage (for arithmetic) and the ID stage (for branch target calculation).</li>
+                <li><b>Solutions:</b>
+                    <ul>
+                        <li><b>Resource Duplication:</b> Use a <b>Harvard Architecture</b> — separate Instruction Cache (I-Cache) and Data Cache (D-Cache). This is the standard modern solution.</li>
+                        <li><b>Pipeline Stalling:</b> If duplication is too expensive, the hardware stalls one of the conflicting instructions for one cycle.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><span class="highlight">2. Data Hazards (Data Dependencies):</span></p>
+            <ul>
+                <li><b>Cause:</b> An instruction depends on the result of a previous instruction that is still in the pipeline.</li>
+                <li><b>Types:</b>
+                    <ul>
+                        <li><b>RAW (Read After Write) — True Dependency:</b> Most common and dangerous. Instruction j tries to read a source register before instruction i has written to it. Example:<br>
+                        <code>ADD R1, R2, R3</code> (writes R1 in WB — cycle 5)<br>
+                        <code>SUB R4, R1, R5</code> (reads R1 in ID — cycle 3)<br>
+                        SUB reads the OLD value of R1 — incorrect!</li>
+                        <li><b>WAW (Write After Write) — Output Dependency:</b> Two instructions write to the same register; the writes must occur in program order.</li>
+                        <li><b>WAR (Write After Read) — Anti-Dependency:</b> Instruction j writes a register that instruction i still needs to read.</li>
+                    </ul>
+                </li>
+                <li><b>Solutions:</b>
+                    <ul>
+                        <li><b>Forwarding (Bypassing):</b> Hardware datapaths route results from the EX/MEM or MEM/WB pipeline registers directly back to the ALU inputs. Eliminates most RAW stalls.</li>
+                        <li><b>Pipeline Stalling (Interlock):</b> For <b>Load-Use hazards</b> (a Load followed immediately by a dependent instruction), forwarding alone cannot help because the data isn't available until the end of the MEM stage. The hardware inserts exactly <b>1 bubble</b>.</li>
+                        <li><b>Compiler Scheduling:</b> The compiler reorders independent instructions to separate dependent pairs, filling the gap naturally.</li>
+                        <li><b>Register Renaming:</b> Eliminates WAW and WAR by mapping architectural registers to a larger set of physical registers.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><span class="highlight">3. Control Hazards (Branch Hazards):</span></p>
+            <ul>
+                <li><b>Cause:</b> The pipeline has already fetched subsequent sequential instructions, but a branch instruction changes the Program Counter (PC) to a non-sequential target. The fetched instructions are wrong and must be <b>flushed</b>.</li>
+                <li><b>Penalty:</b> In a 5-stage pipeline where the branch is resolved in the ID stage, the penalty is <b>1 cycle</b> (1 instruction flushed). In deeper pipelines (15–20 stages), the penalty can be <b>15+ cycles</b>.</li>
+                <li><b>Solutions:</b>
+                    <ul>
+                        <li><b>Static Branch Prediction:</b> Assume "branch not taken" (always fetch sequentially) or predict backward branches as taken (loops). Simple but limited accuracy (~60–70%).</li>
+                        <li><b>Dynamic Branch Prediction:</b> Use a <b>Branch History Table (BHT)</b> or <b>Branch Target Buffer (BTB)</b> to predict based on past behaviour. Two-bit saturating counters achieve ~85–90% accuracy. Tournament predictors (combining local and global history) achieve ~95%+.</li>
+                        <li><b>Delayed Branching:</b> The compiler fills the <b>branch delay slot</b> (the instruction immediately after the branch) with a useful, independent instruction that executes regardless of the branch outcome.</li>
+                        <li><b>Early Branch Resolution:</b> Move the branch comparison hardware into the ID stage to reduce the penalty from 2 cycles to 1 cycle.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="formula-box">Effective CPI = Ideal CPI (1.0) + Structural Stalls + Data Stalls + Control Stalls</div>
+            <p>The design goal is to minimize every stall component through the techniques above, bringing the Effective CPI as close to 1.0 (or below 1.0 in superscalar designs) as possible.</p>
+        </div>
+        </details>
+
+        <details><summary>8. (a) Describe the concept of virtual memory [8]. (b) Explain how it is implemented in modern computer systems [7].</summary>
+        <div class="answer">
+            <p><b>(a) Concept of Virtual Memory:</b></p>
+            <p><span class="highlight">Virtual Memory</span> is a memory management technique that creates an illusion to users and programs that the computer has a very large, contiguous, and private main memory — even if the actual physical RAM is much smaller.</p>
+            <ul>
+                <li><b>Core Idea:</b> Each process is given its own <b>virtual address space</b> (e.g., 0 to 2⁶⁴ - 1 on a 64-bit system). The OS and hardware cooperate to map only the actively used portions of this virtual space to physical RAM. Inactive portions reside on the much larger (but slower) disk/SSD, called <b>swap space</b> or <b>page file</b>.</li>
+                <li><b>Key Benefits:</b>
+                    <ul>
+                        <li><b>Memory Isolation:</b> Each process has its own address space and cannot corrupt another process's memory.</li>
+                        <li><b>Larger Address Space:</b> Programs can use more memory than physically available — the OS transparently swaps pages between RAM and disk.</li>
+                        <li><b>Simplified Memory Allocation:</b> Programs see a simple, contiguous address space. The physical allocation can be scattered across non-contiguous frames.</li>
+                        <li><b>Efficient Sharing:</b> Multiple processes can share the same physical page of code (e.g., shared libraries like libc) by mapping different virtual addresses to the same physical frame.</li>
+                        <li><b>Protection:</b> Page table entries contain protection bits (R/W/X) enforced by hardware.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><b>(b) Implementation in Modern Systems:</b></p>
+            <p>Virtual memory is implemented using a combination of <b>hardware</b> (MMU, TLB) and <b>OS software</b> (page tables, page replacement algorithms).</p>
+
+            <p><span class="highlight">Step 1 — Paging:</span></p>
+            <ul>
+                <li>The virtual address space is divided into fixed-size blocks called <b>pages</b> (typically 4 KB).</li>
+                <li>Physical memory is divided into equal-sized blocks called <b>frames</b>.</li>
+                <li>A virtual address is split into: <code>[Virtual Page Number (VPN) | Page Offset]</code>.</li>
+            </ul>
+
+            <p><span class="highlight">Step 2 — Page Table:</span></p>
+            <ul>
+                <li>The OS maintains a <b>Page Table</b> for each process, stored in main memory.</li>
+                <li>Each entry maps a VPN → Physical Frame Number (PFN) and contains: Valid bit, Dirty bit, Reference bit, Protection bits (R/W/X).</li>
+                <li>Modern systems use <b>multi-level page tables</b> (e.g., x86-64 uses 4-level: PML4 → PDPT → PD → PT) to avoid storing entries for unmapped regions.</li>
+            </ul>
+
+            <p><span class="highlight">Step 3 — Translation Lookaside Buffer (TLB):</span></p>
+            <ul>
+                <li>Accessing the page table in memory for every address translation would double the memory access time. The <b>TLB</b> is a small, fast, fully-associative cache inside the MMU that caches recent VPN → PFN translations.</li>
+                <li>TLB hit rate: typically 99%+. A TLB miss triggers a page table walk (hardware or software).</li>
+            </ul>
+
+            <p><span class="highlight">Step 4 — Page Fault Handling:</span></p>
+            <ul>
+                <li>If the page table entry's valid bit = 0, the page is on disk → <b>Page Fault</b> exception.</li>
+                <li>The OS selects a victim page (using LRU, Clock, or similar algorithm), writes it to disk if dirty, loads the requested page from disk into the freed frame, updates the page table, and restarts the faulting instruction.</li>
+            </ul>
+
+            <div class="formula-box">Effective Access Time = TLB_Hit_Rate × (TLB_Time + Mem_Time) + (1 − TLB_Hit_Rate) × (TLB_Time + Page_Table_Walk_Time + Mem_Time)</div>
+        </div>
+        </details>
+
+        <details><summary>9. Explain the concept of cache coherence miss penalty, and discuss the techniques used to reduce it. [15]</summary>
+        <div class="answer">
+            <p><span class="highlight">Cache Coherence</span> is the problem of ensuring that all processors in a multiprocessor system see a consistent view of shared memory. When Processor A writes to a memory location cached by Processor B, B's cached copy becomes <b>stale</b>. If B reads the stale value, the program produces incorrect results.</p>
+
+            <p><span class="highlight">Cache Coherence Miss Penalty:</span></p>
+            <ul>
+                <li>A <b>coherence miss</b> (sometimes called the "4th C" of cache misses) occurs when Processor B tries to read a block that was invalidated or updated by Processor A's write.</li>
+                <li>The <b>miss penalty</b> is the additional latency incurred to either: (a) fetch the updated block from main memory, or (b) fetch it directly from Processor A's cache via a cache-to-cache transfer.</li>
+                <li>This penalty can be very large: 100–500 cycles depending on the interconnect latency, far worse than a regular L2/L3 cache miss.</li>
+            </ul>
+
+            <p><span class="highlight">1. Snoopy Bus Protocols (for Bus-Based Multiprocessors):</span></p>
+            <ul>
+                <li><b>Mechanism:</b> All caches are connected to a shared bus. Every cache controller <b>snoops</b> (monitors) the bus for memory transactions issued by other caches.</li>
+                <li><b>Write-Invalidate Protocol:</b> When a processor writes to a shared block, it broadcasts an <b>invalidation signal</b> on the bus. All other caches holding that block mark their copies as <b>Invalid</b>. On their next access, they must fetch the updated block.</li>
+                <li><b>Write-Update (Write-Broadcast) Protocol:</b> Instead of invalidating, the writing processor broadcasts the <b>new data</b> on the bus. All other caches update their copies immediately. Reduces later read misses but generates more bus traffic.</li>
+            </ul>
+
+            <p><span class="highlight">2. MESI Protocol (Detailed):</span></p>
+            <p>The most widely used snoopy protocol. Each cache line is in one of four states:</p>
+            <ul>
+                <li><b>Modified (M):</b> The block is exclusively in this cache and has been written (dirty). Main memory copy is stale. This cache must write-back before any other cache can use it.</li>
+                <li><b>Exclusive (E):</b> The block is exclusively in this cache but is clean (matches main memory). Can be written silently (transitions to M) without bus traffic.</li>
+                <li><b>Shared (S):</b> The block may be in multiple caches. All copies and main memory are consistent. A write requires broadcasting an invalidation first.</li>
+                <li><b>Invalid (I):</b> The block is not valid. Any access triggers a cache miss.</li>
+            </ul>
+            <p><b>How MESI reduces penalty:</b> The Exclusive state allows a single-reader to write without bus traffic. The Modified state enables <b>cache-to-cache transfers</b> — when another processor requests a Modified block, the owning cache can supply the data directly (intervention), which is faster than going to main memory.</p>
+
+            <p><span class="highlight">3. Directory-Based Protocols (for Scalable Multiprocessors):</span></p>
+            <ul>
+                <li><b>Problem with Snooping:</b> Snoopy protocols require a <b>shared bus</b>, which becomes a bottleneck beyond ~8–16 processors because every transaction is broadcast to all caches.</li>
+                <li><b>Solution:</b> A <b>directory</b> (distributed or centralized) is maintained alongside main memory. For each memory block, the directory records: which caches have a copy, and whether the block is clean or dirty.</li>
+                <li><b>Operation:</b> When a processor wants to read or write a block, it sends a point-to-point message to the directory (home node). The directory then sends targeted invalidation/update messages only to the caches that actually hold the block — no broadcasting needed.</li>
+                <li><b>Scalability:</b> Communication is proportional to the number of sharers, not the total number of processors. Scales to hundreds or thousands of processors.</li>
+            </ul>
+
+            <p><span class="highlight">4. Additional Techniques to Reduce Coherence Penalty:</span></p>
+            <ul>
+                <li><b>Optimized Interconnects:</b> Replace shared buses with high-bandwidth point-to-point links (e.g., Intel QPI, AMD Infinity Fabric) or crossbar switches to reduce communication latency.</li>
+                <li><b>Relaxed Consistency Models:</b> Allow certain memory operations to be reordered (e.g., Total Store Ordering, Release Consistency), reducing the number of coherence transactions.</li>
+                <li><b>Cache-to-Cache Transfers:</b> When a dirty block is needed, it is transferred directly from the owning cache rather than being written back to memory first and then fetched.</li>
+                <li><b>Software Optimizations:</b> Minimize false sharing (where unrelated variables in the same cache line are written by different processors) through padding and data structure alignment.</li>
+            </ul>
+        </div>
+        </details>
+
+        <details><summary>10. Compare and contrast superscalar and VLIW processor architectures in terms of their performance, complexity, and design challenges. [15]</summary>
+        <div class="answer">
+            <p>Both <span class="highlight">Superscalar</span> and <span class="highlight">VLIW</span> architectures aim to execute multiple operations per clock cycle, but they take fundamentally different approaches to achieving this goal.</p>
+
+            <p><span class="highlight">Superscalar Architecture:</span></p>
+            <ul>
+                <li><b>Scheduling:</b> <b>Dynamic</b> — the hardware is responsible for detecting independent instructions at runtime and dispatching them to available execution units. Uses Tomasulo's algorithm, reservation stations, and reorder buffers.</li>
+                <li><b>Hardware Complexity:</b> Very high. Requires: (a) complex fetch logic to fetch multiple instructions per cycle, (b) dependency detection hardware comparing every new instruction against all in-flight instructions, (c) register renaming (RAT) to eliminate false dependencies, (d) out-of-order execution engine, (e) reorder buffer for in-order retirement.</li>
+                <li><b>Compiler Complexity:</b> Relatively simple — the compiler doesn't need to schedule for parallelism; the hardware handles it.</li>
+                <li><b>Binary Compatibility:</b> <b>Excellent.</b> Old binaries run correctly (and faster) on newer superscalar processors because the hardware dynamically adapts to find parallelism. This is why x86 has thrived for decades.</li>
+                <li><b>Performance:</b> Very good at exploiting dynamic ILP. Can speculate past branches, handle variable-latency operations, and adapt to runtime conditions. Typical IPC: 2–4 for integer workloads.</li>
+                <li><b>Power Consumption:</b> High — the scheduling, speculation, and renaming logic consume significant power.</li>
+                <li><b>Examples:</b> Intel Core series, AMD Ryzen, ARM Cortex-A series.</li>
+            </ul>
+
+            <p><span class="highlight">VLIW Architecture:</span></p>
+            <ul>
+                <li><b>Scheduling:</b> <b>Static</b> — the compiler is entirely responsible for analyzing the program, finding independent operations, and packing them into a single wide instruction word before execution.</li>
+                <li><b>Hardware Complexity:</b> Very low. The hardware simply reads the wide instruction word and dispatches each operation slot to its fixed functional unit. No dependency checking, no register renaming, no reorder buffer.</li>
+                <li><b>Compiler Complexity:</b> Very high. The compiler must perform aggressive instruction scheduling, software pipelining (modulo scheduling), speculative execution (predicated instructions), and trace scheduling to fill all slots. If the compiler can't find enough independent operations, it inserts NOPs, causing <b>code bloat</b>.</li>
+                <li><b>Binary Compatibility:</b> <b>Poor.</b> The instruction encoding is tightly coupled to the hardware's functional unit layout. Changing the number or type of functional units requires recompilation of all software. This is a major practical disadvantage.</li>
+                <li><b>Performance:</b> Excellent for regular, predictable workloads (DSP, media processing, scientific computing). Poor for irregular, branch-heavy code (general-purpose computing) where the compiler cannot statically predict behaviour.</li>
+                <li><b>Power Consumption:</b> Low — the simple hardware design allows higher clock speeds with less power.</li>
+                <li><b>Examples:</b> Intel Itanium (IA-64), TI TMS320C6000 DSPs, Transmeta Crusoe.</li>
+            </ul>
+
+            <p><span class="highlight">Summary Comparison Table:</span></p>
+            <table style="width:100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.85rem;">
+                <tr style="background: rgba(234, 179, 8, 0.08);"><th style="padding: 0.5rem; border: 1px solid var(--border-color); text-align: left;">Aspect</th><th style="padding: 0.5rem; border: 1px solid var(--border-color); text-align: left;">Superscalar</th><th style="padding: 0.5rem; border: 1px solid var(--border-color); text-align: left;">VLIW</th></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Scheduling</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Dynamic (hardware)</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Static (compiler)</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">HW Complexity</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Very High</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Low</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Compiler Complexity</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Low</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Very High</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Binary Compat.</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Excellent</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Poor</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Code Size</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Normal</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Large (NOP padding)</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Power</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">High</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Low</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Best Suited For</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">General-purpose</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">DSP, Embedded, Scientific</td></tr>
+            </table>
+        </div>
+        </details>
+
+        <details><summary>11. Effective Memory Access Time (EMAT) Calculation. [15]</summary>
+        <div class="answer">
+            <p><b>Question:</b> A system has a 64-bit virtual address space and a 4 KB page size. The page table is stored in main memory, which has a memory access time of 100 ns. The TLB has a hit rate of 90%, and a TLB miss takes 500 ns to service. What is the effective memory access time?</p>
+
+            <p><span class="highlight">Step 1 — Identify Given Values:</span></p>
+            <ul>
+                <li>Virtual Address Space = 64 bits</li>
+                <li>Page Size = 4 KB = 2¹² bytes → Page Offset = 12 bits</li>
+                <li>Number of Virtual Pages = 2⁶⁴ / 2¹² = 2⁵² pages</li>
+                <li>Main Memory Access Time (t_m) = 100 ns</li>
+                <li>TLB Hit Rate (h) = 0.90 (90%)</li>
+                <li>TLB Miss Penalty (t_miss) = 500 ns (includes page table walk + TLB update)</li>
+                <li>TLB Access Time (t_tlb) ≈ 0 ns (negligible, assumed to overlap with cache access)</li>
+            </ul>
+
+            <p><span class="highlight">Step 2 — Understand the Two Scenarios:</span></p>
+            <ul>
+                <li><b>TLB Hit (90% of accesses):</b> The translation is found in the TLB instantly. The CPU then accesses main memory to fetch the data.<br>
+                Time = t_tlb + t_m = 0 + 100 = <b>100 ns</b>.</li>
+                <li><b>TLB Miss (10% of accesses):</b> The TLB doesn't have the translation. The hardware walks the page table in main memory (taking 500 ns), updates the TLB, and then accesses the actual data in main memory.<br>
+                Time = t_tlb + t_miss + t_m = 0 + 500 + 100 = <b>600 ns</b>.</li>
+            </ul>
+
+            <p><span class="highlight">Step 3 — Calculate EMAT:</span></p>
+            <div class="formula-box">EMAT = h × (t_tlb + t_m) + (1 − h) × (t_tlb + t_miss + t_m)</div>
+            <p>Substituting values:</p>
+            <p>EMAT = 0.90 × (0 + 100) + 0.10 × (0 + 500 + 100)</p>
+            <p>EMAT = 0.90 × 100 + 0.10 × 600</p>
+            <p>EMAT = 90 + 60</p>
+            <div class="formula-box">EMAT = 150 ns</div>
+
+            <p><span class="highlight">Step 4 — Analysis:</span></p>
+            <ul>
+                <li>Without a TLB, every access would require a page table walk (500 ns) + data access (100 ns) = 600 ns.</li>
+                <li>With a TLB at 90% hit rate, the EMAT is only 150 ns — a <b>4× improvement</b> over no TLB.</li>
+                <li>If the TLB hit rate improved to 99%, EMAT = 0.99 × 100 + 0.01 × 600 = 99 + 6 = <b>105 ns</b> — very close to ideal.</li>
+                <li><b>Observation:</b> Even a 64-bit address space with 2⁵² virtual pages requires an enormous page table (impractical as a flat table). This is why modern systems use multi-level page tables and inverted page tables to manage the size.</li>
+            </ul>
+        </div>
+        </details>
+        
+        <!-- ============================================================ -->
+        <!-- SEPARATOR -->
+        <!-- ============================================================ -->
+        <br><br>
+        <hr style="border: none; border-top: 2px dashed rgba(234, 179, 8, 0.2); margin: 2rem 0;">
+        <br>
+
+        <!-- ============================================================ -->
+        <!-- 2024 PAPER -->
+        <!-- ============================================================ -->
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">2024 — PCC-CS402</h2>
+
+        <!-- ============================================================ -->
+        <!-- 2024 GROUP A -->
+        <!-- ============================================================ -->
+        <h3 style="font-size: 1.2rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Group A — Very Short Answer Type [1 × 10 = 10]</h3>
+        
+        <details><summary>1. Fill in the blanks &amp; Very Short Questions [1 × 10 = 10]</summary>
+        <div class="answer">
+            <p><b>(i) What is meant by data dependence?</b></p>
+            <p><span class="highlight">Data dependence</span> is a situation where an instruction relies on the result produced by a preceding instruction. For example, if Instruction A writes to register R1 and Instruction B reads R1, B is data-dependent on A. This is the fundamental cause of Data Hazards (RAW, WAW, WAR) in pipelined processors.</p>
+
+            <p><b>(ii) Which page replacement algorithm suffers from Belady's anomaly?</b></p>
+            <p><span class="highlight">FIFO (First-In, First-Out).</span> Belady's anomaly is the counter-intuitive phenomenon where increasing the number of page frames can actually <b>increase</b> the number of page faults. LRU and Optimal algorithms are "stack algorithms" and do not exhibit this anomaly.</p>
+
+            <p><b>(iii) Which architecture is/are suitable for realizing SIMD?</b></p>
+            <p><span class="highlight">Array Processors</span> and <span class="highlight">Vector Processors</span>. Both apply a single instruction to multiple data elements simultaneously. Array processors use multiple identical Processing Elements (PEs) working in lockstep. Vector processors use deeply pipelined functional units to process entire vectors.</p>
+
+            <p><b>(iv) What is meant by Branch Prediction?</b></p>
+            <p><span class="highlight">Branch Prediction</span> is a hardware technique where the processor guesses the outcome of a conditional branch (taken or not taken) and its target address <b>before</b> the branch condition is actually evaluated. This allows the pipeline to continue fetching instructions speculatively, avoiding stalls. Modern predictors achieve >95% accuracy.</p>
+
+            <p><b>(v) The throughput of a superscalar processor is ____.</b></p>
+            <p><b>Greater than 1 instruction per clock cycle.</b> An n-way superscalar can theoretically complete up to n instructions per cycle (IPC > 1).</p>
+
+            <p><b>(vi) Which unit is responsible for translation of logical address to physical address?</b></p>
+            <p><span class="highlight">Memory Management Unit (MMU).</span> It uses the Page Table (cached in the TLB) to translate virtual page numbers to physical frame numbers.</p>
+
+            <p><b>(vii) The ____ plays a very vital role in case of superscalar processors.</b></p>
+            <p><b>Instruction Fetch/Decode/Issue unit.</b> This front-end must fetch, decode, and dispatch multiple instructions per cycle. A bottleneck here starves the execution units.</p>
+
+            <p><b>(viii) The set of loosely connected computers are called as ____.</b></p>
+            <p><span class="highlight">Cluster</span> (also called a Distributed System or Multicomputer). Each node has its own private memory and OS; they communicate via message passing.</p>
+
+            <p><b>(ix) Write the equation for Amdahl's Law.</b></p>
+            <div class="formula-box">Speedup = 1 / [ (1 − P) + (P / N) ]</div>
+            <p>Where <b>P</b> = fraction of the program that can be parallelized, <b>N</b> = number of processors. The term (1 − P) is the sequential bottleneck that limits maximum speedup.</p>
+
+            <p><b>(x) Write the statement for memory inclusion property.</b></p>
+            <p><span class="highlight">Inclusion Property:</span> Any block of data present in a higher-level (smaller, faster) cache (e.g., L1) <b>must also be present</b> in every lower-level (larger, slower) cache (e.g., L2, L3). This simplifies coherence protocols because snooping only the outermost cache is sufficient.</p>
+
+            <p><b>(xi) What is meant by instruction level parallelism?</b></p>
+            <p><span class="highlight">Instruction Level Parallelism (ILP)</span> is the measure of how many instructions in a program can be executed simultaneously because they are independent of each other. ILP is exploited by pipelining, superscalar execution, VLIW, and out-of-order execution. Typical ILP in real programs: 2–5.</p>
+
+            <p><b>(xii) In tightly coupled systems, the microprocessors share ____.</b></p>
+            <p><b>A common main memory.</b> This shared-memory architecture allows fast communication between processors through shared variables, coordinated by cache coherence protocols.</p>
+        </div>
+        </details>
+
+        <!-- ============================================================ -->
+        <!-- 2024 GROUP B -->
+        <!-- ============================================================ -->
+        <h3 style="font-size: 1.2rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2rem; margin-bottom: 1rem;">Group B — Short Answer Type [5 × 3 = 15]</h3>
+
+        <details><summary>2. Pipeline Performance Calculation (4-segment pipeline, 100 tasks). [5]</summary>
+        <div class="answer">
+            <p><b>Given:</b> A 4-segment pipeline with delays: S1 = 40 ns, S2 = 25 ns, S3 = 45 ns, S4 = 45 ns. Interface register delay = 5 ns. Number of tasks = 100.</p>
+
+            <p><span class="highlight">Step 1 — Cycle Times:</span></p>
+            <ul>
+                <li><b>Non-pipeline cycle time (t_n):</b> All segments execute sequentially for each task.<br>
+                t_n = 40 + 25 + 45 + 45 = <b>155 ns</b></li>
+                <li><b>Pipeline cycle time (t_p):</b> Determined by the slowest segment + register delay.<br>
+                t_p = Max(40, 25, 45, 45) + 5 = 45 + 5 = <b>50 ns</b></li>
+            </ul>
+
+            <p><span class="highlight">Step 2 — Execution Time for 100 Tasks:</span></p>
+            <ul>
+                <li><b>Non-pipeline:</b> Each task takes the full 155 ns sequentially.<br>
+                <div class="formula-box">T_non = n × t_n = 100 × 155 = 15,500 ns</div></li>
+                <li><b>Pipeline:</b> The first task takes k cycles to fill the pipeline, then each subsequent task completes every cycle.<br>
+                <div class="formula-box">T_pipe = (k + n − 1) × t_p = (4 + 100 − 1) × 50 = 103 × 50 = 5,150 ns</div></li>
+            </ul>
+
+            <p><span class="highlight">Step 3 — Real Speedup:</span></p>
+            <div class="formula-box">S_real = T_non / T_pipe = 15,500 / 5,150 ≈ 3.01</div>
+
+            <p><span class="highlight">Step 4 — Maximum Speedup:</span></p>
+            <p>As n → ∞, the pipeline startup cost (k cycles) becomes negligible:</p>
+            <div class="formula-box">S_max = t_n / t_p = 155 / 50 = 3.1</div>
+            <p><i>Note: The theoretical maximum speedup for k stages is k = 4, but because the stages are unbalanced (25 ns vs 45 ns) and the register delay adds overhead, the actual maximum is only 3.1.</i></p>
+        </div>
+        </details>
+
+        <details><summary>3. CPI and MIPS Calculation (1.8 GHz load-store machine). [5]</summary>
+        <div class="answer">
+            <p><b>Given:</b> Clock Rate = 1.8 GHz. Instruction mix:</p>
+            <ul>
+                <li>ALU operations: 40% frequency, 1 clock cycle</li>
+                <li>Load instructions: 20% frequency, 2 clock cycles</li>
+                <li>Store instructions: 10% frequency, 2 clock cycles</li>
+                <li>Branch instructions: 30% frequency, 2 clock cycles</li>
+            </ul>
+
+            <p><span class="highlight">Step 1 — Calculate CPI (Cycles Per Instruction):</span></p>
+            <div class="formula-box">CPI = Σ (Frequency_i × Cycles_i)</div>
+            <p>CPI = (0.40 × 1) + (0.20 × 2) + (0.10 × 2) + (0.30 × 2)</p>
+            <p>CPI = 0.40 + 0.40 + 0.20 + 0.60</p>
+            <div class="formula-box">CPI = 1.6 cycles/instruction</div>
+
+            <p><span class="highlight">Step 2 — Calculate MIPS Rating:</span></p>
+            <div class="formula-box">MIPS = Clock Rate / (CPI × 10⁶)</div>
+            <p>MIPS = (1.8 × 10⁹) / (1.6 × 10⁶)</p>
+            <p>MIPS = 1,800 / 1.6</p>
+            <div class="formula-box">MIPS = 1,125 MIPS</div>
+
+            <p><span class="highlight">Interpretation:</span></p>
+            <ul>
+                <li>A CPI of 1.6 means, on average, each instruction takes 1.6 clock cycles. The ideal for a pipelined processor is CPI = 1.0, so this machine has a 60% overhead due to multi-cycle operations.</li>
+                <li>At 1,125 MIPS, this processor executes about 1.125 billion instructions per second.</li>
+                <li><b>CPU Execution Time</b> for a program with N instructions = N × CPI / Clock Rate = N × 1.6 / (1.8 × 10⁹) seconds.</li>
+            </ul>
+        </div>
+        </details>
+
+        <details><summary>4. What is a superscalar processor? State the advantages of vector computer. [5]</summary>
+        <div class="answer">
+            <p><span class="highlight">Superscalar Processor:</span></p>
+            <p>A superscalar processor is a CPU that implements <b>instruction-level parallelism (ILP)</b> within a single processor core. It can fetch, decode, and dispatch <b>multiple instructions simultaneously</b> to multiple parallel execution units (integer ALUs, FP units, load/store units) in a single clock cycle. The key hardware components enabling this are:</p>
+            <ul>
+                <li><b>Multiple Functional Units:</b> Several ALUs, FP units, and memory ports operating in parallel.</li>
+                <li><b>Dynamic Scheduling:</b> Hardware (reservation stations, scoreboard) detects independent instructions and dispatches them out-of-order.</li>
+                <li><b>Register Renaming:</b> Eliminates false dependencies (WAW, WAR) by mapping architectural registers to a larger pool of physical registers.</li>
+                <li><b>Speculative Execution:</b> Executes past unresolved branches using branch prediction.</li>
+            </ul>
+            <p>Examples: Intel Core i7 (6-wide issue), AMD Ryzen (6-wide), Apple M-series (8-wide).</p>
+
+            <p><span class="highlight">Advantages of Vector Computers:</span></p>
+            <ul>
+                <li><b>Reduced Instruction Overhead:</b> A single vector instruction (e.g., <code>VADDPS</code>) operates on an entire array of 64 or more elements, dramatically reducing the number of instructions fetched, decoded, and issued compared to scalar code that requires a loop.</li>
+                <li><b>Highly Efficient Pipelining:</b> Vector functional units are deeply pipelined. Once the pipeline is filled, one result is produced every clock cycle. There are no data hazards between elements of the same vector operation.</li>
+                <li><b>Memory Bandwidth Optimization:</b> Vector processors use techniques like <b>vector stride</b> and <b>bank interleaving</b> to sustain high memory bandwidth, hiding individual access latency behind pipelined memory systems.</li>
+                <li><b>Simplified Control Logic:</b> No need for dynamic scheduling or branch prediction within vector operations — the hardware simply processes element after element.</li>
+                <li><b>Ideal for Scientific Computing:</b> Matrix operations, FFT, weather simulation, molecular dynamics, and image/video processing all exhibit regular, predictable data access patterns that vector architectures exploit perfectly.</li>
+            </ul>
+        </div>
+        </details>
+
+        <details><summary>5. State the differences between static network and dynamic network. Explain the hypercube interconnection with n=3. [5]</summary>
+        <div class="answer">
+            <p><span class="highlight">Static Networks vs Dynamic Networks:</span></p>
+            <ul>
+                <li><b>Static Networks (Fixed Topology):</b> Point-to-point links directly connect processors. The topology is fixed at design time and cannot be reconfigured. Each processor has a fixed set of neighbors. Examples: Ring, Mesh/Torus, Hypercube, Tree. Used in tightly coupled multiprocessors.</li>
+                <li><b>Dynamic Networks (Switched):</b> Communication paths are established dynamically using <b>switches</b>. The network can route messages between any two processors through configurable switching elements. Examples: Crossbar switch, Omega network, Butterfly network, Multistage Interconnection Networks (MINs). Used in shared-memory multiprocessors and interconnection fabrics.</li>
+            </ul>
+            <p><b>Key Differences:</b></p>
+            <ul>
+                <li><b>Reconfigurability:</b> Static — No; Dynamic — Yes.</li>
+                <li><b>Cost:</b> Static — Lower (just wires); Dynamic — Higher (switching elements).</li>
+                <li><b>Bandwidth:</b> Static — Limited by neighbor links; Dynamic — Can provide any-to-any connectivity.</li>
+                <li><b>Latency:</b> Static — Depends on network diameter; Dynamic — Depends on switch stages.</li>
+            </ul>
+
+            <p><span class="highlight">Hypercube Interconnection (n = 3):</span></p>
+            <p>A <b>hypercube of dimension n</b> connects <b>2ⁿ</b> nodes. For n = 3: 2³ = <b>8 nodes</b>, labeled 000 through 111 in binary.</p>
+            <p><b>Connection Rule:</b> Two nodes are directly connected if and only if their binary addresses differ in <b>exactly one bit position</b>.</p>
+            <ul>
+                <li>Node 000 connects to: 001 (bit 0), 010 (bit 1), 100 (bit 2)</li>
+                <li>Node 001 connects to: 000, 011, 101</li>
+                <li>Node 010 connects to: 000, 011, 110</li>
+                <li>Node 011 connects to: 001, 010, 111</li>
+                <li>Node 100 connects to: 000, 101, 110</li>
+                <li>Node 101 connects to: 001, 100, 111</li>
+                <li>Node 110 connects to: 010, 100, 111</li>
+                <li>Node 111 connects to: 011, 101, 110</li>
+            </ul>
+            <p><b>Properties:</b> Each node has exactly <b>n = 3 neighbors</b>. The network <b>diameter</b> (max hops between any two nodes) = n = 3. Total links = n × 2ⁿ / 2 = 3 × 8 / 2 = <b>12 links</b>. The topology forms a 3D cube.</p>
+        </div>
+        </details>
+
+        <details><summary>6. Compare superscalar, super-pipelined and superscalar-super-pipelined architecture. [5]</summary>
+        <div class="answer">
+            <p>All three architectures aim to increase instruction throughput beyond a simple pipelined processor. They differ in <b>how</b> they achieve parallelism:</p>
+            
+            <p><span class="highlight">1. Superscalar (Spatial Parallelism):</span></p>
+            <ul>
+                <li>Uses <b>multiple parallel execution units</b> to issue and complete more than one instruction per clock cycle.</li>
+                <li>The clock period equals the delay of one pipeline stage (same as a normal pipeline).</li>
+                <li>An m-way superscalar ideally achieves <b>m instructions per cycle</b>.</li>
+                <li>Example: If base CPI = 1.0, a 2-way superscalar targets CPI = 0.5 (IPC = 2).</li>
+            </ul>
+
+            <p><span class="highlight">2. Super-Pipelined (Temporal Parallelism):</span></p>
+            <ul>
+                <li>Divides each pipeline stage into <b>n sub-stages</b>, creating a deeper pipeline with a proportionally <b>higher clock frequency</b>.</li>
+                <li>Still issues only one instruction per cycle, but the cycle is n times shorter.</li>
+                <li>An n-degree super-pipelined processor achieves a throughput equivalent to issuing n instructions per normal cycle.</li>
+                <li>Trade-off: Deeper pipelines suffer larger branch misprediction penalties (more stages to flush).</li>
+            </ul>
+
+            <p><span class="highlight">3. Superscalar-Super-Pipelined (Combined):</span></p>
+            <ul>
+                <li>Combines <b>both</b> techniques: multiple execution units (m-way) AND a deep pipeline (n sub-stages).</li>
+                <li>Theoretically achieves m × n instructions per normal pipeline cycle.</li>
+                <li>This is what modern high-performance processors actually use — e.g., Intel Core i7 is a 6-wide superscalar with a 14–19 stage pipeline.</li>
+            </ul>
+
+            <p><b>Key Comparison:</b></p>
+            <ul>
+                <li><b>Superscalar:</b> Multiple instructions issued per cycle; normal clock speed.</li>
+                <li><b>Super-pipelined:</b> One instruction per cycle; faster clock speed.</li>
+                <li><b>Combined:</b> Multiple instructions per cycle; faster clock speed. Maximum throughput but maximum complexity.</li>
+            </ul>
+        </div>
+        </details>
+
+        <!-- ============================================================ -->
+        <!-- 2024 GROUP C -->
+        <!-- ============================================================ -->
+        <h3 style="font-size: 1.2rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2rem; margin-bottom: 1rem;">Group C — Long Answer Type [15 × 3 = 45]</h3>
+        
+        <details><summary>7. (a) Compare tightly coupled system and loosely coupled system [6]. (b) Explain multiprocessor architectures: UMA, NUMA, COMA [9].</summary>
+        <div class="answer">
+            <p><b>(a) Tightly Coupled vs. Loosely Coupled Systems:</b></p>
+
+            <table style="width:100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 0.85rem;">
+                <tr style="background: rgba(234, 179, 8, 0.08);"><th style="padding: 0.5rem; border: 1px solid var(--border-color); text-align: left;">Aspect</th><th style="padding: 0.5rem; border: 1px solid var(--border-color); text-align: left;">Tightly Coupled (Multiprocessor)</th><th style="padding: 0.5rem; border: 1px solid var(--border-color); text-align: left;">Loosely Coupled (Multicomputer / Cluster)</th></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Memory</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Shared common main memory (global address space)</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Each processor has its own private local memory</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Communication</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Through shared memory (load/store)</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Through message passing (send/receive) over a network</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">OS</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Single OS manages all processors</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Each node runs its own OS instance</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Latency</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Low (shared memory access: ~100 ns)</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">High (network message: ~1–100 μs)</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Scalability</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Limited (bus/memory contention at ~64 processors)</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Highly scalable (thousands of nodes)</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Programming Model</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Easier (shared variables, threads, OpenMP)</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Harder (explicit message passing, MPI)</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Coherence</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Requires cache coherence protocols (MESI)</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Not needed (no shared caches)</td></tr>
+                <tr><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Examples</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Multi-core CPUs, SMP servers</td><td style="padding: 0.5rem; border: 1px solid var(--border-color);">Beowulf clusters, Google's data centers</td></tr>
+            </table>
+
+            <p><b>(b) Multiprocessor Architectures — UMA, NUMA, COMA:</b></p>
+
+            <p><span class="highlight">1. UMA (Uniform Memory Access):</span></p>
+            <ul>
+                <li>Also called <b>Symmetric Multiprocessor (SMP)</b>.</li>
+                <li>All processors are connected to a <b>single shared memory</b> through a common bus or crossbar switch.</li>
+                <li>Every processor has <b>equal access time</b> to every memory location — hence "uniform".</li>
+                <li><b>Advantages:</b> Simple programming model (all memory looks the same); fair load distribution.</li>
+                <li><b>Disadvantages:</b> The shared bus becomes a <b>bottleneck</b> as more processors are added. Practical limit: ~8–16 processors.</li>
+                <li><b>Coherence:</b> Maintained via snoopy bus protocols (MESI).</li>
+            </ul>
+
+            <p><span class="highlight">2. NUMA (Non-Uniform Memory Access):</span></p>
+            <ul>
+                <li>Each processor has its own <b>local memory</b>, but can also access other processors' memory through an interconnection network.</li>
+                <li>Accessing local memory is <b>fast</b> (~100 ns); accessing remote memory is <b>slower</b> (~300–500 ns) — hence "non-uniform".</li>
+                <li><b>Advantages:</b> Scales to hundreds of processors because there is no single shared bus. Each processor-memory pair can operate independently.</li>
+                <li><b>Disadvantages:</b> Programming is more complex — data placement matters. Poor data locality causes frequent expensive remote accesses.</li>
+                <li><b>Coherence:</b> Uses <b>directory-based protocols</b> (since snooping doesn't scale).</li>
+                <li><b>Example:</b> AMD EPYC (multi-socket), Intel Xeon Scalable.</li>
+            </ul>
+
+            <p><span class="highlight">3. COMA (Cache-Only Memory Architecture):</span></p>
+            <ul>
+                <li>A specialization of NUMA where there is <b>no traditional main memory</b>. Each processor's local memory acts as a large <b>cache</b>.</li>
+                <li>Data <b>migrates dynamically</b> to whichever processor's local cache needs it most, based on access patterns. There is no fixed "home" node for any block.</li>
+                <li><b>Advantages:</b> Automatically optimizes data placement — frequently accessed data migrates close to the accessing processor, reducing latency.</li>
+                <li><b>Disadvantages:</b> Very complex hardware for managing data migration, replication, and ensuring at least one copy always exists. If the last copy is evicted, it must be written back somewhere (requires a "home" protocol extension).</li>
+                <li><b>Example:</b> KSR-1 (Kendall Square Research).</li>
+            </ul>
+        </div>
+        </details>
+
+        <details><summary>8. (a) What is page fault? [2] (b) Page fault rates for LRU, FIFO, Optimal [9]. (c) Virtual memory through segmentation [4].</summary>
+        <div class="answer">
+            <p><b>(a) Page Fault:</b></p>
+            <p>A <span class="highlight">Page Fault</span> is an exception (interrupt) generated by the <b>MMU hardware</b> when a program accesses a virtual page whose <b>valid bit in the page table is 0</b> — meaning the page is currently on disk (swap space), not in physical RAM. The OS page fault handler then: (1) selects a victim page if all frames are full, (2) writes the victim to disk if dirty, (3) reads the requested page from disk into the freed frame, (4) updates the page table entry, (5) restarts the faulting instruction.</p>
+
+            <p><b>(b) Page Replacement — Step-by-Step Trace:</b></p>
+            <p>Reference String: <code>1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6</code> (20 references). Assume <b>3 frames</b>.</p>
+
+            <p><span class="highlight">FIFO (First-In, First-Out):</span></p>
+            <p>Replace the page that has been in memory the longest (oldest arrival).</p>
+            <table style="width:100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 0.8rem; text-align: center;">
+                <tr style="background: rgba(234, 179, 8, 0.08);"><th style="padding: 0.3rem; border: 1px solid var(--border-color);">Ref</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">1</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">2</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">3</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">4</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">2</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">1</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">5</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">6</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">2</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">1</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">2</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">3</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">7</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">6</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">3</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">2</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">1</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">2</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">3</th><th style="padding: 0.3rem; border: 1px solid var(--border-color);">6</th></tr>
+                <tr><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">4</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">4</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">4</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">4</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">6</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">6</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">6</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">6</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">3</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">3</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">3</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">3</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">6</td></tr>
+                <tr><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);"></td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">2</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">7</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">7</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">7</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">7</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td></tr>
+                <tr><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F3</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);"></td><td style="padding: 0.3rem; border: 1px solid var(--border-color);"></td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">3</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">3</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">3</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">3</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">5</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">5</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">5</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">1</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">6</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">6</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">6</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">6</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">6</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">3</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">3</td></tr>
+                <tr><td style="padding: 0.3rem; border: 1px solid var(--border-color);"><b>F/H</b></td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">H</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">H</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">H</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">H</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td><td style="padding: 0.3rem; border: 1px solid var(--border-color);">F</td></tr>
+            </table>
+            <div class="formula-box">FIFO: Total Page Faults = 16, Fault Rate = 16/20 = 80%</div>
+
+            <p><span class="highlight">LRU (Least Recently Used):</span> Replace the page that hasn't been used for the longest time.</p>
+            <div class="formula-box">LRU: Total Page Faults = 15, Fault Rate = 15/20 = 75%</div>
+
+            <p><span class="highlight">Optimal (Belady's Algorithm):</span> Replace the page that won't be used for the longest time in the future.</p>
+            <div class="formula-box">Optimal: Total Page Faults = 11, Fault Rate = 11/20 = 55%</div>
+
+            <p><b>Comparison:</b> Optimal ≤ LRU ≤ FIFO in terms of fault rates, as expected. Optimal is the theoretical best but is not implementable in practice (requires future knowledge). LRU is a practical near-optimal approximation.</p>
+
+            <p><b>(c) Virtual Memory through Segmentation:</b></p>
+            <p><span class="highlight">Segmentation</span> divides the virtual address space into <b>variable-sized logical units</b> called <b>segments</b>, each corresponding to a logical entity like:</p>
+            <ul>
+                <li>Code segment (program instructions)</li>
+                <li>Data segment (global variables)</li>
+                <li>Stack segment (function call frames)</li>
+                <li>Heap segment (dynamic allocations)</li>
+            </ul>
+            <p><b>Address Translation:</b> A virtual address is a pair: <code>(Segment Number, Offset)</code>. The OS maintains a <b>Segment Table</b> for each process. Each entry contains:</p>
+            <ul>
+                <li><b>Base Address:</b> Starting physical address of the segment.</li>
+                <li><b>Limit (Length):</b> Size of the segment. The hardware checks that <code>Offset < Limit</code> to enforce protection.</li>
+                <li><b>Protection bits:</b> Read/Write/Execute permissions.</li>
+            </ul>
+            <p>Physical Address = Base + Offset (if Offset < Limit, else → Segmentation Fault).</p>
+            <p><b>Advantage over paging:</b> Segments match the logical structure of a program, making protection and sharing easier. <b>Disadvantage:</b> Variable-sized segments cause <b>external fragmentation</b> in physical memory.</p>
+        </div>
+        </details>
+
+        <details><summary>9. SIMD, Vector Processors, Vector Gather/Scatter. [15]</summary>
+        <div class="answer">
+            <p><b>(a) SIMD Array Processor Architecture [5]:</b></p>
+            <p><span class="highlight">SIMD (Single Instruction, Multiple Data)</span> is one of Flynn's four classifications. In an SIMD architecture, a <b>single control unit</b> broadcasts one instruction to <b>multiple Processing Elements (PEs)</b> that operate on <b>different data elements</b> simultaneously.</p>
+            <ul>
+                <li><b>Structure:</b> One Control Unit (CU) fetches and decodes instructions. Multiple PEs (each with its own local memory or register set) execute the same operation on their own private data. An interconnection network connects PEs to a shared memory or to each other.</li>
+                <li><b>Execution Model:</b> In each clock cycle, every active PE performs the identical operation (e.g., ADD) but on different data operands. PEs can be selectively <b>masked</b> (disabled) for conditional operations — inactive PEs simply idle during that instruction.</li>
+                <li><b>Examples:</b> ILLIAC IV (historic), modern GPU shader cores, Intel SSE/AVX SIMD instructions.</li>
+                <li><b>Advantages:</b> Very efficient for data-parallel workloads (image processing, matrix operations, physics simulations). Minimal control overhead since only one instruction fetch/decode is needed for all PEs.</li>
+                <li><b>Limitations:</b> Poor performance for control-heavy, irregular workloads. PE utilization drops when many PEs are masked due to conditional code (divergence).</li>
+            </ul>
+
+            <p><b>(b) Vector Stride and Vectorization [2]:</b></p>
+            <ul>
+                <li><span class="highlight">Vector Stride:</span> The distance (in memory words or bytes) between consecutive elements of a vector as stored in memory. A <b>unit stride</b> (stride = 1) means elements are contiguous — the best case for memory bandwidth. A <b>non-unit stride</b> (e.g., accessing every 5th element of a 2D array stored in row-major order) causes elements to be scattered, potentially causing bank conflicts and reducing memory throughput.</li>
+                <li><span class="highlight">Vectorization:</span> The process (done by the compiler or programmer) of converting a scalar loop (processing one element at a time) into vector instructions (processing an entire vector at a time). Example: converting <code>for(i=0; i&lt;64; i++) C[i] = A[i] + B[i];</code> into a single <code>VADD V3, V1, V2</code> instruction.</li>
+            </ul>
+
+            <p><b>(c) Scalar Processor vs. Vector Processor [2]:</b></p>
+            <ul>
+                <li><span class="highlight">Scalar Processor:</span> Operates on <b>one data element</b> per instruction. An ADD instruction adds two scalar registers (e.g., R1 = R2 + R3). To add 64 pairs of numbers, 64 separate ADD instructions must be fetched, decoded, and executed — generating 64× the instruction overhead.</li>
+                <li><span class="highlight">Vector Processor:</span> Operates on an <b>entire vector</b> (array of data elements) per instruction. A single VADD instruction adds two vector registers element-by-element (e.g., V3[0..63] = V1[0..63] + V2[0..63]). Only one fetch/decode is needed for 64 operations, vastly reducing control overhead.</li>
+            </ul>
+
+            <p><b>(d) Vector Gather and Scatter Operations [6]:</b></p>
+            <p>Gather and Scatter are special vector memory operations designed to handle <b>indirect (indexed) memory access patterns</b> — situations where vector elements are not stored contiguously in memory.</p>
+
+            <p><span class="highlight">Gather (Indexed Load):</span></p>
+            <ul>
+                <li><b>Purpose:</b> Collect scattered data elements from arbitrary memory locations into a dense, contiguous vector register.</li>
+                <li><b>Mechanism:</b> Uses an <b>index vector register</b> (containing memory addresses or offsets) to specify which memory locations to read. The hardware fetches each element individually and packs them into the destination vector register.</li>
+                <li><b>Example:</b> Given Index = [3, 7, 1, 9] and Memory M: <code>VGATHER V1, M, V_index</code> loads V1 = [M[3], M[7], M[1], M[9]].</li>
+                <li><b>Use Case:</b> Sparse matrix operations, histogram computation, look-up table access.</li>
+            </ul>
+
+            <p><span class="highlight">Scatter (Indexed Store):</span></p>
+            <ul>
+                <li><b>Purpose:</b> Distribute elements from a dense vector register to arbitrary (non-contiguous) memory locations.</li>
+                <li><b>Mechanism:</b> Uses an index vector to specify <b>where</b> each element of the source vector register should be written in memory.</li>
+                <li><b>Example:</b> Given V1 = [a, b, c, d] and Index = [3, 7, 1, 9]: <code>VSCATTER M, V1, V_index</code> writes M[3]=a, M[7]=b, M[1]=c, M[9]=d.</li>
+                <li><b>Challenge:</b> Scatter operations can have <b>write conflicts</b> if two indices point to the same memory location. Hardware must handle this carefully (usually last-write-wins).</li>
+            </ul>
+
+            <p><b>Performance Note:</b> Gather/Scatter operations are significantly slower than unit-stride vector loads/stores because each element requires a separate, potentially non-sequential memory access. Modern vector processors optimize these using memory bank interleaving and address coalescing.</p>
+        </div>
+        </details>
+
+        <details><summary>10. Cache Coherency and Protocols. [15]</summary>
+        <div class="answer">
+            <p><b>(a) Cache Coherency [2]:</b></p>
+            <p><span class="highlight">Cache Coherency</span> is the discipline that ensures all processors in a multiprocessor system observe a <b>consistent view</b> of memory. Specifically, if Processor A writes value X to address 0x1000, then any subsequent read of 0x1000 by Processor B must return X (or a later value), not a stale cached copy. Without coherence, parallel programs produce incorrect results.</p>
+            <p><b>Formal Conditions (for coherence to hold):</b></p>
+            <ul>
+                <li><b>Write Propagation:</b> A write to a shared block must eventually become visible to all processors.</li>
+                <li><b>Write Serialization:</b> All processors see writes to the same address in the same order.</li>
+            </ul>
+
+            <p><b>(b) MESI Protocol [3]:</b></p>
+            <p>MESI is the most widely used snoopy cache coherence protocol. Each cache line has a 2-bit state tag:</p>
+            <ul>
+                <li><span class="highlight">Modified (M):</span> This cache has the <b>only valid copy</b>, and it has been <b>written</b> (dirty). Main memory is stale. Must write-back before another cache can use it.</li>
+                <li><span class="highlight">Exclusive (E):</span> This cache has the <b>only copy</b>, and it is <b>clean</b> (matches memory). Can transition to M on a write <b>without bus traffic</b> — a major optimization.</li>
+                <li><span class="highlight">Shared (S):</span> This block may exist in <b>multiple caches</b>. All copies and main memory are consistent. A write requires an <b>invalidation broadcast</b> first.</li>
+                <li><span class="highlight">Invalid (I):</span> The cache line is <b>not valid</b>. Any read triggers a miss.</li>
+            </ul>
+            <p><b>Key Transitions:</b></p>
+            <ul>
+                <li>I → E: Read miss, no other cache has the block → fetch from memory, enter Exclusive.</li>
+                <li>I → S: Read miss, another cache has the block → fetch, enter Shared.</li>
+                <li>E → M: Local write → silently transition (no bus traffic needed!).</li>
+                <li>S → I: Snooped write from another processor → invalidate local copy.</li>
+                <li>M → S: Snooped read from another processor → supply data, write-back, enter Shared.</li>
+            </ul>
+
+            <p><b>(c) Snoopy Bus Protocol (Detailed) [6]:</b></p>
+            <p>Snoopy protocols rely on a <b>shared bus</b> that all cache controllers monitor (snoop).</p>
+            <ul>
+                <li><b>Bus Architecture:</b> All processors and their caches are connected to a single shared bus. All memory transactions (reads, writes, invalidations) are <b>broadcast</b> on this bus.</li>
+                <li><b>Snooping Mechanism:</b> Every cache controller continuously monitors the bus. When it sees a transaction for a block it holds, it takes appropriate action (invalidate, update, or supply data).</li>
+                <li><b>Write-Invalidate Protocol:</b> When a processor writes to a shared block, it broadcasts an <b>invalidation message</b>. All other caches holding that block mark their copies as Invalid. This is the most common approach (used in MESI, MOESI).</li>
+                <li><b>Write-Update (Write-Broadcast) Protocol:</b> When a processor writes, it broadcasts the <b>new data value</b>. All other caches update their copies immediately. Reduces future read misses but generates much more bus traffic.</li>
+                <li><b>Advantages of Snooping:</b> Simple hardware implementation; low latency for small systems (everything is on the bus).</li>
+                <li><b>Limitations:</b> The shared bus has finite bandwidth. Beyond ~16–32 processors, bus contention becomes a critical bottleneck. Not suitable for large-scale systems — directory-based protocols are used instead.</li>
+            </ul>
+
+            <p><b>(d) Synchronization in Multiprocessors [4]:</b></p>
+            <p><span class="highlight">Synchronization</span> ensures that multiple processors accessing shared data do so in a coordinated manner, preventing race conditions and ensuring correctness.</p>
+            <ul>
+                <li><span class="highlight">Hardware Primitives:</span>
+                    <ul>
+                        <li><b>Test-and-Set (TAS):</b> Atomically reads a memory location, returns the old value, and sets it to 1. Used to implement spin-locks: <code>while(TAS(&lock) == 1) { /* spin */ }</code>.</li>
+                        <li><b>Compare-and-Swap (CAS):</b> Atomically compares a memory location to an expected value; if they match, writes a new value. More flexible than TAS; foundation of lock-free data structures.</li>
+                        <li><b>Load-Linked / Store-Conditional (LL/SC):</b> LL reads a value; SC writes only if no other processor has written to that address since the LL. Avoids the ABA problem of CAS.</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Software Constructs (built on hardware primitives):</span>
+                    <ul>
+                        <li><b>Locks (Mutexes):</b> Only one processor can hold the lock; others spin or block.</li>
+                        <li><b>Barriers:</b> All processors must arrive at the barrier before any can proceed past it. Used to synchronize phases of computation.</li>
+                        <li><b>Semaphores:</b> Counting mechanism that allows a specified number of concurrent accesses.</li>
+                    </ul>
+                </li>
+                <li><b>Performance Concern:</b> Naive spin-locks generate heavy bus traffic as all spinning processors repeatedly issue TAS operations. <b>Test-and-Test-and-Set</b> (spin on a cached copy, only issue TAS when the lock appears free) reduces bus contention significantly.</li>
+            </ul>
+        </div>
+        </details>
+
+        <details><summary>11. VLIW vs Superscalar Architecture. [15]</summary>
+        <div class="answer">
+            <p><b>(a) VLIW Architecture (Detailed) [6]:</b></p>
+            <p><span class="highlight">VLIW (Very Long Instruction Word)</span> is a processor architecture that achieves ILP through <b>static (compile-time) scheduling</b> rather than dynamic (hardware) scheduling.</p>
+            <ul>
+                <li><b>Instruction Format:</b> Each instruction word is very wide (128–1024+ bits) and is divided into fixed <b>operation slots</b>. Each slot corresponds to a specific functional unit (e.g., Slot 1 → Integer ALU, Slot 2 → FP Multiply, Slot 3 → Load/Store, Slot 4 → Branch).</li>
+                <li><b>Compiler Responsibility:</b> The compiler must analyze the entire program at compile time to find groups of <b>independent operations</b> that can execute in parallel. It packs these into the operation slots of a single VLIW instruction. If fewer independent operations exist than slots, the remaining slots are filled with <b>NOPs</b>.</li>
+                <li><b>Hardware Simplicity:</b> The processor hardware is dramatically simpler than a superscalar. There is no need for: dependency checking logic, reservation stations, reorder buffers, register renaming hardware, or branch speculation logic. The hardware simply reads the wide instruction and dispatches each slot to its functional unit.</li>
+                <li><b>Scheduling Techniques used by VLIW Compilers:</b>
+                    <ul>
+                        <li><b>Trace Scheduling:</b> The compiler identifies the most frequently executed paths (traces) through the program and schedules operations along these paths aggressively, adding compensation code for mispredicted paths.</li>
+                        <li><b>Software Pipelining (Modulo Scheduling):</b> Overlaps iterations of loops by interleaving operations from different iterations into the same VLIW instruction.</li>
+                        <li><b>Predicated Execution:</b> Converts branches into predicated (conditional) operations, eliminating branch penalties entirely.</li>
+                    </ul>
+                </li>
+                <li><b>Examples:</b> Intel Itanium (IA-64) with "bundles" of 3 operations; TI TMS320C6000 DSPs with 8 operation slots; Transmeta Crusoe (translated x86 to VLIW internally).</li>
+            </ul>
+
+            <p><b>(b) Advantages and Disadvantages of VLIW [5]:</b></p>
+            <p><span class="highlight">Advantages:</span></p>
+            <ul>
+                <li><b>Simple Hardware:</b> No dynamic scheduling, no register renaming, no reorder buffer → smaller chip area, lower power, and potentially higher clock speeds.</li>
+                <li><b>Deterministic Execution:</b> The execution timeline is known at compile time → easier to analyze performance and real-time constraints.</li>
+                <li><b>Compiler's Global View:</b> The compiler can analyze the entire program (across basic blocks, functions) to find parallelism that hardware with a limited instruction window cannot see.</li>
+                <li><b>Lower Power:</b> The simplified hardware results in significantly lower power consumption, making VLIW ideal for embedded and DSP applications.</li>
+            </ul>
+            <p><span class="highlight">Disadvantages:</span></p>
+            <ul>
+                <li><b>Code Bloat:</b> Empty operation slots are filled with NOPs, increasing the binary size dramatically (2–4× compared to RISC). This wastes instruction cache space and memory bandwidth.</li>
+                <li><b>Poor Binary Compatibility:</b> The instruction encoding is tightly coupled to the specific number and type of functional units. Changing the hardware (e.g., adding a new FP unit) requires <b>recompiling all software</b>. This is a massive practical barrier.</li>
+                <li><b>Heavy Compiler Dependence:</b> The compiler must do extremely aggressive optimization (trace scheduling, software pipelining, speculative execution). For irregular code (e.g., pointer-chasing, virtual dispatch), the compiler often cannot find enough parallelism.</li>
+                <li><b>Cannot Adapt to Runtime Conditions:</b> Unlike superscalar hardware that adapts dynamically to cache misses, branch patterns, and varying latencies, a VLIW schedule is fixed at compile time. A cache miss stalls the entire instruction.</li>
+                <li><b>Difficult Exception Handling:</b> Because multiple operations execute from one instruction word, determining which operation caused an exception and maintaining precise state is complex.</li>
+            </ul>
+
+            <p><b>(c) Hurdles in Superscalar Performance [4]:</b></p>
+            <ul>
+                <li><span class="highlight">Control Dependencies (Branches):</span> Conditional branches occur every 5–7 instructions in typical code. Each branch creates a control hazard. Even with 95% branch prediction accuracy, the remaining 5% mispredictions flush the deep pipeline, wasting 15–20 cycles of speculative work each time. This is the <b>single biggest limit</b> on superscalar performance.</li>
+                <li><span class="highlight">Data Dependencies:</span> True (RAW) data dependencies between instructions limit the number of independent operations available for parallel execution. Even with forwarding and out-of-order execution, chains of dependent instructions (e.g., pointer chasing) serialize execution.</li>
+                <li><span class="highlight">Hardware Complexity Wall:</span> The wakeup-and-select logic in the instruction scheduler scales as O(n²) with the instruction window size. Doubling the issue width from 4-wide to 8-wide more than quadruples the scheduling hardware. At some point, the added complexity doesn't yield proportional IPC gains.</li>
+                <li><span class="highlight">Power Dissipation:</span> The speculation engine, large register files, wide fetch units, and out-of-order logic consume massive power. Modern 6-wide superscalar cores reach 100+ watts, hitting thermal limits.</li>
+                <li><span class="highlight">Memory Wall:</span> As processors get faster, the gap between CPU speed and memory latency widens. Cache misses cause long stalls that even deep instruction windows cannot hide.</li>
+            </ul>
+        </div>
+        </details>
+
+    </div>
+</div>
+</body>
+</html>

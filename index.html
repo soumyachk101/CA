@@ -662,6 +662,34 @@
             </div>
         </a>
 
+        <!-- PYQ -->
+        <a href="pyq.html" class="chapter-card" style="--chapter-color: #eab308;" id="module-pyq">
+            <div class="card-content">
+                <div class="chapter-header">
+                    <div class="chapter-num">Bonus</div>
+                    <h2 class="chapter-title">Previous Year Questions</h2>
+                    <p class="chapter-desc">Complete marks-wise solutions for 2023 and 2024 Computer Architecture question papers.</p>
+                </div>
+                
+                <div class="mini-toc">
+                    <div class="toc-item">
+                        <span class="toc-lbl">2023 Solved Paper</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">2024 Solved Paper</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="badge-count">2 Papers</span>
+                <span class="read-action">Open Divider <span class="arrow">→</span></span>
+            </div>
+        </a>
+
     </section>
 
     <!-- FOOTER / COLOPHON -->
@@ -670,8 +698,69 @@
         <p class="colophon-text">
             Compounded and published by <a href="#">Soumya Chakraborty</a>. Hand-crafted notes to crush exam preparation.
         </p>
-    </footer>
 </main>
+
+<!-- Interactive Script for Progress Tracking -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 2. Dynamic Progress Bars on Cards
+    const modules = [
+        { id: 'module-1', key: 'pipelining.html', total: 39 },
+        { id: 'module-2', key: 'memory.html', total: 23 },
+        { id: 'module-3', key: 'ilp.html', total: 22 },
+        { id: 'module-4', key: 'vector.html', total: 19 },
+        { id: 'module-5', key: 'multiprocessor.html', total: 26 }
+    ];
+    
+    modules.forEach(mod => {
+        const card = document.getElementById(mod.id);
+        if (card) {
+            const progress = JSON.parse(localStorage.getItem(`progress_${mod.key}`) || '{}');
+            const completed = Object.keys(progress).length;
+            const percent = Math.round((completed / mod.total) * 100);
+            
+            const progContainer = document.createElement('div');
+            progContainer.className = 'card-progress-container';
+            
+            const progBar = document.createElement('div');
+            progBar.className = 'card-progress-bar';
+            
+            const progFill = document.createElement('div');
+            progFill.className = 'card-progress-fill';
+            progFill.style.width = `${percent}%`;
+            
+            const progText = document.createElement('span');
+            progText.className = 'card-progress-text';
+            progText.textContent = `${percent}%`;
+            
+            progBar.appendChild(progFill);
+            progContainer.appendChild(progBar);
+            progContainer.appendChild(progText);
+            
+            const content = card.querySelector('.card-content');
+            if (content) {
+                content.appendChild(progContainer);
+            }
+        }
+    });
+
+    // 3. Page Turn Transition on card navigation
+    const folioPage = document.querySelector('.folio-page');
+    const links = document.querySelectorAll('.chapters-grid a');
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href && href.endsWith('.html') && folioPage) {
+                e.preventDefault();
+                folioPage.classList.add('turn-exit');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500);
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>
