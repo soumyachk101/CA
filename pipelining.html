@@ -44,7 +44,8 @@
     </header>
     <div class="section">
             
-            <details><summary>1. Define: Benchmark programs.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">1. Define: Benchmark programs.</h4>
             <div class="answer">
                 <p><b>Benchmark programs</b> are standardized applications, workloads, or suites of programs specifically designed to evaluate, measure, and compare the performance of different computer systems or components (like CPUs, GPUs, or memory).</p>
                 <p><b>Key Characteristics (Key Detail):</b></p>
@@ -55,9 +56,10 @@
                     <li><span class="highlight">Normalization:</span> Results are often normalized against a reference machine to produce a dimensionless ratio, making it easier to say "Processor A is 1.5x faster than the reference."</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>2. How do we measure performance?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">2. How do we measure performance?</h4>
             <div class="answer">
                 <p>Measuring performance in computer architecture relies heavily on the perspective of the user versus the perspective of the system administrator. It is fundamentally measured using two main metrics: <b>Execution Time</b> and <b>Throughput</b>.</p>
                 
@@ -80,9 +82,10 @@
                     <li>Datacenters and server administrators prioritize throughput over individual response time.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>3. Computers A and B implement the same ISA. A: 250ps clock, CPI=2.0. B: 500ps clock, CPI=1.2. Which is faster and by how much?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">3. Computers A and B implement the same ISA. A: 250ps clock, CPI=2.0. B: 500ps clock, CPI=1.2. Which is faster and by how much?</h4>
             <div class="answer">
                 <p>To determine which computer is faster, we must calculate the <b>CPU Execution Time</b> for both machines. Since they implement the exact same Instruction Set Architecture (ISA), the Instruction Count (IC) required to run the same program will be identical for both machines.</p>
                 
@@ -111,9 +114,10 @@
                 </ul>
                 <p><b>Conclusion:</b> Computer A is <b>1.2 times faster</b> (or 20% faster) than Computer B.</p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>4. Explain Latency and Throughput.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">4. Explain Latency and Throughput.</h4>
             <div class="answer">
                 <p>Latency and Throughput are the two fundamental metrics used to define system performance, and they often trade off against one another.</p>
                 
@@ -135,9 +139,10 @@
                 
                 <p><span class="highlight">Relationship in Pipelining:</span> Pipelining a processor increases <b>Throughput</b> (more instructions complete per clock cycle) but usually slightly degrades individual instruction <b>Latency</b> due to the overhead of pipeline registers and clock skew.</p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>5. State the factors which affect the performance of Computer Systems.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">5. State the factors which affect the performance of Computer Systems.</h4>
             <div class="answer">
                 <p>The performance of a computer system is not dictated by hardware alone; it is a complex interplay of hardware, architecture, and software. The classic CPU performance equation highlights three primary factors, but there are others:</p>
                 <div class="formula-box">CPU Time = Instruction Count × CPI × Clock Cycle Time</div>
@@ -151,9 +156,10 @@
                     <li><span class="highlight">6. Memory Hierarchy (Affects CPI):</span> Even the fastest processor will stall if it has to wait for slow RAM. Large, fast L1/L2/L3 caches reduce the "Memory Stall Cycles" penalty, significantly lowering the effective CPI.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>6. Explain CPU Clock Time and CPU execution time.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">6. Explain CPU Clock Time and CPU execution time.</h4>
             <div class="answer">
                 <p>These two terms are fundamental to understanding processor speeds and represent the base units of the CPU performance equation.</p>
                 
@@ -174,9 +180,10 @@
                     <li><b>Significance:</b> This is the ultimate metric for processor designers. To lower CPU Execution Time, designers must decrease the Instruction Count, decrease the CPI, or increase the Clock Rate (without negatively impacting the other two).</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>7. What is Amdahl's law?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">7. What is Amdahl's law?</h4>
             <div class="answer">
                 <p><b>Amdahl's Law</b> is a fundamental principle in computer architecture used to find the maximum expected improvement (speedup) to an overall system when only a <i>fraction</i> of the system is improved.</p>
                 
@@ -200,9 +207,10 @@
                 </ul>
                 <p><i>Even though the FP unit is 4x faster, the overall system is only 2.5x faster because of the 20% unoptimized integer code. If S approached infinity, the max speedup is bounded by 1/(1-F) = 1/0.2 = 5x.</i></p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>8. Explain temporal and spatial locality.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">8. Explain temporal and spatial locality.</h4>
             <div class="answer">
                 <p>The <b>Principle of Locality</b> states that programs do not access all memory addresses uniformly; instead, they tend to access a relatively small portion of the address space at any given instant. This principle is the entire foundation upon which Cache Memory is built.</p>
                 
@@ -220,9 +228,10 @@
                     <li><b>Cache Exploitation:</b> Caches exploit this by not just bringing in the single requested byte from memory, but fetching an entire <b>Cache Block</b> (e.g., 64 bytes) at once. When the CPU asks for the next adjacent byte, it is already loaded in the cache.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>9. Explain the different types of hazards.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">9. Explain the different types of hazards.</h4>
             <div class="answer">
                 <p>In a pipelined processor, a <b>Hazard</b> is a condition that prevents the next instruction from entering its designated pipeline stage in the current clock cycle, necessitating a stall (pipeline bubble). There are three main classes of hazards:</p>
 
@@ -247,9 +256,10 @@
                     <li><b>Example:</b> A <code>BEQ</code> (Branch if Equal) instruction determines its target address and condition outcome in the EX or ID stage. By that time, 1 or 2 incorrect sequential instructions have already been fetched into the IF and ID stages and must be flushed.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>10. How can data hazards be avoided or mitigated?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">10. How can data hazards be avoided or mitigated?</h4>
             <div class="answer">
                 <p>Data hazards (specifically Read-After-Write, or True Dependencies) occur when an instruction needs a value that is still flowing through the pipeline. They can be mitigated using three primary techniques:</p>
 
@@ -271,9 +281,10 @@
                     <li><b>Result:</b> This naturally separates the dependent instructions by enough clock cycles that the hardware stall (interlock) is no longer necessary.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>11. What is a hazard?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">11. What is a hazard?</h4>
             <div class="answer">
                 <p><b>Definition:</b> In computer architecture, particularly in instruction pipelining, a <b>hazard</b> is a situation or condition that prevents the next instruction in the instruction stream from executing during its designated clock cycle.</p>
                 
@@ -285,9 +296,10 @@
                     <li><b>Classification:</b> As noted previously, hazards are strictly classified into Structural (hardware limits), Data (operand dependencies), and Control (branching) hazards.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>12. What are the different ways of handling hazards?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">12. What are the different ways of handling hazards?</h4>
             <div class="answer">
                 <p>Processor designers and compiler writers use a combination of hardware and software techniques to handle hazards and minimize their performance impact:</p>
 
@@ -311,9 +323,10 @@
                     <li><b>Delayed Branch:</b> The compiler moves a safe, independent instruction into the "branch delay slot" (the cycle immediately following the branch). The hardware executes this slot regardless of the branch outcome, preventing a wasted cycle.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>13. What is the impact of data hazards and structural hazards on pipeline performance?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">13. What is the impact of data hazards and structural hazards on pipeline performance?</h4>
             <div class="answer">
                 <p>Both data and structural hazards negatively impact pipeline performance by introducing <b>stall cycles</b>, which directly degrades the instruction throughput.</p>
 
@@ -331,9 +344,10 @@
                     <li><b>Data Hazards:</b> If unmitigated by forwarding, every RAW dependency would cause a 2 or 3 cycle stall, virtually eliminating the benefit of pipelining. Even with forwarding, Load-Use hazards force a mandatory 1-cycle stall, which degrades performance by 10-15% in integer workloads.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>14. What is branch prediction, and how does it help reduce control hazards?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">14. What is branch prediction, and how does it help reduce control hazards?</h4>
             <div class="answer">
                 <p><b>Branch prediction</b> is a sophisticated optimization technique where the processor's hardware attempts to guess the outcome of a conditional branch (e.g., an <code>if</code> statement or a <code>for</code> loop condition) <i>before</i> the condition is actually evaluated in the execution stage.</p>
 
@@ -350,9 +364,10 @@
                 </ul>
                 <p>Because modern dynamic branch predictors (like two-bit predictors or tournament predictors) achieve >95% accuracy, they effectively eliminate the vast majority of control hazard stalls.</p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>15. Explain the pipeline process. What are pipeline stages typically involved in instruction execution?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">15. Explain the pipeline process. What are pipeline stages typically involved in instruction execution?</h4>
             <div class="answer">
                 <p><b>Pipelining</b> is an implementation technique where multiple instructions are overlapped in execution. It is analogous to an automobile assembly line: a car doesn't wait for the previous car to be completely finished before it starts; instead, different stations work on different cars simultaneously.</p>
                 
@@ -367,9 +382,10 @@
                     <li><b>Write-Back (WB):</b> The final result (either from the ALU or from Memory) is written back into the destination register in the Register File.</li>
                 </ol>
             </div>
-            </details>
+            </div>
 
-            <details><summary>16. Explain the stages of an instruction pipeline.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">16. Explain the stages of an instruction pipeline.</h4>
             <div class="answer">
                 <p><i>(Note: This is a direct continuation and expansion of Question 15).</i> In a classic 5-stage MIPS/RISC architecture, the stages operate precisely on the rising edge of the clock cycle:</p>
 
@@ -382,9 +398,10 @@
                 </ul>
                 <p>By dividing execution into these 5 stages, a pipeline can process 5 different instructions simultaneously, one in each stage.</p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>17. What are the challenges in implementing instruction pipelines?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">17. What are the challenges in implementing instruction pipelines?</h4>
             <div class="answer">
                 <p>Implementing a robust, high-performance pipeline involves significant hardware complexity. Key challenges include:</p>
 
@@ -395,9 +412,10 @@
                     <li><span class="highlight">4. Power Dissipation and Clock Skew:</span> Pipelining requires inserting hundreds of pipeline registers, all connected to the global clock tree. Driving this massive clock tree consumes significant power and causes "clock skew" (the clock signal arriving at different registers at slightly different times).</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>18. Why is instruction pipelining less effective for certain instruction sets?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">18. Why is instruction pipelining less effective for certain instruction sets?</h4>
             <div class="answer">
                 <p>Instruction pipelining is highly effective for <b>RISC</b> (Reduced Instruction Set Computer) architectures (like ARM or MIPS), but historically much less effective for <b>CISC</b> (Complex Instruction Set Computer) architectures (like older x86).</p>
                 
@@ -409,9 +427,10 @@
                 </ul>
                 <p><i>Note: Modern x86 processors solve this by having a complex hardware decoder at the front-end that translates ugly CISC instructions into clean, RISC-like "micro-operations" (uOps) which are then pipelined efficiently.</i></p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>19. How does pipelining improve CPU performance?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">19. How does pipelining improve CPU performance?</h4>
             <div class="answer">
                 <p>Pipelining improves performance fundamentally by increasing <b>Instruction Throughput</b>—the number of instructions completing per unit of time—rather than decreasing the latency of any individual instruction.</p>
 
@@ -426,9 +445,10 @@
                 <p><span class="highlight">The Mathematical Result:</span></p>
                 <p>Ideally, an N-stage pipeline can yield a speedup of almost exactly <b>N</b> over a non-pipelined equivalent, multiplying overall CPU performance by N, simply by overlapping work that uses different hardware components.</p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>20. How does arithmetic pipelining differ from instruction pipelining?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">20. How does arithmetic pipelining differ from instruction pipelining?</h4>
             <div class="answer">
                 <p>Both utilize the concept of pipelining (breaking a task into sequential stages separated by registers), but they apply to entirely different levels of the processor hierarchy.</p>
 
@@ -454,10 +474,11 @@
                     </li>
                 </ul>
             </div>
-            </details>
+            </div>
 
         </div>
-            <details><summary>21. What is data forwarding? How does it resolve RAW hazards?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">21. What is data forwarding? How does it resolve RAW hazards?</h4>
             <div class="answer">
                 <p><b>Data Forwarding</b> (also known as bypassing or short-circuiting) is a critical hardware optimization used to resolve Read-After-Write (RAW) data hazards without stalling the pipeline.</p>
                 
@@ -472,9 +493,10 @@
                     <li><b>Result:</b> The dependent instruction receives the newly computed data exactly when it needs it, bypassing the register file entirely, and eliminating the stall cycle.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>22. What is branch prediction? How does it reduce control hazards?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">22. What is branch prediction? How does it reduce control hazards?</h4>
             <div class="answer">
                 <p><b>Branch prediction</b> is a microprocessor technique that attempts to guess the outcome of a conditional branch (e.g., whether an 'if' statement is true or a loop will iterate again) before it is officially evaluated. This mitigates Control Hazards.</p>
                 
@@ -491,9 +513,10 @@
                     <li><b>Misprediction Penalty:</b> If the guess is wrong, the CPU must flush the incorrectly fetched instructions and restart fetching from the correct address, incurring a penalty of several clock cycles.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>23. Why do structural hazards occur in a pipeline with a single memory for instruction and data?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">23. Why do structural hazards occur in a pipeline with a single memory for instruction and data?</h4>
             <div class="answer">
                 <p>A structural hazard occurs when the hardware cannot support all the operations that the pipeline needs to execute simultaneously in a single clock cycle.</p>
                 
@@ -509,9 +532,10 @@
                 
                 <p><b>The Solution:</b> Modern processors use a <b>Harvard Architecture</b> at the L1 cache level, providing a physically separate Instruction Cache (I-Cache) and Data Cache (D-Cache). This provides two independent memory ports, entirely eliminating this structural hazard.</p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>24. How does pipeline flushing work?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">24. How does pipeline flushing work?</h4>
             <div class="answer">
                 <p><b>Pipeline flushing</b> (also called pipeline squashing or clearing) is the mechanism used by the processor to discard instructions that were speculatively fetched into the pipeline but should not be executed.</p>
                 
@@ -529,9 +553,10 @@
                     <li><b>Update PC:</b> The Program Counter is updated with the correct restart address (either the correct branch path or the Exception Handler address), and fetching resumes.</li>
                 </ol>
             </div>
-            </details>
+            </div>
 
-            <details><summary>25. Calculate speedup for 5 stages, 2ns each, for 100 instructions.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">25. Calculate speedup for 5 stages, 2ns each, for 100 instructions.</h4>
             <div class="answer">
                 <p>This is a classic performance calculation requiring comparison of execution times between a non-pipelined and pipelined processor.</p>
 
@@ -561,9 +586,10 @@
                 Speedup = 1000 ns / 208 ns = 4.807</div>
                 <p><b>Conclusion:</b> The pipelined processor achieves a speedup of <b>~4.8x</b> over the non-pipelined equivalent. (Notice how this approaches the theoretical maximum speedup of <i>k</i> = 5).</p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>26. 5% branch freq, 2-cycle penalty. Calculate pipeline efficiency.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">26. 5% branch freq, 2-cycle penalty. Calculate pipeline efficiency.</h4>
             <div class="answer">
                 <p>To calculate pipeline efficiency, we must determine the Ideal CPI and the Actual Effective CPI considering the branch penalties.</p>
 
@@ -592,9 +618,10 @@
                 Efficiency = 1.0 / 1.1 = 0.9090...</div>
                 <p><b>Conclusion:</b> The pipeline efficiency is <b>90.9%</b>. This means the processor achieves 90.9% of its theoretical maximum throughput.</p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>27. Illustrate pipeline execution of sequence with data dependencies.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">27. Illustrate pipeline execution of sequence with data dependencies.</h4>
             <div class="answer">
                 <p><i>Note: You can draw a pipeline timing diagram to show how hazards are resolved. Let's assume the following common sequence demonstrating a RAW hazard:</i></p>
                 <pre>
@@ -620,9 +647,10 @@ SUB         IF  ID  EX  MEM WB
                 </pre>
                 <p><i>The SUB executes smoothly without stalling. The data is forwarded from the EX/MEM pipeline register to the ALU input multiplexer in Cycle 4.</i></p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>28. Calculate CPI for pipeline with hazards causing 20% instructions stalled for 2 cycles.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">28. Calculate CPI for pipeline with hazards causing 20% instructions stalled for 2 cycles.</h4>
             <div class="answer">
                 <p>This calculation requires understanding how stalls artificially inflate the Cycles Per Instruction (CPI).</p>
 
@@ -644,9 +672,10 @@ SUB         IF  ID  EX  MEM WB
 
                 <p><b>Conclusion:</b> The effective CPI of the processor under these conditions is <b>1.4</b>. It takes 1.4 clock cycles, on average, to retire an instruction.</p>
             </div>
-            </details>
+            </div>
 
-            <details><summary>29. Differentiate between exceptions and interrupts.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">29. Differentiate between exceptions and interrupts.</h4>
             <div class="answer">
                 <p>While often used interchangeably in a casual context, computer architecture makes a strict distinction between the two based on their origin, synchronicity, and handling behaviour.</p>
 
@@ -659,9 +688,10 @@ SUB         IF  ID  EX  MEM WB
                     <tr><td><b>Examples</b></td><td>Divide-by-zero, page fault, arithmetic overflow, invalid opcode, memory protection violation.</td><td>Keyboard keystroke, mouse movement, network packet arrival, hardware timer expiration.</td></tr>
                 </table>
             </div>
-            </details>
+            </div>
 
-            <details><summary>30. Importance of Status Register.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">30. Importance of Status Register.</h4>
             <div class="answer">
                 <p>The <b>Status Register</b> (also known as the Condition Code Register or Flags Register) is a crucial hardware register containing a set of boolean flags. It is vital for control flow and system state management.</p>
 
@@ -679,9 +709,10 @@ SUB         IF  ID  EX  MEM WB
                     <li><b>System State and Privilege:</b> It often contains bits that define the current operating state, such as whether the CPU is in User Mode or Kernel Mode, and whether external interrupts are currently enabled or masked.</li>
                 </ol>
             </div>
-            </details>
+            </div>
 
-            <details><summary>31. Explain: Vectored and Polled Interrupt.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">31. Explain: Vectored and Polled Interrupt.</h4>
             <div class="answer">
                 <p>These are the two primary mechanisms a processor uses to figure out <i>which</i> device caused an interrupt and <i>how</i> to handle it.</p>
 
@@ -694,9 +725,10 @@ SUB         IF  ID  EX  MEM WB
                     <tr><td><b>Scalability</b></td><td>Poor. Polling delay increases linearly as more devices are added.</td><td>Excellent. Scalable to many devices with low overhead.</td></tr>
                 </table>
             </div>
-            </details>
+            </div>
 
-            <details><summary>32. Explain how Exception takes place.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">32. Explain how Exception takes place.</h4>
             <div class="answer">
                 <p>The process of an exception taking place and being handled is a highly coordinated dance between the hardware pipeline and the operating system software.</p>
 
@@ -710,9 +742,10 @@ SUB         IF  ID  EX  MEM WB
                     <li><b>Jump to Handler:</b> The Program Counter (PC) is forcibly set to the predefined memory address of the Operating System's Exception Handler routine. The OS then reads the Cause register, handles the error (e.g., terminates the program or loads a page), and optionally uses the EPC to return control to the user program.</li>
                 </ol>
             </div>
-            </details>
+            </div>
 
-            <details><summary>33. Discuss how exceptions affect the performance of a pipeline. Suggest mechanisms to minimize this loss.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">33. Discuss how exceptions affect the performance of a pipeline. Suggest mechanisms to minimize this loss.</h4>
             <div class="answer">
                 <p>Exceptions are catastrophic to pipeline throughput. They violate the core assumption of pipelining: a steady, uninterrupted flow of instructions.</p>
 
@@ -730,9 +763,10 @@ SUB         IF  ID  EX  MEM WB
                     <li><b>Shadow Registers:</b> Hardware duplicates the register file. When an exception occurs, the hardware simply switches to the shadow registers for the OS handler, eliminating the need to save all registers to slow RAM.</li>
                 </ol>
             </div>
-            </details>
+            </div>
 
-            <details><summary>34. How is exception priority managed when multiple exceptions occur simultaneously in different pipeline stages?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">34. How is exception priority managed when multiple exceptions occur simultaneously in different pipeline stages?</h4>
             <div class="answer">
                 <p>In a pipelined processor, multiple instructions are executing simultaneously in different stages. It is entirely possible for an instruction in the MEM stage to cause a page fault in the exact same clock cycle that an instruction in the IF stage causes a memory protection violation.</p>
 
@@ -752,9 +786,10 @@ SUB         IF  ID  EX  MEM WB
                     </li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>35. Explain the role of the program counter (PC) and register file in exception handling in a pipelined system.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">35. Explain the role of the program counter (PC) and register file in exception handling in a pipelined system.</h4>
             <div class="answer">
                 <p>Both are critical for preserving the state of the machine so the Operating System can diagnose the issue and potentially resume the interrupted program.</p>
 
@@ -772,9 +807,10 @@ SUB         IF  ID  EX  MEM WB
                     <li>Before returning control to the user, the OS restores the Register File from RAM. If this isn't done perfectly, the user program will wake up with corrupted variables and crash.</li>
                 </ul>
             </div>
-            </details>
+            </div>
 
-            <details><summary>36. Design a method to handle multiple simultaneous exceptions in a 5-stage pipeline.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">36. Design a method to handle multiple simultaneous exceptions in a 5-stage pipeline.</h4>
             <div class="answer">
                 <p>To design a robust system that handles multiple simultaneous exceptions while maintaining "precise exceptions," you must decouple the <i>detection</i> of an exception from the <i>handling</i> of the exception.</p>
 
@@ -787,9 +823,10 @@ SUB         IF  ID  EX  MEM WB
                     <li><b>Execution:</b> Because instructions enter the WB stage sequentially in program order, the hardware checks the Exception Status Vector of the oldest instruction. If it has an error, the CPU halts, copies the PC of that instruction to the EPC, flushes all earlier pipeline stages (discarding any pending exceptions of younger instructions), and jumps to the OS handler.</li>
                 </ol>
             </div>
-            </details>
+            </div>
 
-            <details><summary>37. Give an example of an exception occurring in the EX stage and explain how the pipeline handles it.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">37. Give an example of an exception occurring in the EX stage and explain how the pipeline handles it.</h4>
             <div class="answer">
                 <p><b>Example Scenario:</b> Arithmetic Overflow.</p>
                 <p>Consider the instruction sequence:<br>
@@ -814,9 +851,10 @@ SUB         IF  ID  EX  MEM WB
                     </li>
                 </ol>
             </div>
-            </details>
+            </div>
 
-            <details><summary>38. What is the impact of out-of-order execution on exception handling? How can it be addressed?</summary>
+            <div class="qa-card">
+<h4 class="qa-question">38. What is the impact of out-of-order execution on exception handling? How can it be addressed?</h4>
             <div class="answer">
                 <p>Out-of-Order (OoO) execution massively complicates exception handling. It breaks the fundamental requirement for <b>Precise Exceptions</b>.</p>
 
@@ -832,9 +870,10 @@ SUB         IF  ID  EX  MEM WB
                     <li><b>Exception Resolution:</b> If Instruction 2 has an exception, it sits in the ROB. When it becomes the oldest instruction and is ready to commit, the hardware triggers the exception. It then simply empties the ROB, instantly throwing away the temporary results of Instruction 5 and any other speculatively executed instructions, restoring the machine to a perfectly precise state.</li>
                 </ol>
             </div>
-            </details>
+            </div>
 
-            <details><summary>39. Explain the concept of delayed exception handling.</summary>
+            <div class="qa-card">
+<h4 class="qa-question">39. Explain the concept of delayed exception handling.</h4>
             <div class="answer">
                 <p><b>Delayed Exception Handling</b> (often used in conjunction with Speculative Execution or VLIW architectures) is a technique where an exception is detected but intentionally ignored or deferred until a later point in the program.</p>
 
@@ -850,7 +889,7 @@ SUB         IF  ID  EX  MEM WB
                     <li><b>Resolution B (Correct Prediction):</b> If the branch was correct, the instruction was indeed supposed to execute. The exception is only formally triggered (jumping to the OS) when a non-speculative, "commit-stage" instruction finally attempts to write that poisoned data to memory or a permanent state.</li>
                 </ol>
             </div>
-            </details>
+            </div>
 
         </div>
         <script src="notes.js"></script>

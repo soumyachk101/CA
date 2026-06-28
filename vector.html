@@ -44,7 +44,8 @@
     </header>
     <div class="section">
 
-<details><summary>1. Define array processor with an example.</summary>
+<div class="qa-card">
+<h4 class="qa-question">1. Define array processor with an example.</h4>
 <div class="answer">
     <p>An <b>Array Processor</b> (also called a SIMD processor) is a type of parallel computer that consists of multiple identical Processing Elements (PEs) operating <b>synchronously</b> under the control of a single Control Unit (CU). All PEs execute the <b>same instruction</b> at the same time, but each PE operates on its own <b>different data</b> from its own local memory.</p>
 
@@ -64,9 +65,10 @@
 
     <p><span class="highlight">Classification:</span> Array processors fall under <b>Flynn's SIMD</b> (Single Instruction, Multiple Data) category, as one instruction stream operates on multiple data streams.</p>
 </div>
-</details>
+</div>
 
-<details><summary>2. What is a vector processor? Give one key application area.</summary>
+<div class="qa-card">
+<h4 class="qa-question">2. What is a vector processor? Give one key application area.</h4>
 <div class="answer">
     <p>A <b>Vector Processor</b> is a CPU designed to operate on entire <b>vectors</b> (one-dimensional arrays of data) using a single instruction. Instead of using a loop to process each element one at a time (scalar processing), a vector processor issues one instruction like <code>VADD V1, V2, V3</code> which adds every element of vector V2 to every element of vector V3, storing results in V1.</p>
 
@@ -85,9 +87,10 @@
         <li>Other applications: Molecular dynamics, computational fluid dynamics (CFD), seismic analysis, image processing.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>3. List two differences between scalar and vector processing.</summary>
+<div class="qa-card">
+<h4 class="qa-question">3. List two differences between scalar and vector processing.</h4>
 <div class="answer">
     <table>
         <tr><th>Feature</th><th>Scalar Processing</th><th>Vector Processing</th></tr>
@@ -97,9 +100,10 @@
         <tr><td><b>4. Memory Access</b></td><td>Individual, scattered load/store instructions. May suffer from cache miss penalties on each access.</td><td>Streaming, pipelined memory access. Vector load units access memory in a predictable, sequential pattern, allowing the memory system to optimize prefetching.</td></tr>
     </table>
 </div>
-</details>
+</div>
 
-<details><summary>4. What is pipelining in vector processors?</summary>
+<div class="qa-card">
+<h4 class="qa-question">4. What is pipelining in vector processors?</h4>
 <div class="answer">
     <p>In vector processors, pipelining refers to the deep segmentation of the <b>arithmetic functional units</b> (like Floating-Point Adders, Multipliers) into multiple stages. This allows a new pair of vector elements to enter the pipeline every clock cycle, achieving a sustained throughput of <b>one result per clock cycle</b> after the initial startup latency.</p>
 
@@ -120,9 +124,10 @@
 
     <p><span class="highlight">Significance:</span> Without pipelining, 64 additions would take 64 × 6 = 384 cycles. With pipelining, it takes only 6 + 63 = 69 cycles. The throughput approaches 1 element/cycle for long vectors.</p>
 </div>
-</details>
+</div>
 
-<details><summary>5. Define speedup in vector pipelining.</summary>
+<div class="qa-card">
+<h4 class="qa-question">5. Define speedup in vector pipelining.</h4>
 <div class="answer">
     <p><b>Speedup</b> in vector pipelining is the ratio of the time taken by a scalar (non-pipelined) processor to process a vector operation compared to the time taken by a pipelined vector processor for the same operation.</p>
 
@@ -146,9 +151,10 @@
 
     <p><b>Conclusion:</b> Vector pipelining is most effective for long vectors, where the throughput approaches the theoretical maximum of one result per cycle.</p>
 </div>
-</details>
+</div>
 
-<details><summary>6. What is a mask register in vector operations?</summary>
+<div class="qa-card">
+<h4 class="qa-question">6. What is a mask register in vector operations?</h4>
 <div class="answer">
     <p>A <b>Mask Register</b> (or Vector Mask Register) is a special hardware register in a vector processor that holds a vector of <b>boolean values (0 or 1)</b>, one bit per vector element. It is used to implement <b>conditional operations</b> on individual elements within a vector instruction.</p>
 
@@ -170,9 +176,10 @@ for (i = 0; i &lt; N; i++) {
 
     <p><span class="highlight">Significance:</span> The mask register allows vector processors to handle <code>if-else</code> constructs without branches, maintaining the streaming pipeline efficiency of vector execution even for conditional computations.</p>
 </div>
-</details>
+</div>
 
-<details><summary>7. Name two real-world examples of SIMD array processors.</summary>
+<div class="qa-card">
+<h4 class="qa-question">7. Name two real-world examples of SIMD array processors.</h4>
 <div class="answer">
     <p><span class="highlight">1. ILLIAC IV (1972):</span></p>
     <ul>
@@ -196,9 +203,10 @@ for (i = 0; i &lt; N; i++) {
         <li><b>Intel SSE/AVX extensions:</b> SIMD instruction sets within x86 CPUs that process 4-16 data elements per instruction using 128-512 bit wide registers.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>8. Differentiate between array processor and vector processor with block diagrams.</summary>
+<div class="qa-card">
+<h4 class="qa-question">8. Differentiate between array processor and vector processor with block diagrams.</h4>
 <div class="answer">
     <p>Both exploit data-level parallelism (DLP), but they do so through fundamentally different architectural approaches.</p>
 
@@ -242,9 +250,10 @@ for (i = 0; i &lt; N; i++) {
               ──► 1 result/cycle after startup
     </pre>
 </div>
-</details>
+</div>
 
-<details><summary>9. Explain the working of a vector pipeline. Mention its stages with an example.</summary>
+<div class="qa-card">
+<h4 class="qa-question">9. Explain the working of a vector pipeline. Mention its stages with an example.</h4>
 <div class="answer">
     <p>A vector pipeline processes an entire vector of data through a deeply segmented functional unit, producing one result per clock cycle after an initial fill-up period.</p>
 
@@ -271,9 +280,10 @@ Output:                  V3[0] V3[1] V3[2] V3[3] V3[4] V3[5]
     <p><b>Total Cycles = 4 + 6 - 1 = 9 cycles</b> (vs. 4 × 6 = 24 cycles without pipelining).</p>
     <p><b>Speedup = 24/9 = 2.67x</b></p>
 </div>
-</details>
+</div>
 
-<details><summary>10. What is vector chaining? How does it improve performance?</summary>
+<div class="qa-card">
+<h4 class="qa-question">10. What is vector chaining? How does it improve performance?</h4>
 <div class="answer">
     <p><b>Vector Chaining</b> is an optimization technique in vector processors that allows the output of one vector functional unit to be fed directly into the input of another vector functional unit <b>without waiting for the first operation to complete on the entire vector</b>. It is the vector equivalent of data forwarding in scalar pipelines.</p>
 
@@ -299,9 +309,10 @@ VADD V5, V3, V4    ; V5 = V3 + V4 (must wait until VMUL finishes ALL elements)
         <li>Chaining was a hallmark feature of the <b>Cray-1</b> supercomputer, contributing significantly to its legendary performance.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>11. Explain data-level parallelism in array processors.</summary>
+<div class="qa-card">
+<h4 class="qa-question">11. Explain data-level parallelism in array processors.</h4>
 <div class="answer">
     <p><b>Data-Level Parallelism (DLP)</b> is a form of parallelism that arises when the <b>same operation</b> is applied to <b>multiple independent data elements</b> simultaneously. Array processors are specifically designed to exploit DLP.</p>
 
@@ -325,9 +336,10 @@ VADD V5, V3, V4    ; V5 = V3 + V4 (must wait until VMUL finishes ALL elements)
     </ul>
     <p>4 instructions process 64 elements — a massive exploitation of DLP.</p>
 </div>
-</details>
+</div>
 
-<details><summary>12. Vector addition with 5 pipeline stages. Length = 100. Calculate cycles and efficiency.</summary>
+<div class="qa-card">
+<h4 class="qa-question">12. Vector addition with 5 pipeline stages. Length = 100. Calculate cycles and efficiency.</h4>
 <div class="answer">
     <p><b>Given:</b></p>
     <ul>
@@ -353,9 +365,10 @@ VADD V5, V3, V4    ; V5 = V3 + V4 (must wait until VMUL finishes ALL elements)
         <li>The <b>speedup</b> over scalar execution = (N × k) / (k + N - 1) = (100 × 5) / 104 = 500/104 = <b>4.81x</b>.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>13. Array processor with 64 PEs performing 64×64 matrix multiplication. Explain data flow.</summary>
+<div class="qa-card">
+<h4 class="qa-question">13. Array processor with 64 PEs performing 64×64 matrix multiplication. Explain data flow.</h4>
 <div class="answer">
     <p><b>Problem:</b> Multiply two 64×64 matrices: C = A × B, where C[i][j] = Σ(A[i][k] × B[k][j]) for k = 0 to 63.</p>
 
@@ -392,9 +405,10 @@ VADD V5, V3, V4    ; V5 = V3 + V4 (must wait until VMUL finishes ALL elements)
 
     <p><b>Total Steps:</b> 64 (rows) × 64 (inner loop) = 4,096 multiply-accumulate steps. But since each step involves 64 PEs working in parallel, the effective work is 64 × 64 × 64 = 262,144 multiplications in 4,096 steps. Without the array processor, a scalar machine would need 262,144 sequential steps.</p>
 </div>
-</details>
+</div>
 
-<details><summary>14. Vector length 128, initiation rate 1/cycle, 6-stage pipeline. Calculate time for dot product.</summary>
+<div class="qa-card">
+<h4 class="qa-question">14. Vector length 128, initiation rate 1/cycle, 6-stage pipeline. Calculate time for dot product.</h4>
 <div class="answer">
     <p><b>Given:</b></p>
     <ul>
@@ -426,14 +440,15 @@ VADD V5, V3, V4    ; V5 = V3 + V4 (must wait until VMUL finishes ALL elements)
     <p><b>Total Time (without chaining):</b> 133 + 162 = <b>295 cycles</b> for the complete dot product.</p>
     <p><b>If only multiplication is asked:</b> <b>133 cycles</b>.</p>
 </div>
-</details>
+</div>
 
 </div>
 
 <div class="section">
 <h2>Hard Questions</h2>
 
-<details><summary>H1. Describe the architecture of an array processor. How does it execute arithmetic on data arrays?</summary>
+<div class="qa-card">
+<h4 class="qa-question">H1. Describe the architecture of an array processor. How does it execute arithmetic on data arrays?</h4>
 <div class="answer">
     <p>An array processor (SIMD machine) is designed to execute a single instruction simultaneously across many data elements using multiple, identical Processing Elements.</p>
 
@@ -473,9 +488,10 @@ VADD V5, V3, V4    ; V5 = V3 + V4 (must wait until VMUL finishes ALL elements)
     </ol>
     <p>All N additions are completed in the time of a single addition instruction.</p>
 </div>
-</details>
+</div>
 
-<details><summary>H2. Pipelined vector instructions in a Cray-like architecture with timing diagrams.</summary>
+<div class="qa-card">
+<h4 class="qa-question">H2. Pipelined vector instructions in a Cray-like architecture with timing diagrams.</h4>
 <div class="answer">
     <p>The <b>Cray-1</b> (1976) was a landmark vector processor. Its architecture featured Vector Registers and deeply pipelined functional units with vector chaining.</p>
 
@@ -508,9 +524,10 @@ Output:                                     A0 A1 A2 A3 A4 A5 A6 A7
     <p><b>Without Chaining:</b> VMUL finishes at cycle 14. VADD starts at cycle 15, finishes at cycle 14 + 6 + 7 = 27. Total = 27 cycles.</p>
     <p><b>With Chaining:</b> VADD starts at cycle 8 (when M0 is produced). VADD finishes at cycle 8 + 6 + 7 = 20. Total = <b>20 cycles</b>. Saving 7 cycles (25% faster).</p>
 </div>
-</details>
+</div>
 
-<details><summary>H3. Compare array and vector pipelines in terms of Architecture, Control, Performance, Applications.</summary>
+<div class="qa-card">
+<h4 class="qa-question">H3. Compare array and vector pipelines in terms of Architecture, Control, Performance, Applications.</h4>
 <div class="answer">
     <table>
         <tr><th>Aspect</th><th>Array Processor</th><th>Vector Processor</th></tr>
@@ -520,9 +537,10 @@ Output:                                     A0 A1 A2 A3 A4 A5 A6 A7
         <tr><td><b>Application Domains</b></td><td>Image processing, cellular automata, neural network inference, database searching, cryptography. Any domain with massive, regular, independent data.</td><td>Scientific computing, weather forecasting, molecular dynamics, computational fluid dynamics (CFD), seismic analysis. Domains with heavy floating-point array arithmetic.</td></tr>
     </table>
 </div>
-</details>
+</div>
 
-<details><summary>H4. FP multiply pipeline with 6 stages. Vector length = 64. Calculate cycles and speedup.</summary>
+<div class="qa-card">
+<h4 class="qa-question">H4. FP multiply pipeline with 6 stages. Vector length = 64. Calculate cycles and speedup.</h4>
 <div class="answer">
     <p><b>Given:</b></p>
     <ul>
@@ -551,9 +569,10 @@ Output:                                     A0 A1 A2 A3 A4 A5 A6 A7
         <li>Pipeline Efficiency = N / (k + N - 1) = 64/69 = <b>92.75%</b>.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>H5. Advantages and limitations of using array and vector pipelines in modern processors.</summary>
+<div class="qa-card">
+<h4 class="qa-question">H5. Advantages and limitations of using array and vector pipelines in modern processors.</h4>
 <div class="answer">
     <p><span class="highlight">Advantages:</span></p>
     <ol>
@@ -573,7 +592,7 @@ Output:                                     A0 A1 A2 A3 A4 A5 A6 A7
         <li><b>Memory Bandwidth Demands:</b> Vector and array processors can consume data far faster than memory can supply it. If the memory system cannot keep the pipelines fed, performance drops dramatically (memory wall).</li>
     </ol>
 </div>
-</details>
+</div>
 </div>
     <script src="notes.js"></script>
 </div>

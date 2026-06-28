@@ -44,7 +44,8 @@
     </header>
     <div class="section">
 
-<details><summary>1. Why is Memory Hierarchy Required in the System?</summary>
+<div class="qa-card">
+<h4 class="qa-question">1. Why is Memory Hierarchy Required in the System?</h4>
 <div class="answer">
     <p>The Memory Hierarchy is a fundamental architectural concept that organizes storage into multiple levels, each offering a different balance of speed, size, and cost. It exists because no single memory technology can simultaneously satisfy all three requirements of an ideal memory: fast, large, and cheap.</p>
 
@@ -69,9 +70,10 @@
         <li>HDD (~10 ms, 1-20 TB)</li>
     </ol>
 </div>
-</details>
+</div>
 
-<details><summary>2. How does the principle of locality justify the use of cache memory?</summary>
+<div class="qa-card">
+<h4 class="qa-question">2. How does the principle of locality justify the use of cache memory?</h4>
 <div class="answer">
     <p>The <b>Principle of Locality</b> is the empirical observation that programs do not access all memory locations with equal probability. Instead, they tend to access a small, concentrated subset of addresses at any point in time. This principle provides the theoretical foundation for why caches work.</p>
 
@@ -91,9 +93,10 @@
 
     <p><span class="highlight">Conclusion:</span> Without locality, every memory access would be a cache miss, rendering caches useless. It is precisely because programs exhibit strong temporal and spatial locality that a small, fast cache can intercept 90-99% of all memory accesses, dramatically speeding up execution.</p>
 </div>
-</details>
+</div>
 
-<details><summary>3. Arrange the memory hierarchy levels in increasing order of speed and decreasing order of capacity.</summary>
+<div class="qa-card">
+<h4 class="qa-question">3. Arrange the memory hierarchy levels in increasing order of speed and decreasing order of capacity.</h4>
 <div class="answer">
     <p>The Memory Hierarchy is organized such that as you move closer to the CPU, memory becomes <b>faster but smaller</b>. Conversely, as you move away from the CPU, memory becomes <b>slower but larger and cheaper</b>.</p>
 
@@ -112,9 +115,10 @@
 
     <p><b>Key Principle:</b> Each level acts as a cache for the level below it. L1 caches data from L2, L2 caches data from L3, L3 caches data from DRAM, and DRAM effectively caches data from the SSD/HDD (via Virtual Memory).</p>
 </div>
-</details>
+</div>
 
-<details><summary>4. Explain how memory access patterns in loops exhibit locality.</summary>
+<div class="qa-card">
+<h4 class="qa-question">4. Explain how memory access patterns in loops exhibit locality.</h4>
 <div class="answer">
     <p>Loops are the single most important source of locality in computer programs. They demonstrate both temporal and spatial locality simultaneously.</p>
 
@@ -142,9 +146,10 @@ for (int i = 0; i &lt; 1000; i++) {
 
     <p><b>Net Result:</b> Due to both types of locality, the cache hit rate for this loop is extremely high (often &gt;95%), meaning the CPU rarely has to wait for slow main memory.</p>
 </div>
-</details>
+</div>
 
-<details><summary>5. Explain the importance of different types of Memory.</summary>
+<div class="qa-card">
+<h4 class="qa-question">5. Explain the importance of different types of Memory.</h4>
 <div class="answer">
     <p>Each type of memory technology serves a specific, irreplaceable role in a computer system. No single technology can fulfill all requirements.</p>
 
@@ -177,9 +182,10 @@ for (int i = 0; i &lt; 1000; i++) {
         <li><b>Importance:</b> Provides the cheapest cost per GB for massive datasets (backups, media libraries, cold data). However, mechanical seek times make random access extremely slow (~10 ms).</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>6. What is the impact of locality on cache performance?</summary>
+<div class="qa-card">
+<h4 class="qa-question">6. What is the impact of locality on cache performance?</h4>
 <div class="answer">
     <p>Locality has a <b>direct and profound</b> impact on cache performance. It is the sole reason caches are effective. Without locality, a cache would have nearly a 0% hit rate and provide no benefit.</p>
 
@@ -207,9 +213,10 @@ for (int i = 0; i &lt; 1000; i++) {
 
     <p><b>Conclusion:</b> Locality is the single most important factor determining cache performance. Compiler writers and programmers invest significant effort in optimizing data layouts and access patterns (e.g., loop tiling, struct-of-arrays vs. array-of-structs) to maximize locality.</p>
 </div>
-</details>
+</div>
 
-<details><summary>7. What is the inclusion property in hierarchical caches?</summary>
+<div class="qa-card">
+<h4 class="qa-question">7. What is the inclusion property in hierarchical caches?</h4>
 <div class="answer">
     <p>The <b>Inclusion Property</b> (also called Multilevel Inclusion) is a design policy for multi-level cache hierarchies that states: <i>every cache block present in a higher-level (closer to CPU) cache must also be present in the lower-level (farther from CPU) cache.</i></p>
 
@@ -228,9 +235,10 @@ for (int i = 0; i &lt; 1000; i++) {
     <p><span class="highlight">Drawback:</span></p>
     <p>The total unique cache capacity is reduced. Since L1 data is duplicated in L2, the effective unique storage is just the size of L2, not L1 + L2. This wastes a portion of the L2 space.</p>
 </div>
-</details>
+</div>
 
-<details><summary>8. Describe the MESI protocol for cache coherence.</summary>
+<div class="qa-card">
+<h4 class="qa-question">8. Describe the MESI protocol for cache coherence.</h4>
 <div class="answer">
     <p>The <b>MESI protocol</b> (also known as the Illinois protocol) is a widely used hardware-based cache coherence protocol for multiprocessor systems. It tracks the state of every cache block to ensure that all processors see a consistent view of shared memory. MESI stands for the four possible states of a cache line:</p>
 
@@ -271,9 +279,10 @@ for (int i = 0; i &lt; 1000; i++) {
         <li><b>Snoop Hit (M → I/S):</b> Another processor wants to read a block that is Modified in this cache. This cache must supply the data (via bus intervention), write it back to memory, and transition to Shared (or Invalid).</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>9. Differentiate between inclusion, exclusion, and non-inclusion policies.</summary>
+<div class="qa-card">
+<h4 class="qa-question">9. Differentiate between inclusion, exclusion, and non-inclusion policies.</h4>
 <div class="answer">
     <p>These three policies define the relationship between the contents of different levels in a multi-level cache hierarchy (e.g., L1 and L2). Each has distinct trade-offs.</p>
 
@@ -288,9 +297,10 @@ for (int i = 0; i &lt; 1000; i++) {
 
     <p><span class="highlight">Key Insight:</span> The choice depends on whether the designer prioritizes <b>coherence simplicity</b> (→ Inclusive) or <b>maximum effective cache capacity</b> (→ Exclusive). Non-Inclusive is a pragmatic middle ground used when neither extreme is desirable.</p>
 </div>
-</details>
+</div>
 
-<details><summary>10. Explain the difference between cache coherence and memory consistency.</summary>
+<div class="qa-card">
+<h4 class="qa-question">10. Explain the difference between cache coherence and memory consistency.</h4>
 <div class="answer">
     <p>These are two distinct but related concepts that are essential for correctness in multiprocessor systems. They are often confused but address fundamentally different problems.</p>
 
@@ -305,9 +315,10 @@ for (int i = 0; i &lt; 1000; i++) {
 
     <p><span class="highlight">Summary:</span> Coherence guarantees that you get the <i>correct value</i> for a single variable. Consistency guarantees the <i>correct order</i> in which updates to multiple variables become visible across processors. Both are necessary for correct parallel programs.</p>
 </div>
-</details>
+</div>
 
-<details><summary>11. What are the advantages and disadvantages of enforcing the inclusion property?</summary>
+<div class="qa-card">
+<h4 class="qa-question">11. What are the advantages and disadvantages of enforcing the inclusion property?</h4>
 <div class="answer">
     <p>The inclusion property (L1 ⊆ L2) is a deliberate design choice with significant trade-offs.</p>
 
@@ -325,9 +336,10 @@ for (int i = 0; i &lt; 1000; i++) {
         <li><b>L2 Size Constraint:</b> L2 must be significantly larger than L1 to avoid excessive back-invalidations. The associativity of L2 must also be at least as high as L1's to prevent pathological eviction scenarios.</li>
     </ol>
 </div>
-</details>
+</div>
 
-<details><summary>12. How do write-through and write-back policies affect cache coherence?</summary>
+<div class="qa-card">
+<h4 class="qa-question">12. How do write-through and write-back policies affect cache coherence?</h4>
 <div class="answer">
     <p>The write policy determines what happens to main memory when the CPU writes to a cache block. This has a direct and significant impact on how coherence is maintained in multiprocessor systems.</p>
 
@@ -347,9 +359,10 @@ for (int i = 0; i &lt; 1000; i++) {
 
     <p><span class="highlight">Conclusion:</span> Write-back is the dominant policy in modern multiprocessors because the reduced bus traffic far outweighs the added coherence complexity, which is efficiently handled by hardware protocols like MESI.</p>
 </div>
-</details>
+</div>
 
-<details><summary>13. How does inclusive cache hierarchy impact cache coherence protocols?</summary>
+<div class="qa-card">
+<h4 class="qa-question">13. How does inclusive cache hierarchy impact cache coherence protocols?</h4>
 <div class="answer">
     <p>An inclusive cache hierarchy (where L1 ⊆ L2) has a very significant and beneficial impact on coherence protocol design, particularly for snooping-based protocols.</p>
 
@@ -369,9 +382,10 @@ for (int i = 0; i &lt; 1000; i++) {
     <p><span class="highlight">The Tradeoff:</span></p>
     <p>The price paid is the back-invalidation problem: when L2 evicts a block, L1 must also evict it. This can hurt performance if L2 is not sufficiently larger than L1.</p>
 </div>
-</details>
+</div>
 
-<details><summary>14. Role of snooping and directory-based protocols in maintaining cache coherence.</summary>
+<div class="qa-card">
+<h4 class="qa-question">14. Role of snooping and directory-based protocols in maintaining cache coherence.</h4>
 <div class="answer">
     <p>Both are hardware mechanisms to ensure that all processors in a shared-memory multiprocessor see a consistent view of memory. They differ fundamentally in how they track which caches hold which blocks.</p>
 
@@ -392,9 +406,10 @@ for (int i = 0; i &lt; 1000; i++) {
         <li><b>Used in:</b> Large-scale servers, NUMA systems (e.g., AMD EPYC, Intel Xeon with QPI/UPI), supercomputers.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>15. Explain direct-mapped, fully associative, and set-associative cache organizations with diagrams.</summary>
+<div class="qa-card">
+<h4 class="qa-question">15. Explain direct-mapped, fully associative, and set-associative cache organizations with diagrams.</h4>
 <div class="answer">
     <p>Cache organization determines <i>where</i> a memory block can be placed within the cache. This is one of the most critical cache design decisions.</p>
 
@@ -426,9 +441,10 @@ for (int i = 0; i &lt; 1000; i++) {
 
     <p><b>Note:</b> Direct-Mapped is a special case of set-associative with 1 way. Fully Associative is a special case with 1 set containing all lines.</p>
 </div>
-</details>
+</div>
 
-<details><summary>16. What are the different cache replacement policies?</summary>
+<div class="qa-card">
+<h4 class="qa-question">16. What are the different cache replacement policies?</h4>
 <div class="answer">
     <p>When a cache miss occurs in a set-associative or fully associative cache and the set is full, the cache controller must decide which existing block to <b>evict</b> (replace) to make room for the new block. The replacement policy determines this choice.</p>
 
@@ -460,9 +476,10 @@ for (int i = 0; i &lt; 1000; i++) {
         <li><b>Implementation:</b> Impossible to implement in hardware (requires knowledge of the future). Used only as a theoretical benchmark to measure how close practical algorithms come to the ideal.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>17. When is each suitable?</summary>
+<div class="qa-card">
+<h4 class="qa-question">17. When is each suitable?</h4>
 <div class="answer">
     <p>The choice of replacement policy depends on the hardware constraints and the expected workload behavior.</p>
 
@@ -489,9 +506,10 @@ for (int i = 0; i &lt; 1000; i++) {
         </li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>18. How is cache performance evaluated? Define hit rate, miss rate, and average memory access time.</summary>
+<div class="qa-card">
+<h4 class="qa-question">18. How is cache performance evaluated? Define hit rate, miss rate, and average memory access time.</h4>
 <div class="answer">
     <p>Cache performance is evaluated by measuring how effectively the cache intercepts memory requests, preventing them from reaching the slower main memory.</p>
 
@@ -524,9 +542,10 @@ for (int i = 0; i &lt; 1000; i++) {
         <li>For multi-level caches: <code>AMAT = Hit Time L1 + Miss Rate L1 × (Hit Time L2 + Miss Rate L2 × Miss Penalty L2)</code>.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>19. Compute AMAT. Hit Rate=90%, Hit Time=5ns, Miss Penalty=50ns.</summary>
+<div class="qa-card">
+<h4 class="qa-question">19. Compute AMAT. Hit Rate=90%, Hit Time=5ns, Miss Penalty=50ns.</h4>
 <div class="answer">
     <p>This is a straightforward application of the AMAT formula.</p>
 
@@ -550,9 +569,10 @@ for (int i = 0; i &lt; 1000; i++) {
 
     <p><span class="highlight">Interpretation:</span> Even though the cache serves 90% of requests in just 5 ns, the 10% of misses — each costing an additional 50 ns — doubles the average access time to 10 ns. This illustrates why even small improvements in miss rate (e.g., from 10% to 5%) have an outsized impact on AMAT (reducing it from 10 ns to 7.5 ns).</p>
 </div>
-</details>
+</div>
 
-<details><summary>20. 4-way set associative, 32 blocks. How many sets? Replacement policy?</summary>
+<div class="qa-card">
+<h4 class="qa-question">20. 4-way set associative, 32 blocks. How many sets? Replacement policy?</h4>
 <div class="answer">
     <p><b>Given:</b></p>
     <ul>
@@ -584,9 +604,10 @@ for (int i = 0; i &lt; 1000; i++) {
         <li><b>Tag bits:</b> Remaining bits of the address.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>21. Trace a memory access sequence in a direct-mapped cache and show hit/miss conditions.</summary>
+<div class="qa-card">
+<h4 class="qa-question">21. Trace a memory access sequence in a direct-mapped cache and show hit/miss conditions.</h4>
 <div class="answer">
     <p><i>General approach for solving any direct-mapped cache trace problem for an exam:</i></p>
 
@@ -618,9 +639,10 @@ for (int i = 0; i &lt; 1000; i++) {
     </table>
     <p><b>Result:</b> 0 Hits, 5 Misses. Blocks 0 and 8 constantly thrash because they both map to Line 0. A 2-way set-associative cache would solve this.</p>
 </div>
-</details>
+</div>
 
-<details><summary>22. Direct-Mapped FIFO: Sequence 1,2,3,4,1,2,5,1,2,3,4,5. Find hits/misses.</summary>
+<div class="qa-card">
+<h4 class="qa-question">22. Direct-Mapped FIFO: Sequence 1,2,3,4,1,2,5,1,2,3,4,5. Find hits/misses.</h4>
 <div class="answer">
     <p><b>Given:</b> Cache size = 4 blocks. Direct-Mapped. Mapping: Cache Line = Block Number mod 4.</p>
 
@@ -644,9 +666,10 @@ for (int i = 0; i &lt; 1000; i++) {
 
     <p><b>Result: 5 Hits, 7 Misses.</b></p>
 </div>
-</details>
+</div>
 
-<details><summary>23. 2-Way Set Associative Cache (LRU). Sequence: 0,4,1,5,0,4,1,5. Find hits/misses.</summary>
+<div class="qa-card">
+<h4 class="qa-question">23. 2-Way Set Associative Cache (LRU). Sequence: 0,4,1,5,0,4,1,5. Find hits/misses.</h4>
 <div class="answer">
     <p><b>Given:</b> 2 Sets, each with 2 blocks (2-way). Total = 4 blocks. LRU replacement. Mapping: Set = Block MOD 2.</p>
 
@@ -668,7 +691,7 @@ for (int i = 0; i &lt; 1000; i++) {
 
     <p><span class="highlight">Analysis:</span> The first 4 accesses are compulsory misses (cold starts). The next 4 accesses are all hits because the working set (blocks 0, 4, 1, 5) fits perfectly into the 4-block cache. The 2-way associativity prevents the conflict misses that would destroy performance in a direct-mapped cache with this access pattern.</p>
 </div>
-</details>
+</div>
 
 </div>
     <script src="notes.js"></script>

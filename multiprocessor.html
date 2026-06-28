@@ -44,7 +44,8 @@
     </header>
     <div class="section">
 
-<details><summary>1. Define Flynn's Taxonomy. List the four categories.</summary>
+<div class="qa-card">
+<h4 class="qa-question">1. Define Flynn's Taxonomy. List the four categories.</h4>
 <div class="answer">
     <p><b>Flynn's Taxonomy</b> (proposed by Michael J. Flynn in 1966) is the most widely used classification system for computer architectures. It categorizes systems based on the number of concurrent <b>instruction streams</b> and <b>data streams</b> they can process.</p>
     <p><span class="highlight">The Four Categories:</span></p>
@@ -57,9 +58,10 @@
     </table>
     <p><b>Significance:</b> While simplified (it doesn't capture nuances like multi-threading or GPU architectures well), Flynn's Taxonomy remains the standard introductory framework for discussing parallel computing architectures.</p>
 </div>
-</details>
+</div>
 
-<details><summary>2. What is the difference between UMA and NUMA?</summary>
+<div class="qa-card">
+<h4 class="qa-question">2. What is the difference between UMA and NUMA?</h4>
 <div class="answer">
     <p>UMA and NUMA are two models of shared-memory multiprocessor architectures, differing in how memory access latency is distributed.</p>
     <table>
@@ -72,9 +74,10 @@
     </table>
     <p><b>Key Insight:</b> NUMA is essentially a compromise between shared-memory ease-of-programming and distributed-memory scalability. The programmer sees a single shared address space, but performance depends on data placement.</p>
 </div>
-</details>
+</div>
 
-<details><summary>3. What do you mean by memory consistency?</summary>
+<div class="qa-card">
+<h4 class="qa-question">3. What do you mean by memory consistency?</h4>
 <div class="answer">
     <p><b>Memory Consistency</b> (or Memory Consistency Model) defines the rules governing the <b>order in which memory operations</b> (reads and writes) performed by one processor become visible to other processors in a shared-memory multiprocessor system.</p>
     <p><span class="highlight">Why It Matters:</span></p>
@@ -86,9 +89,10 @@
         <li><b>Relaxed/Weak Consistency:</b> Used by ARM and RISC-V. Allows extensive reordering of memory operations for maximum performance. Explicit <b>memory fence/barrier</b> instructions are required by programmers to enforce ordering when needed (e.g., before releasing a lock).</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>4. What is a dataflow computer?</summary>
+<div class="qa-card">
+<h4 class="qa-question">4. What is a dataflow computer?</h4>
 <div class="answer">
     <p>A <b>Dataflow Computer</b> is a non-Von Neumann architecture where instruction execution is determined entirely by the <b>availability of input data (operands)</b>, rather than by a sequential Program Counter.</p>
     <p><span class="highlight">Key Principles:</span></p>
@@ -101,9 +105,10 @@
     <p><span class="highlight">Advantages:</span> Naturally parallel, no hazards from sequential assumptions, excellent for functional programming paradigms.</p>
     <p><span class="highlight">Disadvantages:</span> High overhead for token matching hardware, poor performance for sequential algorithms, difficulty handling irregular control flow and data structures. These limitations prevented widespread commercial adoption.</p>
 </div>
-</details>
+</div>
 
-<details><summary>5. Give one example of a systolic array application.</summary>
+<div class="qa-card">
+<h4 class="qa-question">5. Give one example of a systolic array application.</h4>
 <div class="answer">
     <p><b>Matrix Multiplication</b> is the most classic and widely cited application of systolic arrays.</p>
     <p><span class="highlight">Why Systolic Arrays Excel at Matrix Multiply:</span></p>
@@ -120,9 +125,10 @@
         <li><b>Signal Processing / FFT:</b> FIR filters and Fourier transforms.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>6. What is a reduction computer?</summary>
+<div class="qa-card">
+<h4 class="qa-question">6. What is a reduction computer?</h4>
 <div class="answer">
     <p>A <b>Reduction Computer</b> is a non-Von Neumann architecture based on <b>demand-driven (lazy) evaluation</b>. Instead of executing instructions eagerly from top to bottom, a reduction computer only evaluates an expression when its result is explicitly <b>needed</b> by another computation.</p>
     <p><span class="highlight">Key Concepts:</span></p>
@@ -138,9 +144,10 @@
     </ul>
     <p><span class="highlight">Example:</span> If the program computes <code>if True then X else (expensive_computation)</code>, a reduction machine never evaluates <code>expensive_computation</code> because the <code>else</code> branch is never demanded.</p>
 </div>
-</details>
+</div>
 
-<details><summary>7. Define synchronization in parallel computing.</summary>
+<div class="qa-card">
+<h4 class="qa-question">7. Define synchronization in parallel computing.</h4>
 <div class="answer">
     <p><b>Synchronization</b> in parallel computing refers to the mechanisms and protocols used to coordinate the execution of multiple concurrent threads or processes to ensure <b>correct program behavior</b> when they access shared resources.</p>
     <p><span class="highlight">Why It's Needed:</span></p>
@@ -154,9 +161,10 @@
     </ol>
     <p><span class="highlight">Hardware Support:</span> Modern CPUs provide atomic instructions (Test-and-Set, Load-Linked/Store-Conditional, Compare-and-Swap) that guarantee indivisible read-modify-write operations on memory, forming the foundation for all software synchronization primitives.</p>
 </div>
-</details>
+</div>
 
-<details><summary>8. What is a distributed shared memory (DSM) architecture?</summary>
+<div class="qa-card">
+<h4 class="qa-question">8. What is a distributed shared memory (DSM) architecture?</h4>
 <div class="answer">
     <p><b>Distributed Shared Memory (DSM)</b> is an architecture (implemented in hardware, software, or both) that presents a <b>single, unified shared address space</b> to the programmer, even though the underlying physical memory is <b>distributed across multiple separate nodes</b> in a network.</p>
     <p><span class="highlight">How It Works:</span></p>
@@ -173,9 +181,10 @@
     </ul>
     <p><span class="highlight">Advantage:</span> Easier programming than message-passing (no explicit send/receive). <b>Disadvantage:</b> Remote accesses are much slower than local, and maintaining consistency adds overhead.</p>
 </div>
-</details>
+</div>
 
-<details><summary>9. Explain SISD, SIMD, MISD, and MIMD models with examples.</summary>
+<div class="qa-card">
+<h4 class="qa-question">9. Explain SISD, SIMD, MISD, and MIMD models with examples.</h4>
 <div class="answer">
     <p>These four models form <b>Flynn's Taxonomy</b>, classifying architectures by the number of instruction and data streams.</p>
     <p><span class="highlight">1. SISD (Single Instruction, Single Data):</span></p>
@@ -203,9 +212,10 @@
         <li><b>Examples:</b> Modern multi-core CPUs (Intel Core i9, AMD Ryzen), clusters, cloud data centers, any multi-computer system.</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>10. What is centralized shared memory architecture? Advantages/limitations.</summary>
+<div class="qa-card">
+<h4 class="qa-question">10. What is centralized shared memory architecture? Advantages/limitations.</h4>
 <div class="answer">
     <p>A <b>Centralized Shared Memory</b> (also called Symmetric Multiprocessor or SMP) architecture is one where all processors are connected to a single, centralized physical main memory through a shared interconnect (typically a bus or crossbar switch).</p>
     <p><span class="highlight">Architecture:</span></p>
@@ -233,9 +243,10 @@
         <li><b>Poor Scalability:</b> Performance degrades rapidly as the number of processors increases due to contention. Not suitable for systems with more than ~16 processors.</li>
     </ol>
 </div>
-</details>
+</div>
 
-<details><summary>11. Differentiate between directory-based and snooping-based cache coherence.</summary>
+<div class="qa-card">
+<h4 class="qa-question">11. Differentiate between directory-based and snooping-based cache coherence.</h4>
 <div class="answer">
     <table>
         <tr><th>Feature</th><th>Snooping-Based</th><th>Directory-Based</th></tr>
@@ -248,9 +259,10 @@
     </table>
     <p><b>Key Insight:</b> Snooping is preferred for small, tightly-coupled systems (desktops, single-socket servers) due to its simplicity and low latency. Directory protocols are essential for large-scale systems where bus bandwidth would be a fatal bottleneck.</p>
 </div>
-</details>
+</div>
 
-<details><summary>12. Briefly explain interconnection networks. Mention types.</summary>
+<div class="qa-card">
+<h4 class="qa-question">12. Briefly explain interconnection networks. Mention types.</h4>
 <div class="answer">
     <p><b>Interconnection Networks</b> are the communication fabric that connects processors, memories, and I/O devices in a multiprocessor or multicomputer system. The choice of network topology directly impacts bandwidth, latency, cost, and scalability.</p>
     <p><span class="highlight">Key Types:</span></p>
@@ -263,9 +275,10 @@
         <li><b>Omega Network (Multistage):</b> A logarithmic-depth switching network connecting N inputs to N outputs through log₂N stages of 2×2 switches. Cost = O(N log N). Can have blocking. Used in shared-memory multiprocessors.</li>
     </ol>
 </div>
-</details>
+</div>
 
-<details><summary>13. Differentiate between strong and weak consistency models.</summary>
+<div class="qa-card">
+<h4 class="qa-question">13. Differentiate between strong and weak consistency models.</h4>
 <div class="answer">
     <p>Memory consistency models define the hardware/software contract specifying the legal ordering of memory accesses across processors.</p>
 
@@ -280,9 +293,10 @@
 
     <p><b>Practical Impact:</b> Most modern processors use relaxed/weak models for performance. Programmers rely on high-level synchronization primitives (mutexes, atomics) provided by programming languages, which internally compile down to the correct hardware memory fences.</p>
 </div>
-</details>
+</div>
 
-<details><summary>14. What are cluster computers? List their key characteristics.</summary>
+<div class="qa-card">
+<h4 class="qa-question">14. What are cluster computers? List their key characteristics.</h4>
 <div class="answer">
     <p>A <b>Cluster Computer</b> is a collection of independent, complete computers (nodes) connected via a high-speed local area network (LAN), working together as a single unified computing resource.</p>
     <p><span class="highlight">Key Characteristics:</span></p>
@@ -296,9 +310,10 @@
     </ol>
     <p><span class="highlight">Examples:</span> Google's data centers, Amazon AWS EC2 instances, Beowulf clusters, most of the Top500 supercomputers are clusters.</p>
 </div>
-</details>
+</div>
 
-<details><summary>15. Compare distributed shared memory and centralized shared memory.</summary>
+<div class="qa-card">
+<h4 class="qa-question">15. Compare distributed shared memory and centralized shared memory.</h4>
 <div class="answer">
     <table>
         <tr><th>Feature</th><th>Centralized Shared Memory (SMP)</th><th>Distributed Shared Memory (DSM)</th></tr>
@@ -312,9 +327,10 @@
         <tr><td><b>Examples</b></td><td>Intel Xeon single-socket, AMD Ryzen desktop.</td><td>AMD EPYC multi-socket, SGI Origin, Intel Xeon multi-socket with QPI.</td></tr>
     </table>
 </div>
-</details>
+</div>
 
-<details><summary>16. Discuss Flynn's taxonomy with examples of modern architectures.</summary>
+<div class="qa-card">
+<h4 class="qa-question">16. Discuss Flynn's taxonomy with examples of modern architectures.</h4>
 <div class="answer">
     <p><i>(Refer to Question 9 for detailed explanation. Below are additional modern examples.)</i></p>
     <ul>
@@ -325,9 +341,10 @@
     </ul>
     <p><span class="highlight">Limitations of Flynn's Taxonomy:</span> It doesn't capture modern hybrid architectures well (e.g., a GPU has SIMD cores organized in MIMD fashion — sometimes called SIMT: Single Instruction, Multiple Threads). It also doesn't distinguish between shared-memory and message-passing MIMD systems.</p>
 </div>
-</details>
+</div>
 
-<details><summary>17. Describe architecture and synchronization of centralized shared-memory.</summary>
+<div class="qa-card">
+<h4 class="qa-question">17. Describe architecture and synchronization of centralized shared-memory.</h4>
 <div class="answer">
     <p><span class="highlight">Architecture:</span></p>
     <ul>
@@ -349,9 +366,10 @@
         <li><b>Barriers:</b> All threads must reach the barrier before any can proceed. Implemented using a shared counter: each arriving thread atomically increments the counter. When the counter equals the number of threads, all are released.</li>
     </ol>
 </div>
-</details>
+</div>
 
-<details><summary>18. Explain different types of interconnection networks with diagrams and pros/cons.</summary>
+<div class="qa-card">
+<h4 class="qa-question">18. Explain different types of interconnection networks with diagrams and pros/cons.</h4>
 <div class="answer">
     <p><span class="highlight">1. Shared Bus:</span></p>
     <pre>  [P0] [P1] [P2] [P3]
@@ -386,9 +404,10 @@
 
     <p><span class="highlight">5. Torus:</span> Same as Mesh but with wrap-around edges connecting border nodes. Reduces diameter and provides more uniform latency.</p>
 </div>
-</details>
+</div>
 
-<details><summary>19. Describe the working of a distributed shared-memory system.</summary>
+<div class="qa-card">
+<h4 class="qa-question">19. Describe the working of a distributed shared-memory system.</h4>
 <div class="answer">
     <p>A DSM system provides the abstraction of a single shared address space over physically distributed memories. Here is how it works at a detailed level:</p>
     <p><span class="highlight">Hardware-Based DSM (e.g., ccNUMA):</span></p>
@@ -408,9 +427,10 @@
     <p><span class="highlight">Software-Based DSM:</span></p>
     <p>Uses the OS Virtual Memory system. Pages are the unit of sharing. When a processor accesses a page not in its local memory, a page fault triggers the OS to fetch the page from the remote node over the network. This is much coarser-grained and higher-latency than hardware DSM, but cheaper to implement.</p>
 </div>
-</details>
+</div>
 
-<details><summary>20. Compare cluster computing and traditional parallel architectures. Real-world use case?</summary>
+<div class="qa-card">
+<h4 class="qa-question">20. Compare cluster computing and traditional parallel architectures. Real-world use case?</h4>
 <div class="answer">
     <table>
         <tr><th>Feature</th><th>Cluster Computing</th><th>Traditional Parallel (SMP/Mainframe)</th></tr>
@@ -425,9 +445,10 @@
     <p><span class="highlight">Real-World Use Case:</span></p>
     <p><b>Google's Search Infrastructure:</b> Google's search engine runs on massive clusters of thousands of commodity servers. When you type a query, it is distributed across hundreds of machines that each search a fraction of the web index. Results are merged and returned in milliseconds. This architecture provides extreme scalability, fault tolerance (failed servers are simply bypassed), and cost efficiency.</p>
 </div>
-</details>
+</div>
 
-<details><summary>21. Explain dataflow computers. How do they differ from Von Neumann?</summary>
+<div class="qa-card">
+<h4 class="qa-question">21. Explain dataflow computers. How do they differ from Von Neumann?</h4>
 <div class="answer">
     <table>
         <tr><th>Feature</th><th>Von Neumann Architecture</th><th>Dataflow Architecture</th></tr>
@@ -453,9 +474,10 @@
     (Sequential: 7 steps)  (Parallel: + and - fire simultaneously → 3 steps)
     </pre>
 </div>
-</details>
+</div>
 
-<details><summary>22. Describe systolic array architecture. Explain matrix multiplication.</summary>
+<div class="qa-card">
+<h4 class="qa-question">22. Describe systolic array architecture. Explain matrix multiplication.</h4>
 <div class="answer">
     <p>A <b>Systolic Array</b> is a network of tightly coupled, simple Processing Elements (PEs) arranged in a regular pattern (typically a 2D grid). Data flows through the array rhythmically, like blood pulsing through the circulatory system (hence "systolic," from the Greek word for heart contraction).</p>
     <p><span class="highlight">Architecture:</span></p>
@@ -478,9 +500,10 @@
     <p><span class="highlight">Key Advantage:</span> Extremely high data reuse. Each element of A and B is read from memory once but used by 3 PEs. This minimizes memory bandwidth requirements — the bottleneck of traditional architectures.</p>
     <p><b>Modern Example:</b> Google's TPU v1 contains a 256×256 systolic array (65,536 PEs) specifically for neural network matrix multiplications.</p>
 </div>
-</details>
+</div>
 
-<details><summary>23. What are reduction computer architectures? How do they differ?</summary>
+<div class="qa-card">
+<h4 class="qa-question">23. What are reduction computer architectures? How do they differ?</h4>
 <div class="answer">
     <p><b>Reduction Computer Architectures</b> are based on the principle of <b>demand-driven computation</b> (also called lazy evaluation or call-by-need). They execute programs by repeatedly reducing expressions to their simplest form.</p>
     <p><span class="highlight">How They Work:</span></p>
@@ -501,11 +524,12 @@
         <tr><td><b>Best For</b></td><td>General purpose</td><td>Parallel numeric computation</td><td>Functional programming, symbolic computation</td></tr>
     </table>
 </div>
-</details>
+</div>
 
 <span class="hard-title">VERY HARD QUESTIONS</span>
 
-<details><summary>H1. Mesh interconnection network with 4×4 nodes. How many links? Latency scaling?</summary>
+<div class="qa-card">
+<h4 class="qa-question">H1. Mesh interconnection network with 4×4 nodes. How many links? Latency scaling?</h4>
 <div class="answer">
     <p><b>Given:</b> A 2D Mesh network with 4×4 = 16 processing nodes.</p>
     <p><b>Step 1: Count the Links</b></p>
@@ -529,9 +553,10 @@
         <li>Latency scales as <b>O(√P)</b> — sub-linear, which is reasonably good for scalability. Doubling the number of nodes only increases worst-case latency by ~41% (√2 factor).</li>
     </ul>
 </div>
-</details>
+</div>
 
-<details><summary>H2. Cache coherence problem in a 4-processor shared memory system. Hardware solution?</summary>
+<div class="qa-card">
+<h4 class="qa-question">H2. Cache coherence problem in a 4-processor shared memory system. Hardware solution?</h4>
 <div class="answer">
     <p><b>The Problem — Cache Incoherence Scenario:</b></p>
     <ol>
@@ -553,9 +578,10 @@
     </ol>
     <p><b>Result:</b> P1 correctly reads X = 20. Coherence is maintained entirely in hardware, transparently to the software.</p>
 </div>
-</details>
+</div>
 
-<details><summary>H3. Systolic array with 9 PEs performing 3×3 convolution. Draw data flow and compute steps.</summary>
+<div class="qa-card">
+<h4 class="qa-question">H3. Systolic array with 9 PEs performing 3×3 convolution. Draw data flow and compute steps.</h4>
 <div class="answer">
     <p><b>Setup:</b> A 3×3 systolic array with 9 PEs performing a 2D convolution of an image with a 3×3 kernel (filter).</p>
     <p><span class="highlight">Weight-Stationary Design:</span></p>
@@ -583,7 +609,7 @@ PE(2,0)=W20  PE(2,1)=W21  PE(2,2)=W22
         <li><b>Scalar Comparison:</b> A scalar processor would need N² × 9 multiply-accumulate operations (9 MACs per output pixel). The systolic array achieves this in ~N² steps with 9 PEs, a ~9× speedup.</li>
     </ul>
 </div>
-</details>
+</div>
 
 </div>
     <script src="notes.js"></script>
