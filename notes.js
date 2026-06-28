@@ -85,6 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateView();
+                }
+            } else if (e.key === 'ArrowRight') {
+                if (currentIndex < cards.length - 1) {
+                    currentIndex++;
+                    updateView();
+                }
+            }
+        });
+
         // Expose function globally for the Outline Drawer
         window.jumpToFlashcard = (index) => {
             if (index >= 0 && index < cards.length) {
