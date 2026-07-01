@@ -3,318 +3,1022 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOC / FLAT Complete Q&A</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="../notes.css">
-    
+    <title>Complete TOC/FLAT Q&A Bank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #8b5cf6;
-            --primary-light: rgba(139, 92, 246, 0.05);
-            --border-color: rgba(139, 92, 246, 0.2);
+            --bg-desk: #eae6db;
+            --bg-paper: #fefdfb;
+            --text-main: #1e293b;
+            --text-muted: #57687e;
+            --primary: #ef4444; /* Featured Red */
         }
-        body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
-        .qa-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02), 0 10px 15px rgba(0, 0, 0, 0.03);
-            border: 1px solid var(--border-color);
-        }
-        .qa-question {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-            border-left: 4px solid var(--primary-color);
-            padding-left: 1rem;
-        }
-        .answer {
-            font-size: 1rem;
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-desk);
+            background-image: 
+                radial-gradient(rgba(30, 41, 59, 0.03) 1px, transparent 1px), 
+                radial-gradient(rgba(30, 41, 59, 0.03) 1px, var(--bg-desk) 1px);
+            background-size: 24px 24px;
+            color: var(--text-main);
+            margin: 0; padding: 0;
             line-height: 1.6;
-            color: #334155;
         }
-        .answer b { color: #0f172a; }
+        .top-nav {
+            padding: 1rem 2rem; background: var(--bg-paper);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .top-nav a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem;}
+        .nav-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--text-main); }
+        
+        .layout {
+            display: flex; max-width: 1300px; margin: 2.5rem auto; gap: 2.5rem; padding: 0 1.5rem;
+            align-items: flex-start;
+        }
+        .sidebar {
+            width: 260px; flex-shrink: 0;
+            position: sticky; top: 90px;
+        }
+        .toc-box {
+            background: var(--bg-paper); padding: 1.5rem; border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid rgba(44,62,80,0.1);
+        }
+        .toc-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-top: 0; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; color: #0f172a;}
+        .toc-box ul { list-style: none; padding: 0; margin: 0; margin-top: 1rem;}
+        .toc-box li { margin-bottom: 0.8rem; }
+        .toc-box a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .toc-box a:hover { color: var(--primary); }
+        
+        .content {
+            flex-grow: 1; min-width: 0;
+            background: var(--bg-paper); padding: 3.5rem 4rem; border-radius: 4px;
+            box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.08); border: 1px solid rgba(44,62,80,0.1);
+        }
+        
         .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-top: 3rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #0f172a;
+            border-bottom: 1px dashed rgba(44,62,80,0.2); padding-bottom: 0.8rem; margin-bottom: 2.5rem; margin-top: 4rem;
         }
-        .math { font-family: monospace; background: #f1f5f9; padding: 0.2rem 0.4rem; border-radius: 4px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 15px; }
-        th, td { border: 1px solid var(--border-color); padding: 8px; text-align: left; }
-        th { background: #f8fafc; font-weight: 600; }
+        .section-title:first-child { margin-top: 0; }
+        
+        .qa-card {
+            margin-bottom: 3.5rem;
+        }
+        .q-text {
+            font-weight: 600; font-size: 1.05rem; color: #0f172a; margin-bottom: 1.2rem;
+            display: flex; gap: 0.8rem; line-height: 1.5; align-items: flex-start;
+        }
+        .q-badge {
+            background: var(--primary); color: white; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; height: fit-content; white-space: nowrap; font-weight: 700;
+        }
+        .a-text {
+            color: #334155;
+            padding-left: 1.5rem; border-left: 3px solid rgba(239, 68, 68, 0.2);
+            font-size: 0.95rem;
+        }
+        .a-text p { margin-top: 0; margin-bottom: 1rem; }
+        .a-text ul, .a-text ol { margin-top: 0; margin-bottom: 1rem; padding-left: 1.2rem; }
+        .a-text li { margin-bottom: 0.4rem; }
+        
+        table { border-collapse: collapse; width: 100%; max-width: 600px; margin: 1.5rem 0; font-size: 0.9rem; }
+        th, td { border: 1px solid #cbd5e1; padding: 0.6rem 0.8rem; text-align: left; }
+        th { background: #f8fafc; font-weight: 600; color: #0f172a; }
+        .math { font-family: monospace; background: #f1f5f9; padding: 0.2rem 0.4rem; border-radius: 3px; font-size: 0.9em; color: #0f172a;}
+        
+        @media (max-width: 900px) {
+            .layout { flex-direction: column; }
+            .sidebar { width: 100%; position: static; }
+            .content { padding: 2rem 1.5rem; }
+        }
     </style>
 </head>
 <body>
+    <nav class="top-nav">
+        <a href="flat_index.html">← Back to FLAT Library</a>
+        <span class="nav-title">Complete TOC/FLAT Q&A Bank</span>
+        <span style="width: 80px;"></span>
+    </nav>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="toc-box">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#basics">Automata Basics & FSM</a></li>
+                    <li><a href="#minimization">Minimization & Equivalence</a></li>
+                    <li><a href="#mealy-moore">Mealy & Moore Machines</a></li>
+                    <li><a href="#regex">Regular Expressions & NFA</a></li>
+                    <li><a href="#cfg">Context Free Grammars</a></li>
+                    <li><a href="#pda-tm">PDA & Turing Machines</a></li>
+                </ul>
+            </div>
+        </aside>
+        
+        <main class="content">
+            <h1 class="section-title" id="basics">Automata Basics & FSM</h1>
+            
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q1</span>
+                    <span>Define alphabet, string and language with suitable examples. What is the difference between finite and infinite languages? What are the limitations of sequential circuit? Write down the applications of Grammars.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Alphabet (&Sigma;):</b> A finite, non-empty set of symbols. Example: <span class="math">&Sigma; = {0, 1}</span> (binary alphabet).</p>
+                    <p><b>String:</b> A finite sequence of symbols chosen from an alphabet. Example: <span class="math">w = 0101</span> is a string over <span class="math">&Sigma; = {0, 1}</span>.</p>
+                    <p><b>Language (L):</b> A set of strings all of which are chosen from some <span class="math">&Sigma;*</span>. Example: <span class="math">L = {0, 00, 000}</span> is a language over <span class="math">{0}</span>.</p>
+                    <p><b>Finite vs Infinite Language:</b> A finite language contains a countable, bounded number of strings (e.g., <span class="math">L = {a, aa}</span>). An infinite language contains an unbounded number of strings (e.g., <span class="math">L = {a^n | n &ge; 0}</span>).</p>
+                    <p><b>Limitations of Sequential Circuits:</b> They have finite memory (finite number of states) and cannot recognize context-free or context-sensitive languages (like <span class="math">a^n b^n</span>) which require an unbounded memory structure like a stack or an infinite tape.</p>
+                    <p><b>Applications of Grammars:</b> Primarily used in compiler design (syntax analysis and parsing), natural language processing, describing programming language syntax (using BNF or EBNF formats), and formally specifying network protocols.</p>
+                </div>
+            </div>
 
-<nav class="top-nav" style="padding: 1rem 2rem; background: white; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100;">
-    <a href="../flat_index.html" style="text-decoration: none; color: var(--primary-color); font-weight: 600;">← FLAT Menu</a>
-    <span class="nav-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600;">Complete Q&A Bank</span>
-    <div style="width: 80px;"></div>
-</nav>
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q2</span>
+                    <span>Design a two-input two-output sequence detector which generates an output 1 every time the sequence 1101 is detected. And for all other cases output 0 is generated. Overlapping sequences are also counted.</span>
+                </div>
+                <div class="a-text">
+                    <p>We are designing a Finite State Machine to detect the sequence "1101". We will define the states based on the prefix of the sequence successfully matched so far:</p>
+                    <ul>
+                        <li><b>A (initial):</b> No part of the sequence matched.</li>
+                        <li><b>B:</b> "1" matched.</li>
+                        <li><b>C:</b> "11" matched.</li>
+                        <li><b>D:</b> "110" matched.</li>
+                    </ul>
+                    <p><b>State Transition Table (Mealy Machine Formulation):</b></p>
+                    <table>
+                        <tr>
+                            <th>Present State</th>
+                            <th>Input = 0 (Next State, Output)</th>
+                            <th>Input = 1 (Next State, Output)</th>
+                        </tr>
+                        <tr><td>A</td><td>A, 0</td><td>B, 0</td></tr>
+                        <tr><td>B</td><td>A, 0</td><td>C, 0</td></tr>
+                        <tr><td>C</td><td>D, 0</td><td>C, 0</td></tr>
+                        <tr><td>D</td><td>A, 0</td><td>B, 1</td></tr>
+                    </table>
+                    <p><i>Explanation of overlap handling:</i> From state D (we have seen "110"), an input of '1' completes the sequence "1101", yielding an output of 1. Because overlapping is allowed, this final '1' can serve as the first '1' of a new sequence, so the next state transitions to B instead of A.</p>
+                </div>
+            </div>
 
-<div class="container" style="max-width: 950px; margin: 0 auto; padding: 2rem;">
-    <header style="text-align: center; margin-bottom: 4rem;">
-        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: #0f172a; margin-bottom: 0.5rem;">TOC / FLAT</h1>
-        <p class="subtitle" style="font-size: 1.1rem; color: #64748b; letter-spacing: 1px; text-transform: uppercase;">Comprehensive Question & Answer Bank</p>
-    </header>
+            <h1 class="section-title" id="minimization">Minimization & Equivalence</h1>
 
-    <!-- SECTION 1: BASICS & FINITE AUTOMATA -->
-    <h2 class="section-title">1. Automata Basics & Finite State Machines</h2>
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q3</span>
+                    <span>What do you mean by k-equivalent states? Give definition of lossy and lossless machine. Minimize a machine by partitioning the distinguishable states.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>k-equivalent states:</b> Two states <span class="math">q_1</span> and <span class="math">q_2</span> are k-equivalent if, for every input string <span class="math">w</span> of length &le; k, the machine produces the exact same output sequence when started in <span class="math">q_1</span> as it does when started in <span class="math">q_2</span>. If two states are k-equivalent for all <span class="math">k</span>, they are deemed strictly equivalent and can be merged.</p>
+                    <p><b>Lossy vs Lossless Machine:</b> A <i>lossless</i> machine is one where the input sequence can be uniquely and entirely determined by examining the initial state and the resulting output sequence. A <i>lossy</i> machine loses information during transitions, meaning you cannot reconstruct the original input from just the output and start state.</p>
+                    <p><b>Minimization by Partitioning (Myhill-Nerode Theorem Approach):</b></p>
+                    <ol>
+                        <li><b>0-equivalence (P0):</b> Partition all states into blocks based solely on their outputs. (e.g., all states that output 0 go to Block 1, all that output 1 go to Block 2).</li>
+                        <li><b>1-equivalence (P1):</b> For each block in P0, partition it further if the next states for identical inputs go to different blocks in P0.</li>
+                        <li><b>k-equivalence (Pk):</b> Repeat the partitioning process using the blocks from P(k-1). Stop when <span class="math">P_k = P_{k-1}</span>. The resulting blocks represent the minimized states.</li>
+                    </ol>
+                </div>
+            </div>
 
-    <div class="qa-card">
-        <h4 class="qa-question">1.1 Define alphabet, string and language. Difference between finite and infinite languages? Limitations of sequential circuit? Applications of Grammars.</h4>
-        <div class="answer">
-            <p><b>Alphabet (&Sigma;):</b> A finite, non-empty set of symbols. <i>Ex:</i> &Sigma;={0,1}.<br>
-            <b>String:</b> A finite sequence of symbols chosen from an alphabet. <i>Ex:</i> "010".<br>
-            <b>Language (L):</b> A set of strings formed from &Sigma;*. <i>Ex:</i> L={0, 00, 000}.</p>
-            <p><b>Finite vs Infinite Language:</b> Finite languages have a countable, limited number of strings (e.g., L={"a", "aa"}) and are always regular. Infinite languages have an unbounded number of strings (e.g., L={a<sup>n</sup>b<sup>n</sup>}) and can be regular or non-regular.</p>
-            <p><b>Limitations of Sequential Circuits:</b> They have a strictly finite amount of memory (states). They cannot process languages that require unbound memory (like counting matching parentheses to infinity).</p>
-            <p><b>Applications of Grammars:</b> Used heavily in compiler design (syntax analysis/parsing), natural language processing, and defining the structure of document formats like XML/HTML.</p>
-        </div>
+            <h1 class="section-title" id="mealy-moore">Mealy & Moore Machines</h1>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q4</span>
+                    <span>What is the basic difference between Mealy machine and Moore machine?</span>
+                </div>
+                <div class="a-text">
+                    <p>The core difference between the two finite state transducers lies in how outputs are generated:</p>
+                    <ul>
+                        <li><b>Mealy Machine:</b> The output depends on both the <i>present state</i> and the <i>present input symbol</i>. Outputs are associated with the transition edges. Because of this, Mealy machines generally require fewer states, but their outputs react asynchronously/immediately to input changes.</li>
+                        <li><b>Moore Machine:</b> The output depends <i>only</i> on the present state. Outputs are associated directly with the state nodes. Moore machines generally require more states to model the same logic, but their outputs are perfectly synchronous with state changes.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q5</span>
+                    <span>Explain the procedure to convert a Mealy machine into a Moore machine.</span>
+                </div>
+                <div class="a-text">
+                    <p>To convert a Mealy machine to an equivalent Moore machine, we must shift the outputs from the transitions to the states themselves. The standard procedure is:</p>
+                    <ol>
+                        <li>Calculate the number of incoming transitions for every state in the Mealy machine and note the output associated with each transition.</li>
+                        <li>If a state <span class="math">q_i</span> is entered by transitions that have different outputs (e.g., some produce 0, some produce 1), split the state into multiple states in the Moore machine: <span class="math">q_{i0}</span> (which outputs 0) and <span class="math">q_{i1}</span> (which outputs 1).</li>
+                        <li>If a state is entered by transitions that all have the same output, the state does not need to be split. Assign that output to the state.</li>
+                        <li>Route all incoming transitions to the corresponding newly split states based on their outputs.</li>
+                        <li>Duplicate the outgoing transitions from the original state to all of its new split states.</li>
+                        <li>If the initial state has no incoming transitions, it can be assigned an arbitrary default output (usually 0).</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- BATCH 2: Regular Expressions & NFA/DFA -->
+            <h1 class="section-title" id="regex">Regular Expressions & NFA/DFA</h1>
+            
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q6</span>
+                    <span>State Arden's Theorem. A solution to the equation R = Q + RP is?</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Arden's Theorem:</b> Let P and Q be two regular expressions. If P does not contain the null string (&lambda; or &epsilon;), then the equation <span class="math">R = Q + RP</span> has a unique solution given by <span class="math">R = QP^*</span>.</p>
+                    <p><b>Proof Outline:</b><br>
+                    Substitute <span class="math">R = QP^*</span> into the RHS:<br>
+                    <span class="math">Q + RP = Q + (QP^*)P = Q + QP^*P = Q(\epsilon + P^*P) = QP^* = R</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q7</span>
+                    <span>What are Kleene Closure and Positive Closure? Give examples. Set of regular languages over a given alphabet set is closed under which operations?</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Kleene Closure (L*):</b> The set of all strings that can be formed by concatenating zero or more strings from L. It always includes the empty string &epsilon;.<br>
+                    Example: If L = {a}, L* = {&epsilon;, a, aa, aaa, ...}</p>
+                    <p><b>Positive Closure (L+):</b> The set of all strings that can be formed by concatenating one or more strings from L. It does not include &epsilon; unless &epsilon; is already in L.<br>
+                    Example: If L = {a}, L+ = {a, aa, aaa, ...}</p>
+                    <p><b>Closure Properties:</b> Regular languages are closed under Union, Intersection, Concatenation, Kleene Closure, Complement, Homomorphism, and Reversal.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q8</span>
+                    <span>What is Homomorphism? Find the homomorphic image of L = {aa, aba} where h(a) = ab and h(b) = bbc.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Homomorphism:</b> A substitution where a single symbol from an alphabet is replaced by a string (or another symbol). If h is a homomorphism, then h(L) is the language obtained by applying h to every string in L.</p>
+                    <p><b>Solution:</b><br>
+                    String 1: <span class="math">w = aa</span> &rarr; <span class="math">h(aa) = h(a)h(a) = (ab)(ab) = abab</span><br>
+                    String 2: <span class="math">w = aba</span> &rarr; <span class="math">h(aba) = h(a)h(b)h(a) = (ab)(bbc)(ab) = abbbcab</span><br>
+                    Homomorphic Image <span class="math">h(L) = \{abab, abbbcab\}</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q9</span>
+                    <span>Design a Finite Automata that accepts the set of strings such that every string ends with 00 over alphabet {0, 1}.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Regular Expression:</b> <span class="math">(0+1)^*00</span></p>
+                    <p><b>DFA Design:</b> We need 3 states to track the ending sequence.</p>
+                    <ul>
+                        <li><b>q0:</b> Initial state (no 0s seen yet)</li>
+                        <li><b>q1:</b> One 0 seen at the end</li>
+                        <li><b>q2:</b> Two 0s seen at the end (Final State)</li>
+                    </ul>
+                    <table>
+                        <tr><th>Present State</th><th>Input 0</th><th>Input 1</th></tr>
+                        <tr><td>&rarr; q0</td><td>q1</td><td>q0</td></tr>
+                        <tr><td>q1</td><td>* q2</td><td>q0</td></tr>
+                        <tr><td>* q2</td><td>* q2</td><td>q0</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q10</span>
+                    <span>Prove that the language L = {a^n b^n | n &ge; 0} is not regular using the Pumping Lemma.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Pumping Lemma for Regular Languages:</b> If L is a regular language, there exists a pumping length 'p' such that any string w &isin; L with |w| &ge; p can be split into three parts, <span class="math">w = xyz</span>, satisfying:</p>
+                    <ol>
+                        <li>|y| > 0</li>
+                        <li>|xy| &le; p</li>
+                        <li>For all i &ge; 0, <span class="math">xy^iz \in L</span></li>
+                    </ol>
+                    <p><b>Proof by Contradiction:</b><br>
+                    1. Assume L is regular. Let 'p' be the pumping length.<br>
+                    2. Choose a string <span class="math">w = a^p b^p</span>. Clearly <span class="math">w \in L</span> and <span class="math">|w| = 2p \ge p</span>.<br>
+                    3. Let <span class="math">w = xyz</span>. Since <span class="math">|xy| \le p</span>, the substring 'y' must consist entirely of 'a's. Let <span class="math">y = a^k</span> where <span class="math">k > 0</span>.<br>
+                    4. By the pumping lemma, pumping 'y' zero times (i = 0) should yield a string in L. So <span class="math">xy^0z = xz</span> must be in L.<br>
+                    5. However, removing 'y' decreases the number of 'a's by k, but leaves the number of 'b's unchanged. The new string is <span class="math">a^{p-k} b^p</span>.<br>
+                    6. Since <span class="math">p-k \neq p</span>, this string is NOT in L. This is a contradiction. Therefore, L is not regular.
+                    </p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q11</span>
+                    <span>Find the regular expression over {a,b} for the language L = {a^{2n} b^{2m+1} | n &ge; 0, m &ge; 0}</span>
+                </div>
+                <div class="a-text">
+                    <p>The language requires an even number of 'a's followed by an odd number of 'b's.</p>
+                    <ul>
+                        <li>Even number of 'a's: <span class="math">(aa)^*</span></li>
+                        <li>Odd number of 'b's: <span class="math">b(bb)^*</span></li>
+                    </ul>
+                    <p><b>Regular Expression:</b> <span class="math">(aa)^* b(bb)^*</span></p>
+                </div>
+            </div>
+            
+            <!-- BATCH 3: Context Free Grammars & Normal Forms -->
+            <h1 class="section-title" id="cfg">Context Free Grammars (CFG) & Normal Forms</h1>
+            
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q12</span>
+                    <span>Write the hierarchy of automata corresponding to Chomsky hierarchy. Differentiate between Type-0, Type-1, Type-2, and Type-3 grammars.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Chomsky Hierarchy & Automata:</b></p>
+                    <table>
+                        <tr><th>Type</th><th>Grammar / Language</th><th>Recognizing Automaton</th><th>Production Rule Constraints</th></tr>
+                        <tr><td>Type-0</td><td>Recursively Enumerable</td><td>Turing Machine (TM)</td><td><span class="math">&alpha; &rarr; &beta;</span> (No restrictions, &alpha; must contain at least one non-terminal)</td></tr>
+                        <tr><td>Type-1</td><td>Context-Sensitive (CSL)</td><td>Linear Bounded Automaton (LBA)</td><td><span class="math">&alpha;A&beta; &rarr; &alpha;&gamma;&beta;</span> (or <span class="math">|&alpha;| \le |&beta;|</span>)</td></tr>
+                        <tr><td>Type-2</td><td>Context-Free (CFL)</td><td>Pushdown Automaton (PDA)</td><td><span class="math">A &rarr; &gamma;</span> (LHS is exactly one non-terminal)</td></tr>
+                        <tr><td>Type-3</td><td>Regular Language (RL)</td><td>Finite State Automaton (FSA)</td><td><span class="math">A &rarr; aB</span> or <span class="math">A &rarr; a</span> (Strictly Right or Left Linear)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q13</span>
+                    <span>What is ambiguity in grammar? Compare leftmost derivation and rightmost derivation. Prove that CFGs are not closed under intersection.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Ambiguity:</b> A Context-Free Grammar is ambiguous if there exists at least one string in its generated language that has more than one valid Leftmost Derivation (LMD), more than one Rightmost Derivation (RMD), or consequently, more than one distinct Parse Tree.</p>
+                    <p><b>LMD vs RMD:</b></p>
+                    <ul>
+                        <li><b>Leftmost Derivation:</b> At each step of the derivation, the leftmost non-terminal in the sentential form is replaced.</li>
+                        <li><b>Rightmost Derivation:</b> At each step of the derivation, the rightmost non-terminal is replaced.</li>
+                    </ul>
+                    <p><b>Intersection of CFLs:</b> CFLs are NOT closed under intersection. Proof by counter-example:<br>
+                    Let <span class="math">L_1 = \{a^n b^n c^m | n,m \ge 0\}</span> (CFL, match a's and b's using stack).<br>
+                    Let <span class="math">L_2 = \{a^m b^n c^n | n,m \ge 0\}</span> (CFL, match b's and c's using stack).<br>
+                    Their intersection is <span class="math">L_1 \cap L_2 = \{a^n b^n c^n | n \ge 0\}</span>, which is a known Context-Sensitive Language, NOT a Context-Free Language. Thus, CFLs are not closed under intersection.
+                    </p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q14</span>
+                    <span>What do you mean by unit production? Remove unit productions from the grammar: S&rarr;AB, A&rarr;a, B&rarr;C, C&rarr;D, D&rarr;b. What are useless productions?</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Unit Production:</b> A production rule of the form <span class="math">A &rarr; B</span>, where both A and B are single non-terminals. They chain derivations without producing terminal symbols.</p>
+                    <p><b>Removal of Unit Productions:</b><br>
+                    Given: <span class="math">S &rarr; AB, A &rarr; a, B &rarr; C, C &rarr; D, D &rarr; b</span><br>
+                    Identify unit pairs: (B,C), (C,D), and transitively (B,D).<br>
+                    Since D derives 'b', C also derives 'b', and B also derives 'b'.<br>
+                    Simplified Grammar: <span class="math">S &rarr; AB, A &rarr; a, B &rarr; b, C &rarr; b, D &rarr; b</span>. (C and D can then be removed if unreachable from S).
+                    </p>
+                    <p><b>Useless Productions:</b> Productions containing non-terminals that are either <i>non-generating</i> (cannot derive a terminal string) or <i>non-reachable</i> (cannot be reached from the start symbol S).</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q15</span>
+                    <span>Define Chomsky Normal Form (CNF) and Greibach Normal Form (GNF).</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Chomsky Normal Form (CNF):</b> A CFG is in CNF if all its production rules are of the form:<br>
+                    1. <span class="math">A &rarr; BC</span> (A non-terminal derives exactly two non-terminals)<br>
+                    2. <span class="math">A &rarr; a</span> (A non-terminal derives exactly one terminal)<br>
+                    <i>(Any CFG without &epsilon;-productions can be converted to CNF, and every parse tree in CNF is a strict binary tree).</i>
+                    </p>
+                    <p><b>Greibach Normal Form (GNF):</b> A CFG is in GNF if all its production rules are of the form:<br>
+                    <span class="math">A &rarr; a\alpha</span><br>
+                    where 'a' is a single terminal and '&alpha;' is a sequence of zero or more non-terminals. This guarantees that every derivation step consumes exactly one terminal, making it highly suitable for PDA construction.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- BATCH 4: Pushdown Automata & Turing Machines -->
+            <h1 class="section-title" id="pda-tm">Pushdown Automata & Turing Machines</h1>
+            
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q16</span>
+                    <span>What is a Pushdown Automaton (PDA)? What is the difference between DPDA and NPDA?</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Pushdown Automaton (PDA):</b> A finite automaton equipped with a stack (LIFO memory). It is mathematically defined as a 7-tuple: <span class="math">M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)</span>, where <span class="math">\Gamma</span> is the stack alphabet and <span class="math">Z_0</span> is the initial stack symbol. PDAs recognize Context-Free Languages.</p>
+                    <p><b>DPDA vs NPDA:</b></p>
+                    <ul>
+                        <li><b>Deterministic PDA (DPDA):</b> For any given state, input symbol (or &epsilon;), and top of stack symbol, there is <i>at most one</i> transition defined. DPDAs recognize a strict subset of CFLs (Deterministic CFLs), such as <span class="math">a^n b^n</span> or <span class="math">wcw^R</span>.</li>
+                        <li><b>Nondeterministic PDA (NPDA):</b> Can have multiple valid transitions for the same configuration. NPDAs are strictly more powerful than DPDAs and recognize <i>all</i> Context-Free Languages (e.g., <span class="math">ww^R</span> which requires guessing the midpoint).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q17</span>
+                    <span>Explain how a string is accepted by a PDA.</span>
+                </div>
+                <div class="a-text">
+                    <p>A PDA can accept a string in two distinct ways (which are proven to be equivalent in power for NPDAs):</p>
+                    <ol>
+                        <li><b>Acceptance by Final State:</b> The PDA reads the entire input string and ends up in one of its designated accepting states (F), regardless of what is left on the stack.</li>
+                        <li><b>Acceptance by Empty Stack:</b> The PDA reads the entire input string and the stack becomes completely empty (even the initial <span class="math">Z_0</span> is popped). The state it ends in does not matter.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q18</span>
+                    <span>What is a Turing Machine (TM)? What is the Halting Problem? Prove that it is undecidable.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Turing Machine:</b> The most powerful computational model, consisting of a finite state control, an infinite tape divided into cells, and a read/write head that can move left or right. It recognizes Recursively Enumerable languages and models any computable function (Church-Turing Thesis).</p>
+                    <p><b>Halting Problem:</b> The problem of determining, given a description of an arbitrary computer program and an input, whether the program will eventually halt (finish running) or continue to run forever.</p>
+                    <p><b>Proof of Undecidability:</b><br>
+                    Assume there exists a TM <span class="math">H(M, w)</span> that decides the Halting Problem: it outputs "Halt" if M halts on w, and "Loop" if M loops on w.<br>
+                    Now construct a paradoxical machine <span class="math">D</span> that takes a machine description M as input. D simulates <span class="math">H(M, M)</span>:<br>
+                    - If H says M halts on M, D purposely goes into an infinite loop.<br>
+                    - If H says M loops on M, D immediately halts.<br>
+                    What happens if we feed D to itself, i.e., run <span class="math">D(D)</span>?<br>
+                    - If <span class="math">D(D)</span> halts, H must have output "Halt", meaning D should loop. Contradiction.<br>
+                    - If <span class="math">D(D)</span> loops, H must have output "Loop", meaning D should halt. Contradiction.<br>
+                    Since D results in a logical paradox, the assumed decider H cannot exist. Therefore, the Halting problem is undecidable.
+                    </p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge">Q19</span>
+                    <span>Explain Church's Hypothesis and Universal Turing Machine.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Church-Turing Thesis:</b> A fundamental hypothesis stating that any intuitive or algorithmic computation can be performed by a Turing Machine. If a problem cannot be solved by a TM, it cannot be solved by any physically realizable computing device.</p>
+                    <p><b>Universal Turing Machine (UTM):</b> A specific Turing Machine that can simulate the behavior of <i>any</i> other Turing Machine. It takes as input the encoding of a machine M and an input string w, and executes M on w. It forms the theoretical basis for the modern programmable stored-program computer (von Neumann architecture).</p>
+                </div>
+            </div>
+            
+            <!-- EXAM SPECIAL SECTION -->
+            <h1 class="section-title" id="exam-special" style="color: #b91c1c; border-bottom-color: #fca5a5;">Exam Special: Specific Problem Solutions</h1>
+            
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q20</span>
+                    <span>Convert the following Context-Free Grammar into an equivalent grammar in CNF:<br>S &rarr; 1A | 0B<br>A &rarr; 1AA | 0S | 0<br>B &rarr; 0BB | 1S | 1</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Step 1: Eliminate &epsilon;-productions and unit productions.</b><br>
+                    The given grammar has no &epsilon;-productions and no unit productions.</p>
+                    <p><b>Step 2: Replace mixed terminals with new non-terminals.</b><br>
+                    Let <span class="math">X &rarr; 1</span> and <span class="math">Y &rarr; 0</span>.<br>
+                    S &rarr; XA | YB<br>
+                    A &rarr; XAA | YS | 0<br>
+                    B &rarr; YBB | XS | 1</p>
+                    <p><b>Step 3: Restrict to two non-terminals on LHS.</b><br>
+                    In A &rarr; XAA, replace AA with <span class="math">Z_1</span> where <span class="math">Z_1 &rarr; AA</span>.<br>
+                    In B &rarr; YBB, replace BB with <span class="math">Z_2</span> where <span class="math">Z_2 &rarr; BB</span>.</p>
+                    <p><b>Final CNF Grammar:</b><br>
+                    S &rarr; XA | YB<br>
+                    A &rarr; XZ<sub>1</sub> | YS | 0<br>
+                    B &rarr; YZ<sub>2</sub> | XS | 1<br>
+                    Z<sub>1</sub> &rarr; AA<br>
+                    Z<sub>2</sub> &rarr; BB<br>
+                    X &rarr; 1<br>
+                    Y &rarr; 0</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q21</span>
+                    <span>Using Pumping Lemma prove that L = {a^{n^3} | n &ge; 1} is not regular.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Proof by Contradiction:</b><br>
+                    1. Assume L is regular. Let p be the pumping length.<br>
+                    2. Choose <span class="math">w = a^{p^3}</span>. Clearly <span class="math">w \in L</span> and <span class="math">|w| = p^3 \ge p</span>.<br>
+                    3. By Pumping Lemma, <span class="math">w = xyz</span> where <span class="math">|xy| \le p</span> and <span class="math">|y| > 0</span>.<br>
+                    Let <span class="math">|y| = k</span>, so <span class="math">1 \le k \le p</span>.<br>
+                    4. Pump <span class="math">y</span> twice (i=2). The length of the new string is <span class="math">|xy^2z| = p^3 + k</span>.<br>
+                    5. We know <span class="math">k \le p</span>, so the new length <span class="math">p^3 + k \le p^3 + p</span>.<br>
+                    6. The next perfect cube after <span class="math">p^3</span> is <span class="math">(p+1)^3 = p^3 + 3p^2 + 3p + 1</span>.<br>
+                    7. Since <span class="math">p \ge 1</span>, <span class="math">p^3 < p^3 + k \le p^3 + p < p^3 + 3p^2 + 3p + 1</span>.<br>
+                    8. Therefore, <span class="math">p^3 + k</span> is strictly between two consecutive perfect cubes, so it cannot be a perfect cube itself. Thus <span class="math">a^{p^3+k} \notin L</span>, contradicting the lemma. L is not regular.
+                    </p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q22</span>
+                    <span>Design a Turing Machine that accepts all strings over {0, 1} with an even number of 0s and even number of 1s.</span>
+                </div>
+                <div class="a-text">
+                    <p>We use a Finite State control with 4 states to track the parity. The TM simply sweeps from left to right without modifying the tape.</p>
+                    <ul>
+                        <li><b>q0 (Initial/Final):</b> Even 0s, Even 1s</li>
+                        <li><b>q1:</b> Odd 0s, Even 1s</li>
+                        <li><b>q2:</b> Even 0s, Odd 1s</li>
+                        <li><b>q3:</b> Odd 0s, Odd 1s</li>
+                    </ul>
+                    <p><b>Transitions (State, Read &rarr; Write, Move, Next State):</b><br>
+                    q0, 0 &rarr; 0, R, q1<br>
+                    q0, 1 &rarr; 1, R, q2<br>
+                    q1, 0 &rarr; 0, R, q0<br>
+                    q1, 1 &rarr; 1, R, q3<br>
+                    q2, 0 &rarr; 0, R, q3<br>
+                    q2, 1 &rarr; 1, R, q0<br>
+                    q3, 0 &rarr; 0, R, q2<br>
+                    q3, 1 &rarr; 1, R, q1<br>
+                    </p>
+                    <p>Upon reading a Blank (B) while in state q0, the TM transitions to a Halting Accept state. If it reads a Blank in q1, q2, or q3, it transitions to a Reject state.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q23</span>
+                    <span>Construct a PDA for the language L = {a^n b^n | n &ge; 1} by empty stack.</span>
+                </div>
+                <div class="a-text">
+                    <p>The logic is simple: Push an 'a' onto the stack for every 'a' read from input. Then, pop an 'a' from the stack for every 'b' read. If the stack is empty exactly when the input ends, accept.</p>
+                    <p><b>Transitions:</b></p>
+                    <ul>
+                        <li><span class="math">&delta;(q_0, a, Z_0) = \{(q_0, aZ_0)\}</span> (Push first 'a')</li>
+                        <li><span class="math">&delta;(q_0, a, a) = \{(q_0, aa)\}</span> (Push subsequent 'a's)</li>
+                        <li><span class="math">&delta;(q_0, b, a) = \{(q_1, \epsilon)\}</span> (Read first 'b', pop 'a', switch to state q1)</li>
+                        <li><span class="math">&delta;(q_1, b, a) = \{(q_1, \epsilon)\}</span> (Read subsequent 'b's, pop 'a')</li>
+                        <li><span class="math">&delta;(q_1, \epsilon, Z_0) = \{(q_2, \epsilon)\}</span> (Input finished, pop Z0 to empty stack, accept)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q24</span>
+                    <span>Design a Non-Deterministic Pushdown Automata for accepting palindromes over {a,b} by Empty stack (ww^R).</span>
+                </div>
+                <div class="a-text">
+                    <p>An NPDA must "guess" the midpoint of the string because it does not know where the first half ends and the second half begins.</p>
+                    <ul>
+                        <li><b>State q0 (Pushing half):</b> Push every symbol read onto the stack.</li>
+                        <li><b>State q1 (Popping half):</b> Pop a symbol if it matches the current input symbol.</li>
+                    </ul>
+                    <p><b>Transitions:</b><br>
+                    <span class="math">&delta;(q_0, a, X) = \{(q_0, aX)\}</span> (Push a)<br>
+                    <span class="math">&delta;(q_0, b, X) = \{(q_0, bX)\}</span> (Push b)<br>
+                    <span class="math">&delta;(q_0, \epsilon, X) = \{(q_1, X)\}</span> (<b>NON-DETERMINISTIC GUESS:</b> Transition to popping phase without consuming input)<br>
+                    <span class="math">&delta;(q_1, a, a) = \{(q_1, \epsilon)\}</span> (Match a)<br>
+                    <span class="math">&delta;(q_1, b, b) = \{(q_1, \epsilon)\}</span> (Match b)<br>
+                    <span class="math">&delta;(q_1, \epsilon, Z_0) = \{(q_{acc}, \epsilon)\}</span> (Accept by empty stack)</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q25</span>
+                    <span>Find a GNF (Greibach Normal Form) equivalent to: A1 &rarr; A2A3, A2 &rarr; A3A1 | b, A3 &rarr; A1A2 | a.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Step 1: Ensure A_i &rarr; A_j has i &lt; j.</b><br>
+                    Substitute A2 in A1:<br>
+                    <span class="math">A_1 &rarr; A_3 A_1 A_3 | b A_3</span><br>
+                    Substitute A1 in A3:<br>
+                    <span class="math">A_3 &rarr; (A_3 A_1 A_3 | b A_3) A_2 | a</span><br>
+                    <span class="math">A_3 &rarr; A_3 A_1 A_3 A_2 | b A_3 A_2 | a</span>
+                    </p>
+                    <p><b>Step 2: Eliminate Left Recursion on A3.</b><br>
+                    Let <span class="math">Z</span> be a new non-terminal to handle the recursive part <span class="math">A_1 A_3 A_2</span>.<br>
+                    <span class="math">A_3 &rarr; b A_3 A_2 | a | b A_3 A_2 Z | a Z</span><br>
+                    <span class="math">Z &rarr; A_1 A_3 A_2 | A_1 A_3 A_2 Z</span>
+                    </p>
+                    <p><b>Step 3: Back-substitute A3 to put all rules in GNF.</b><br>
+                    Since A3 now only starts with terminals 'b' and 'a', we substitute A3 into A2 and A1, achieving complete Greibach Normal Form where every production starts with exactly one terminal.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q26</span>
+                    <span>Write the regular expressions describe the same set of strings as the grammar: S &rarr; Ax | By; A &rarr; By | Cw; B &rarr; x | Bw; C &rarr; y</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Step 1: Solve for B.</b><br>
+                    <span class="math">B &rarr; x | Bw</span> is equivalent to equation <span class="math">B = Bw + x</span>. Using Arden's Theorem (R = Q + RP &rarr; R = QP*), we get: <span class="math">B = x w^*</span>.</p>
+                    <p><b>Step 2: Solve for C.</b><br>
+                    <span class="math">C = y</span>.</p>
+                    <p><b>Step 3: Solve for A.</b><br>
+                    <span class="math">A = By + Cw = (x w^*)y + (y)w = x w^* y + y w</span>.</p>
+                    <p><b>Step 4: Solve for S.</b><br>
+                    <span class="math">S = Ax + By = (x w^* y + y w)x + (x w^*)y = x w^* y x + y w x + x w^* y</span>.</p>
+                    <p><b>Final RE:</b> <span class="math">x w^* y x + y w x + x w^* y</span></p>
+                </div>
+            </div>
+            
+            <!-- EXAM SPECIAL PART 2 -->
+            <h2 class="section-title" style="color: #b91c1c; font-size: 1.8rem; margin-top: 2rem;">Exam Special: Final Extensive Solutions</h2>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q27</span>
+                    <span>Draw sequence detector diagram, table, k-map and circuit for the sequence 0101 which generates a 1 as output after every 0101 sequence (overlapping allowed).</span>
+                </div>
+                <div class="a-text">
+                    <p><b>State Table (Mealy Machine):</b><br>
+                    States: S0 (Initial), S1 ("0"), S2 ("01"), S3 ("010")</p>
+                    <table>
+                        <tr><th>Present State</th><th>Input x=0 (Next, Out)</th><th>Input x=1 (Next, Out)</th></tr>
+                        <tr><td>S0 (00)</td><td>S1, 0</td><td>S0, 0</td></tr>
+                        <tr><td>S1 (01)</td><td>S1, 0</td><td>S2, 0</td></tr>
+                        <tr><td>S2 (10)</td><td>S3, 0</td><td>S0, 0</td></tr>
+                        <tr><td>S3 (11)</td><td>S1, 0</td><td>S2, 1 (0101 detected!)</td></tr>
+                    </table>
+                    <p><b>State Assignment:</b> Let S0=00, S1=01, S2=10, S3=11.<br>
+                    Using D flip-flops (D1 for MSB, D0 for LSB) and input X.<br>
+                    Next state D1 = &Sigma;m(1, 3, 7) = X' Q0 + X Q1 Q0<br>
+                    Next state D0 = &Sigma;m(0, 2, 6) = X'<br>
+                    Output Y = &Sigma;m(7) = X Q1 Q0<br>
+                    <b>Circuit:</b> Consists of two D flip-flops, AND gates, and OR gates implementing these boolean expressions.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q28</span>
+                    <span>What will be the regular expression over the alphabet {a,b} for the language L = {a^n b^m : n &ge; 4, m &le; 3}?</span>
+                </div>
+                <div class="a-text">
+                    <p>We need at least four 'a's, followed by any number of 'a's, followed by at most three 'b's.</p>
+                    <ul>
+                        <li><span class="math">n \ge 4</span> is represented by <span class="math">aaaa(a)^*</span></li>
+                        <li><span class="math">m \le 3</span> means zero, one, two, or three 'b's: <span class="math">(\epsilon + b + bb + bbb)</span></li>
+                    </ul>
+                    <p><b>Final Regular Expression:</b> <span class="math">aaaaa^* (\epsilon + b + bb + bbb)</span></p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q29</span>
+                    <span>Construct grammar for language a^l b^m c^n where l + m = n.</span>
+                </div>
+                <div class="a-text">
+                    <p>Since <span class="math">l + m = n</span>, every 'c' at the end must be matched by either an 'a' at the beginning or a 'b' in the middle. The strings take the form <span class="math">a^l b^m c^m c^l</span>.</p>
+                    <p><b>Grammar Rules:</b><br>
+                    <span class="math">S &rarr; aSc \ | \ A</span> (This generates <span class="math">a^l A c^l</span>)<br>
+                    <span class="math">A &rarr; bAc \ | \ \epsilon</span> (This generates <span class="math">b^m c^m</span> inside)<br>
+                    </p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q30</span>
+                    <span>Construct a TM that accepts {0^n 1^n | n &ge; 1}.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Algorithm:</b><br>
+                    1. Read '0' from tape, replace it with 'X'. Move Right.<br>
+                    2. Scan right over 0s and Ys until finding the first '1'.<br>
+                    3. Replace '1' with 'Y'. Move Left.<br>
+                    4. Scan left over Ys and 0s until finding the rightmost 'X'. Move one step Right (to the next 0).<br>
+                    5. Repeat this process until all 0s are replaced by Xs and all 1s by Ys. If no 0s are left, scan right to ensure no 1s are left. If only blanks (B) are found, Accept.</p>
+                    <p><b>Transitions:</b><br>
+                    <span class="math">&delta;(q0, 0) = (q1, X, R)</span><br>
+                    <span class="math">&delta;(q1, 0) = (q1, 0, R)</span>, <span class="math">&delta;(q1, Y) = (q1, Y, R)</span><br>
+                    <span class="math">&delta;(q1, 1) = (q2, Y, L)</span><br>
+                    <span class="math">&delta;(q2, Y) = (q2, Y, L)</span>, <span class="math">&delta;(q2, 0) = (q2, 0, L)</span><br>
+                    <span class="math">&delta;(q2, X) = (q0, X, R)</span><br>
+                    <span class="math">&delta;(q0, Y) = (q3, Y, R)</span> (Checking phase)<br>
+                    <span class="math">&delta;(q3, Y) = (q3, Y, R)</span><br>
+                    <span class="math">&delta;(q3, B) = (q_{acc}, B, R)</span> (Accept!)
+                    </p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q31</span>
+                    <span>Remove ambiguity from the grammar: E &rarr; E+E | E*E | a.</span>
+                </div>
+                <div class="a-text">
+                    <p>This grammar is ambiguous because it does not enforce operator precedence (* over +) or associativity (left-associative). We must rewrite it by introducing new non-terminals (T for Terms, F for Factors).</p>
+                    <p><b>Unambiguous Grammar:</b><br>
+                    <span class="math">E &rarr; E + T \ | \ T</span> (Handles left-associative addition)<br>
+                    <span class="math">T &rarr; T * F \ | \ F</span> (Handles left-associative multiplication, with higher precedence)<br>
+                    <span class="math">F &rarr; (E) \ | \ a</span> (Handles parentheses and atomic values)<br>
+                    </p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q32</span>
+                    <span>Construct an NPDA that accepts the language generated by S &rarr; aSa | bSb | c. Show the ID (Instantaneous Description) for the string "abcba".</span>
+                </div>
+                <div class="a-text">
+                    <p><b>NPDA Transitions (using top-down parsing):</b><br>
+                    1. <span class="math">&delta;(q, \epsilon, S) = \{(q, aSa), (q, bSb), (q, c)\}</span> (Expand Non-terminals)<br>
+                    2. <span class="math">&delta;(q, a, a) = \{(q, \epsilon)\}</span> (Match terminals)<br>
+                    3. <span class="math">&delta;(q, b, b) = \{(q, \epsilon)\}</span><br>
+                    4. <span class="math">&delta;(q, c, c) = \{(q, \epsilon)\}</span>
+                    </p>
+                    <p><b>ID trace for "abcba":</b><br>
+                    (q, abcba, S) <br>
+                    &vdash; (q, abcba, aSa) <i>(Expanded S &rarr; aSa)</i><br>
+                    &vdash; (q, bcba, Sa) <i>(Matched 'a')</i><br>
+                    &vdash; (q, bcba, bSba) <i>(Expanded S &rarr; bSb)</i><br>
+                    &vdash; (q, cba, Sba) <i>(Matched 'b')</i><br>
+                    &vdash; (q, cba, cba) <i>(Expanded S &rarr; c)</i><br>
+                    &vdash; (q, ba, ba) <i>(Matched 'c')</i><br>
+                    &vdash; (q, a, a) <i>(Matched 'b')</i><br>
+                    &vdash; (q, \epsilon, \epsilon) <i>(Matched 'a', Accepted by empty stack!)</i>
+                    </p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q33</span>
+                    <span>Construct a DFA for the NFA given by Present State: &rarr;q0 (0: q0,q1 | 1: q2), q1 (0: q2 | 1: q1), q2 (final) (0: q1 | 1: q2).</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Subset Construction Method:</b></p>
+                    <ul>
+                        <li><b>Start state:</b> A = {q0}</li>
+                        <li><b>&delta;(A, 0)</b> = {q0, q1} = B</li>
+                        <li><b>&delta;(A, 1)</b> = {q2} = C (Final, contains q2)</li>
+                        <li><b>&delta;(B, 0)</b> = &delta;({q0,q1}, 0) = {q0,q1} &cup; {q2} = {q0, q1, q2} = D (Final)</li>
+                        <li><b>&delta;(B, 1)</b> = &delta;({q0,q1}, 1) = {q2} &cup; {q1} = {q1, q2} = E (Final)</li>
+                        <li><b>&delta;(C, 0)</b> = &delta;({q2}, 0) = {q1} = F</li>
+                        <li><b>&delta;(C, 1)</b> = &delta;({q2}, 1) = {q2} = C</li>
+                        <li><b>&delta;(D, 0)</b> = &delta;({q0,q1,q2}, 0) = {q0,q1,q2} = D</li>
+                        <li><b>&delta;(D, 1)</b> = &delta;({q0,q1,q2}, 1) = {q2,q1,q2} = E</li>
+                        <li><b>&delta;(E, 0)</b> = &delta;({q1,q2}, 0) = {q2,q1} = E</li>
+                        <li><b>&delta;(E, 1)</b> = &delta;({q1,q2}, 1) = {q1,q2} = E</li>
+                        <li><b>&delta;(F, 0)</b> = &delta;({q1}, 0) = {q2} = C</li>
+                        <li><b>&delta;(F, 1)</b> = &delta;({q1}, 1) = {q1} = F</li>
+                    </ul>
+                    <p>The resulting DFA has 6 states (A through F), where C, D, and E are the accepting final states.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q34</span>
+                    <span>Define Left Linear and Right Linear Grammar. Construct grammar for Palindrome for binary numbers.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Left Linear Grammar:</b> All productions are of the form <span class="math">A &rarr; Bx</span> or <span class="math">A &rarr; x</span> (Non-terminal is always on the left).<br>
+                    <b>Right Linear Grammar:</b> All productions are of the form <span class="math">A &rarr; xB</span> or <span class="math">A &rarr; x</span> (Non-terminal is always on the right).</p>
+                    <p><b>Grammar for Binary Palindromes (CFG):</b><br>
+                    A palindrome reads the same forwards and backwards. We generate it from the center outwards.<br>
+                    <span class="math">S &rarr; 0S0 \ | \ 1S1 \ | \ 0 \ | \ 1 \ | \ \epsilon</span></p>
+                </div>
+            </div>
+            
+            <!-- EXAM SPECIAL PART 3 -->
+            <h2 class="section-title" style="color: #b91c1c; font-size: 1.8rem; margin-top: 2rem;">Exam Special: Part 3 (Final 16 Questions)</h2>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q35</span>
+                    <span>State the Myhill-Nerode Theorem.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Myhill-Nerode Theorem:</b> A language <span class="math">L</span> over alphabet <span class="math">\Sigma</span> is regular if and only if the equivalence relation <span class="math">R_L</span> defined on <span class="math">\Sigma^*</span> has a finite number of equivalence classes (the index of <span class="math">R_L</span> is finite).<br>
+                    The relation <span class="math">x \ R_L \ y</span> holds if and only if for all <span class="math">z \in \Sigma^*</span>, <span class="math">xz \in L</span> implies <span class="math">yz \in L</span>, and vice versa. This theorem is the foundation for DFA state minimization.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q36</span>
+                    <span>Construct a Regular Grammar G generating the regular set represented by P = a*b(a+b)*.</span>
+                </div>
+                <div class="a-text">
+                    <p>The regular expression requires any number of 'a's, followed by at least one 'b', followed by any combination of 'a's and 'b's.</p>
+                    <p><b>Right-Linear Grammar Rules:</b><br>
+                    <span class="math">S &rarr; aS \ | \ bA</span> (Starts with a's, transitions to A upon reading 'b')<br>
+                    <span class="math">A &rarr; aA \ | \ bA \ | \ \epsilon</span> (After the first 'b', accepts any string)</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q37</span>
+                    <span>Construct a DFA which reads strings from {a,b} and ends with "aaa".</span>
+                </div>
+                <div class="a-text">
+                    <p>States track how many 'a's have been seen consecutively at the end of the string.</p>
+                    <ul>
+                        <li><b>q0:</b> 0 consecutive 'a's</li>
+                        <li><b>q1:</b> 1 consecutive 'a'</li>
+                        <li><b>q2:</b> 2 consecutive 'a's</li>
+                        <li><b>q3 (Final):</b> 3 consecutive 'a's</li>
+                    </ul>
+                    <p><b>Transitions:</b><br>
+                    &delta;(q0, a)=q1, &delta;(q0, b)=q0<br>
+                    &delta;(q1, a)=q2, &delta;(q1, b)=q0<br>
+                    &delta;(q2, a)=q3, &delta;(q2, b)=q0<br>
+                    &delta;(q3, a)=q3, &delta;(q3, b)=q0</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q38</span>
+                    <span>Construct a PDA for L = {a^n b^m c^n | m,n &ge; 1} by empty stack.</span>
+                </div>
+                <div class="a-text">
+                    <p>The PDA must match the number of 'a's and 'c's, completely ignoring the count of 'b's in the middle.</p>
+                    <p><b>Transitions:</b><br>
+                    1. <span class="math">&delta;(q_0, a, Z_0) = \{(q_0, aZ_0)\}</span> (Push first 'a')<br>
+                    2. <span class="math">&delta;(q_0, a, a) = \{(q_0, aa)\}</span> (Push all subsequent 'a's)<br>
+                    3. <span class="math">&delta;(q_0, b, a) = \{(q_1, a)\}</span> (Read first 'b', don't pop 'a')<br>
+                    4. <span class="math">&delta;(q_1, b, a) = \{(q_1, a)\}</span> (Read all 'b's, skip stack)<br>
+                    5. <span class="math">&delta;(q_1, c, a) = \{(q_2, \epsilon)\}</span> (Read first 'c', pop 'a')<br>
+                    6. <span class="math">&delta;(q_2, c, a) = \{(q_2, \epsilon)\}</span> (Read all 'c's, pop 'a's)<br>
+                    7. <span class="math">&delta;(q_2, \epsilon, Z_0) = \{(q_3, \epsilon)\}</span> (Accept by Empty Stack)</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q39</span>
+                    <span>Construct an NFA for the regular expression (0+1)*00(0+1)*.</span>
+                </div>
+                <div class="a-text">
+                    <p>The NFA needs to non-deterministically guess when the specific "00" substring begins.</p>
+                    <ul>
+                        <li><b>q0 (Initial):</b> Loops on 0 and 1. On input 0, can non-deterministically transition to q1.</li>
+                        <li><b>q1:</b> Needs a 0 to transition to q2.</li>
+                        <li><b>q2 (Final):</b> Loops on 0 and 1 indefinitely.</li>
+                    </ul>
+                    <p><b>Transitions:</b><br>
+                    &delta;(q0, 0) = {q0, q1}, &delta;(q0, 1) = {q0}<br>
+                    &delta;(q1, 0) = {q2}<br>
+                    &delta;(q2, 0) = {q2}, &delta;(q2, 1) = {q2}</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q40</span>
+                    <span>Construct a DFA for the regular expression 0(0+1)*1.</span>
+                </div>
+                <div class="a-text">
+                    <p>The language is all strings that start with '0' and end with '1'.</p>
+                    <p><b>States:</b> q0 (Initial), q1 (Seen starting 0), q2 (Seen ending 1, Final), q_dead (Started with 1)</p>
+                    <p><b>Transitions:</b><br>
+                    &delta;(q0, 0)=q1, &delta;(q0, 1)=q_dead<br>
+                    &delta;(q1, 0)=q1, &delta;(q1, 1)=q2<br>
+                    &delta;(q2, 0)=q1, &delta;(q2, 1)=q2<br>
+                    &delta;(q_dead, 0)=q_dead, &delta;(q_dead, 1)=q_dead</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q41</span>
+                    <span>Design a DFA where every string either starts with 01 or ends with 01.</span>
+                </div>
+                <div class="a-text">
+                    <p>This is the union of two conditions. A string is accepted if it matches condition A (starts with 01) OR condition B (ends with 01).</p>
+                    <p>If the string starts with '0' then '1', it falls into an accepting trap state where all further inputs are accepted (since condition A is met). If it does not start with 01, it must be tracked strictly for ending in 01.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q42</span>
+                    <span>Find the CFG for the language L = a^n b^n c^m d^m.</span>
+                </div>
+                <div class="a-text">
+                    <p>The language consists of two independent context-free components concatenated together: <span class="math">a^n b^n</span> and <span class="math">c^m d^m</span>.</p>
+                    <p><b>Grammar Rules:</b><br>
+                    <span class="math">S &rarr; AB</span><br>
+                    <span class="math">A &rarr; aAb \ | \ \epsilon</span> (Generates <span class="math">a^n b^n</span>)<br>
+                    <span class="math">B &rarr; cBd \ | \ \epsilon</span> (Generates <span class="math">c^m d^m</span>)</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q43</span>
+                    <span>Prove that L = {0^n 1^n} is not regular.</span>
+                </div>
+                <div class="a-text">
+                    <p>By Pumping Lemma: Assume <span class="math">L</span> is regular with pumping length <span class="math">p</span>.<br>
+                    Choose <span class="math">w = 0^p 1^p</span>. Let <span class="math">w = xyz</span>, where <span class="math">|xy| \le p</span> and <span class="math">|y| > 0</span>.<br>
+                    Since <span class="math">|xy| \le p</span>, <span class="math">y</span> consists entirely of 0s. Let <span class="math">y = 0^k</span> (<span class="math">k > 0</span>).<br>
+                    Pump <span class="math">y</span> twice (i=2): <span class="math">xy^2z = 0^{p+k} 1^p</span>.<br>
+                    Since <span class="math">k > 0</span>, <span class="math">p+k \neq p</span>, so the pumped string does not have an equal number of 0s and 1s, which means it is not in <span class="math">L</span>. This contradicts the Pumping Lemma, hence L is not regular.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q44</span>
+                    <span>Prove that the intersection of a Context-Free Language (CFL) and a Regular Language (RL) is a Context-Free Language.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Proof by Construction:</b><br>
+                    Let <span class="math">L_1</span> be a CFL recognized by a Pushdown Automaton <span class="math">M_1 = (Q_1, \Sigma, \Gamma, \delta_1, q_{01}, Z_0, F_1)</span>.<br>
+                    Let <span class="math">L_2</span> be a RL recognized by a Deterministic Finite Automaton <span class="math">M_2 = (Q_2, \Sigma, \delta_2, q_{02}, F_2)</span>.<br>
+                    We can construct a new PDA <span class="math">M'</span> that simulates both <span class="math">M_1</span> and <span class="math">M_2</span> simultaneously in parallel (cartesian product construction).<br>
+                    The state space of <span class="math">M'</span> will be <span class="math">Q_1 \times Q_2</span>. <span class="math">M'</span> accepts a string if and only if it reaches a final state in <span class="math">F_1 \times F_2</span>.<br>
+                    Since <span class="math">M_2</span> has no stack, <span class="math">M'</span> only needs to manage the stack of <span class="math">M_1</span>, meaning <span class="math">M'</span> is a valid PDA. Because a PDA recognizes the intersection, the intersection is Context-Free.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q45</span>
+                    <span>What is a reduced grammar?</span>
+                </div>
+                <div class="a-text">
+                    <p>A <b>Reduced Grammar</b> is a Context-Free Grammar that has been optimized by strictly removing three types of useless features in the correct order:</p>
+                    <ol>
+                        <li><b>&epsilon;-productions:</b> (e.g., <span class="math">A &rarr; \epsilon</span>)</li>
+                        <li><b>Unit productions:</b> (e.g., <span class="math">A &rarr; B</span>)</li>
+                        <li><b>Useless symbols:</b> Symbols that are either non-generating (cannot derive a string of terminals) or non-reachable (cannot be reached from the start symbol).</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q46</span>
+                    <span>Is the grammar S &rarr; aB | bA; A &rarr; a | aS | bAA; B &rarr; b | bS | aBB ambiguous?</span>
+                </div>
+                <div class="a-text">
+                    <p>To prove ambiguity, we must find a string that has two distinct Leftmost Derivations (LMDs) or two distinct Parse Trees.<br>
+                    This specific grammar generates strings with an equal number of 'a's and 'b's. However, due to the branching nature of A &rarr; bAA and B &rarr; aBB, there are multiple paths to derive strings like `aabb`. Since we can construct two different parse trees for the same string, <b>Yes, this grammar is ambiguous</b>.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q47</span>
+                    <span>Construct a CFG for even integers.</span>
+                </div>
+                <div class="a-text">
+                    <p>An even integer ends with 0, 2, 4, 6, or 8. We also need to handle the fact that multi-digit integers shouldn't start with 0 unless it's just the number "0".</p>
+                    <p><b>Grammar Rules:</b><br>
+                    <span class="math">S &rarr; 0 \ | \ D \ E</span><br>
+                    <span class="math">D &rarr; N \ D \ | \ \epsilon</span> (D represents any number of digits)<br>
+                    <span class="math">N &rarr; 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9</span><br>
+                    <span class="math">E &rarr; 0 | 2 | 4 | 6 | 8</span> (Even ending digit)</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q48</span>
+                    <span>Differentiate between Syntax and Semantics.</span>
+                </div>
+                <div class="a-text">
+                    <p><b>Syntax:</b> Refers to the structure, rules, and grammar of a language. In automata theory, it defines whether a string of symbols is mathematically well-formed according to a set of production rules (e.g., missing semicolons, unmatched parentheses).<br>
+                    <b>Semantics:</b> Refers to the actual <i>meaning</i> or logic of the string. A sentence can be syntactically correct but semantically meaningless (e.g., dividing an integer by a string).</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q49</span>
+                    <span>What is the role of production rules in a grammar?</span>
+                </div>
+                <div class="a-text">
+                    <p>Production rules define the exact mathematical substitutions that dictate how a language's strings are generated. They map non-terminal variables into combinations of other non-terminals and terminals, establishing the fundamental hierarchy and pattern (such as recursion and branching) that defines the expressive power of the language class (Regular, Context-Free, etc.).</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="q-text">
+                    <span class="q-badge" style="background:#b91c1c;">Q50</span>
+                    <span>Construct a TM for the addition of two integers.</span>
+                </div>
+                <div class="a-text">
+                    <p>We represent integers in unary format (e.g., 3 is "111"). The input is <span class="math">1^m 0 1^n</span>, representing <span class="math">m + n</span> separated by a '0'.</p>
+                    <p><b>Algorithm:</b><br>
+                    1. Read '1', leave it as '1', move Right.<br>
+                    2. When the separator '0' is found, replace it with '1'.<br>
+                    3. Continue moving Right over all remaining '1's.<br>
+                    4. When a Blank (B) is found, move Left one cell.<br>
+                    5. Replace the final '1' with a Blank (B) and move Left to return to start.<br>
+                    <i>Result:</i> The tape now contains <span class="math">1^{m+n}</span> with no separator, effectively computing addition.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px dashed rgba(44,62,80,0.2);">
+                <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--text-muted); font-style: italic;">
+                    End of Complete Question Bank (50/50 Solutions Completed)
+                </p>
+            </div>
+        </main>
     </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">1.2 Mealy vs Moore Machine. What is the basic difference?</h4>
-        <div class="answer">
-            <p><b>Moore Machine:</b> The output depends <i>only</i> on the present state. Outputs are associated with states.<br>
-            <b>Mealy Machine:</b> The output depends on <i>both</i> the present state and the current input. Outputs are associated with transitions (edges).</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">1.3 Convert Mealy to Moore / Moore to Mealy concept.</h4>
-        <div class="answer">
-            <p><b>Mealy to Moore:</b> For every state in the Mealy machine, observe the incoming transitions. If a state has incoming transitions with different outputs (e.g., one arrow outputs 0, another outputs 1), split that state into two (e.g., q0_0 and q0_1), associating the specific output to the new state.</p>
-            <p><b>Moore to Mealy:</b> Take the output associated with each state and shift it onto all the incoming transition edges directed towards that state.</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">1.4 Sequence detector for 0101 (overlapping).</h4>
-        <div class="answer">
-            <p><b>States:</b> q0 (Initial), q1 (Saw 0), q2 (Saw 01), q3 (Saw 010), q4 (Saw 0101).<br>
-            <b>Transitions:</b><br>
-            - q0: on 0 &rarr; q1, on 1 &rarr; q0<br>
-            - q1: on 0 &rarr; q1, on 1 &rarr; q2<br>
-            - q2: on 0 &rarr; q3, on 1 &rarr; q0<br>
-            - q3: on 0 &rarr; q1, on 1 &rarr; q4 (Output = 1)<br>
-            - q4 (overlapping): on 0 &rarr; q3 (since the last '010' is part of the next sequence), on 1 &rarr; q0.</p>
-        </div>
-    </div>
-    
-    <div class="qa-card">
-        <h4 class="qa-question">1.5 Minimization & k-equivalent states. Definition of lossy/lossless.</h4>
-        <div class="answer">
-            <p><b>k-equivalent states:</b> Two states p and q are k-equivalent if no input string of length &le; k can distinguish them (i.e., both lead to final states, or both lead to non-final states). If they are k-equivalent for all k, they are combined during minimization using the partition method (Myhill-Nerode).</p>
-            <p><b>Lossless Machine:</b> Given the initial state, final state, and output sequence, the exact input sequence can be uniquely deduced.<br>
-            <b>Lossy Machine:</b> Multiple distinct input sequences can cause the same output and final state, making the input irrecoverable.</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">1.6 Objective Qs: Arden's, FSA concept, FSM recognizes.</h4>
-        <div class="answer">
-            <ul>
-                <li>Solution to equation <span class="math">R = Q + RP</span> is <span class="math">R = QP*</span> (Arden's Theorem).</li>
-                <li>The concept of FSA is heavily used in the <b>Lexical Analysis</b> phase of a compiler.</li>
-                <li>An FSM can uniquely recognize <b>Regular Languages</b>.</li>
-                <li>The set of regular languages is closed under <b>Union, Intersection, Concatenation, Kleene Closure, and Complementation</b>.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- SECTION 2: REGULAR LANGUAGES -->
-    <h2 class="section-title">2. Regular Expressions & Languages</h2>
-
-    <div class="qa-card">
-        <h4 class="qa-question">2.1 What are Kleene Closure and Positive Closure?</h4>
-        <div class="answer">
-            <p><b>Kleene Closure (&Sigma;*):</b> The set of all possible strings of any length over &Sigma;, including the empty string &epsilon;. <i>Ex:</i> {a}* = {&epsilon;, a, aa, aaa...}</p>
-            <p><b>Positive Closure (&Sigma;<sup>+</sup>):</b> The set of all possible strings of length &ge; 1. It excludes &epsilon;. <i>Ex:</i> {a}<sup>+</sup> = {a, aa, aaa...}</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">2.2 State and prove Arden's theorem.</h4>
-        <div class="answer">
-            <p><b>Statement:</b> If P and Q are two regular expressions, and P does not contain &epsilon;, then the equation <span class="math">R = Q + RP</span> has a unique solution <span class="math">R = QP*</span>.</p>
-            <p><b>Proof:</b> Substitute R = QP* into the RHS:<br>
-            RHS = Q + (QP*)P = Q + QP*P<br>
-            Factor out Q: RHS = Q(&epsilon; + P*P)<br>
-            Since &epsilon; + P*P = P*, RHS = QP* = LHS. Hence proved.</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">2.3 State the Myhill-Nerode theorem.</h4>
-        <div class="answer">
-            <p>A language L is regular if and only if its indistinguishability equivalence relation (R<sub>L</sub>) has a <b>finite index</b> (a finite number of equivalence classes). The number of equivalence classes corresponds exactly to the number of states in the minimal DFA that accepts L.</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">2.4 Using Pumping Lemma, prove L = {0<sup>n</sup>1<sup>n</sup> | n &gt; 0} is not regular.</h4>
-        <div class="answer">
-            <p>1. Assume L is regular. Let 'p' be the pumping length.<br>
-            2. Choose a string s &isin; L such that s = 0<sup>p</sup>1<sup>p</sup>. Note |s| &ge; p.<br>
-            3. By Pumping Lemma, s can be divided into xyz such that |xy| &le; p, |y| &gt; 0, and xy<sup>i</sup>z &isin; L for all i &ge; 0.<br>
-            4. Since |xy| &le; p, the substring 'y' must consist entirely of 0s (y = 0<sup>k</sup> for some k &gt; 0).<br>
-            5. Pump y (let i = 2): the new string is xy<sup>2</sup>z = 0<sup>p+k</sup>1<sup>p</sup>.<br>
-            6. Since p+k &ne; p, this pumped string has more 0s than 1s, so it is NOT in L.<br>
-            7. This contradicts the lemma. Hence, L is not regular.</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">2.5 Construct DFAs for specific languages.</h4>
-        <div class="answer">
-            <p><b>Strings ending with 'aaa':</b> 4 states (q0, q1, q2, q3).<br>q0-a&rarr;q1, q1-a&rarr;q2, q2-a&rarr;q3(Final). Any 'b' resets to q0. q3-a&rarr;q3, q3-b&rarr;q0.</p>
-            <p><b>Strings ending with '00':</b> 3 states (q0, q1, q2).<br>q0-0&rarr;q1, q1-0&rarr;q2(Final). Any '1' resets to q0. q2-0&rarr;q2, q2-1&rarr;q0.</p>
-            <p><b>Strings ending with '001':</b> 4 states. Tracks consecutive 0s, and if a 1 follows two 0s, it accepts.</p>
-        </div>
-    </div>
-
-    <!-- SECTION 3: GRAMMARS -->
-    <h2 class="section-title">3. Grammars (CFG, CSG, Normal Forms)</h2>
-
-    <div class="qa-card">
-        <h4 class="qa-question">3.1 Chomsky Hierarchy (Type-0 to Type-3).</h4>
-        <div class="answer">
-            <table>
-                <tr><th>Type</th><th>Language</th><th>Machine</th><th>Rule Restriction</th></tr>
-                <tr><td>Type-0</td><td>Recursively Enumerable</td><td>Turing Machine</td><td>&alpha; &rarr; &beta; (No restrictions)</td></tr>
-                <tr><td>Type-1</td><td>Context-Sensitive</td><td>Linear Bounded Auto.</td><td>&alpha;A&beta; &rarr; &alpha;&gamma;&beta; (|left| &le; |right|)</td></tr>
-                <tr><td>Type-2</td><td>Context-Free (CFG)</td><td>Pushdown Automaton</td><td>A &rarr; &gamma; (Left side is 1 non-terminal)</td></tr>
-                <tr><td>Type-3</td><td>Regular</td><td>Finite Automaton</td><td>A &rarr; aB or A &rarr; a (Strictly linear)</td></tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">3.2 What is a production rule? What are terminals and non-terminals?</h4>
-        <div class="answer">
-            <p><b>Production Rule:</b> A rewrite rule specifying how symbols can be substituted to generate strings. (e.g., S &rarr; aSb).</p>
-            <p><b>Terminals:</b> Symbols that make up the final strings of the language (e.g., 'a', 'b'). They cannot be replaced further.<br>
-            <b>Non-terminals:</b> Placeholder variables that must be replaced using production rules to eventually yield terminals (e.g., 'S', 'A').</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">3.3 Compare LMD and RMD. What is Ambiguity?</h4>
-        <div class="answer">
-            <p><b>Leftmost Derivation (LMD):</b> Always replaces the leftmost non-terminal first.<br>
-            <b>Rightmost Derivation (RMD):</b> Always replaces the rightmost non-terminal first.</p>
-            <p><b>Ambiguity:</b> A grammar is ambiguous if a single string has more than one valid Leftmost Derivation (or more than one valid Parse Tree). <i>Example:</i> E &rarr; E+E | E*E | a is ambiguous because "a+a*a" can be parsed two ways (giving priority to + or *).</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">3.4 Grammar Simplification (Unit, Epsilon, Useless).</h4>
-        <div class="answer">
-            <p><b>Unit Production:</b> Rule of the form A &rarr; B. Removed by substituting B's RHS directly into A.<br>
-            <b>Epsilon (&epsilon;) Production:</b> Rule of the form A &rarr; &epsilon;. Removed by finding all nullable variables and generating new rules simulating their absence.<br>
-            <b>Useless Symbols:</b> 
-            1. <i>Non-generating:</i> Variables that never yield a terminal string. 
-            2. <i>Non-reachable:</i> Variables that can never be reached from the Start symbol. Both are deleted to form a Reduced Grammar.</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">3.5 Define CNF and GNF.</h4>
-        <div class="answer">
-            <p><b>Chomsky Normal Form (CNF):</b> Every rule is either A &rarr; BC (two non-terminals) or A &rarr; a (one terminal).</p>
-            <p><b>Greibach Normal Form (GNF):</b> Every rule is A &rarr; a&alpha; (exactly one terminal followed by zero or more non-terminals). Prevents left-recursion.</p>
-        </div>
-    </div>
-
-    <!-- SECTION 4: PUSHDOWN AUTOMATA -->
-    <h2 class="section-title">4. Pushdown Automata (PDA)</h2>
-
-    <div class="qa-card">
-        <h4 class="qa-question">4.1 Design a PDA for L = {a<sup>n</sup>b<sup>n</sup> | n &ge; 1}.</h4>
-        <div class="answer">
-            <p><b>Logic:</b> For every 'a' read, PUSH it onto the stack. When 'b' is read, POP an 'a' from the stack. If the stack becomes empty (reaching the initial stack symbol Z0) exactly when the input string ends, ACCEPT.</p>
-            <p>Transitions: <br>
-            1. &delta;(q0, a, Z0) = (q0, aZ0) [Push]<br>
-            2. &delta;(q0, a, a) = (q0, aa) [Push]<br>
-            3. &delta;(q0, b, a) = (q1, &epsilon;) [Pop]<br>
-            4. &delta;(q1, b, a) = (q1, &epsilon;) [Pop]<br>
-            5. &delta;(q1, &epsilon;, Z0) = (q_accept, Z0) [Accept by final state]</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">4.2 Difference between DPDA and NPDA.</h4>
-        <div class="answer">
-            <p><b>DPDA (Deterministic):</b> Has at most one valid transition for any given (state, input, stack-top). Accepts Deterministic CFLs.<br>
-            <b>NPDA (Non-Deterministic):</b> Can have multiple choices (guessing). Accepts all Context-Free Languages. NPDA is strictly more powerful than DPDA (e.g., L={ww<sup>R</sup>} requires an NPDA to guess the midpoint).</p>
-        </div>
-    </div>
-    
-    <div class="qa-card">
-        <h4 class="qa-question">4.3 Prove that CFLs are not closed under intersection.</h4>
-        <div class="answer">
-            <p>Let L1 = {a<sup>n</sup>b<sup>n</sup>c<sup>m</sup> | n, m &ge; 0} (CFL, push a's, pop on b's, ignore c's).<br>
-            Let L2 = {a<sup>m</sup>b<sup>n</sup>c<sup>n</sup> | n, m &ge; 0} (CFL, ignore a's, push b's, pop on c's).<br>
-            Intersection L1 &cap; L2 = {a<sup>n</sup>b<sup>n</sup>c<sup>n</sup> | n &ge; 0}.<br>
-            This resulting language requires matching three counts, which a single-stack PDA cannot do. It is Context-Sensitive, not Context-Free. Thus, CFLs are not closed under intersection.</p>
-        </div>
-    </div>
-
-    <!-- SECTION 5: TURING MACHINES -->
-    <h2 class="section-title">5. Turing Machines & Undecidability</h2>
-
-    <div class="qa-card">
-        <h4 class="qa-question">5.1 What is a Turing Machine? What is the Halting Problem?</h4>
-        <div class="answer">
-            <p><b>Turing Machine:</b> An abstract mathematical model with an infinite tape, a read/write head, and a state register. It can move left/right and represents the theoretical limits of computation.</p>
-            <p><b>Halting Problem:</b> The problem of determining, given a program and an input, whether the program will eventually stop (halt) or run forever. Alan Turing proved this problem is <b>undecidable</b>—no universal algorithm can exist to solve it for all possible inputs.</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">5.2 Multi-Tape and Multi-Head TM. Are they more powerful?</h4>
-        <div class="answer">
-            <p><b>Multi-Tape TM:</b> Has multiple independent tapes and heads.<br>
-            <b>Multi-Head TM:</b> Has one tape but multiple read/write heads.<br>
-            <b>Power:</b> They are <i>faster</i> for certain algorithms, but they are <b>not</b> more computationally powerful than a standard single-tape TM. Anything a multi-tape TM can compute, a single-tape TM can simulate.</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">5.3 Explain Church's Hypothesis and Universal Turing Machine.</h4>
-        <div class="answer">
-            <p><b>Church-Turing Thesis:</b> A hypothesis stating that any function that is intuitively computable by a human following an algorithm can be computed by a Turing Machine.</p>
-            <p><b>Universal Turing Machine (UTM):</b> A TM that takes the encoded description of any other TM 'M' and its input 'w' on its tape, and perfectly simulates 'M' running on 'w'. It is the theoretical foundation of programmable computers (software).</p>
-        </div>
-    </div>
-
-    <div class="qa-card">
-        <h4 class="qa-question">5.4 Design a TM that accepts 0<sup>n</sup>1<sup>n</sup>.</h4>
-        <div class="answer">
-            <p><b>Logic:</b> <br>
-            1. Read '0', replace it with 'X', move Right.<br>
-            2. Skip all '0's and 'Y's until a '1' is found.<br>
-            3. Replace '1' with 'Y', move Left.<br>
-            4. Skip all 'Y's and '0's backwards until 'X' is found, move Right.<br>
-            5. Repeat until all '0's are 'X's and '1's are 'Y's. If no unmarked 0s or 1s remain, ACCEPT.</p>
-        </div>
-    </div>
-
-</div>
-
 </body>
 </html>
